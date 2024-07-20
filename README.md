@@ -1,4 +1,4 @@
-# fx_state
+# flutter_fx
 
 State manager & navigation manager for flutter. It allows you to update wisely your states and to navigate easily.
 
