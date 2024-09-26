@@ -109,7 +109,7 @@ final class FxRouter {
     }
 
     if (arguments is NavigationArguments) {
-      routeArguments = routeSettings?.arguments as NavigationArguments;
+      routeArguments = arguments;
     }
 
     return routeArguments;
