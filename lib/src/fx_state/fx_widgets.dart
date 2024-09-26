@@ -6,32 +6,32 @@ import 'fx_notifier.dart';
 
 class FxBuilder  extends StatelessWidget {
 
-  final Widget Function(BuildContext innerContext) builder;
+  final Widget Function(BuildContext fxContext) builder;
 
-  const FxBuilder(this.builder,{super.key});
+  const FxBuilder({required this.builder,super.key});
 
   @override
   Widget build(BuildContext context) {
     return NotificationListener<StateNotification>(
-      onNotification: (notification) => FxNotifier.triggerUpdater(notification.stateKey),
+      onNotification: (notification) => FxStateNotifier.instance.triggerUpdater(notification.stateKey),
       child: FxReceiver(builder),
     );
   }
 }
 
 class FxReceiver extends FxWidget{
-  final Widget Function(BuildContext innerContext) builder;
+  final Widget Function(BuildContext fxContext) builder;
 
   const FxReceiver(this.builder, {super.key});
 
   @override
-  void onStateChanged(BuildContext innerContext, Function() updater) {
-    FxNotifier.addUpdater("${innerContext.hashCode}:${innerContext.runtimeType}", updater);
+  void onStateChanged(BuildContext fxContext, Function() updater) {
+    FxStateNotifier.instance.attachUpdater(fxContext.customIdentifier, updater);
   }
 
   @override
-  Widget build(BuildContext innerContext) {
-    return  builder(innerContext);
+  Widget build(BuildContext fxContext) {
+    return  builder(fxContext);
   }
 }
 
@@ -42,10 +42,10 @@ sealed class FxWidget extends StatefulWidget {
   FxState createState() => FxState();
 
   @protected
-  Widget build(BuildContext innerContext);
+  Widget build(BuildContext fxContext);
 
   @protected
-  void onStateChanged(BuildContext innerContext, Function() updater);
+  void onStateChanged(BuildContext fxContext, Function() updater);
 }
 
 class FxState extends State<FxWidget> {
@@ -71,6 +71,7 @@ class FxState extends State<FxWidget> {
         setState(() {});
       }); 
     }
+    
     return widget.build(context);
   }
 }

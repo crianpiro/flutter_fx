@@ -8,7 +8,7 @@ class Fx <T extends dynamic>{
   
   set value(value){
     _value = value;
-    FxNotifier.propagateNotification("$hashCode:$runtimeType");
+    FxStateNotifier.instance.notifyReceivers("$hashCode:$runtimeType");
   }
 
   T get value {
@@ -21,13 +21,13 @@ extension FxT<T> on T {
   Fx<T> get toFx => Fx<T>(this);
 }
 
-extension SenderPropagation on Fx {
-  T listen<T>(BuildContext context) {
-    if(!FxNotifier.verifyContextAssociation("${context.hashCode}:${context.runtimeType}")){
-      throw Exception("Improper use of context for the listeners. There is not a listener with the key-> $hashCode:$runtimeType");
+extension ReceiverListener on Fx {
+  T listen<T>(BuildContext fxContext) {
+    if(!FxStateNotifier.instance.validateAttachedUpdater(fxContext.customIdentifier)){
+      throw FlutterError("Improper use of context for the listeners. There is not a listener with the key-> $customIdentifier");
     }
-    FxNotifier.addContextAssociation("$hashCode:$runtimeType", context);
-    FxNotifier.addListenerAssociation("$hashCode:$runtimeType", "${context.hashCode}:${context.runtimeType}");
+    FxStateNotifier.instance.attachReceiverContext(fxContext);
+    FxStateNotifier.instance.attachReceiver(customIdentifier, fxContext.customIdentifier);
     return _value;
   }
 }

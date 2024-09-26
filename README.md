@@ -1,15 +1,17 @@
-# flutter_fx
+![Static Badge](https://img.shields.io/badge/License-BSD_3_Clause-green)
 
 State manager & navigation manager for flutter. It allows you to update wisely your states and to navigate easily.
 
+flutter_fx uses normal and basic structures to handle the states and the navigation in a easier way than the common libraries.
+
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+* State managment
+* Navigation managment
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+First version of the librarie, still on development.
 
 ## Usage
 
@@ -17,11 +19,12 @@ TODO: Include short and useful examples for package users. Add longer examples
 to `/example` folder.
 
 ```dart
-const like = 'sample';
+FxBuilder(
+    builder: (fxContext){
+        return Text(controller.name.listen(fxContext));
+    }
+)
 ```
 
 ## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+This is the first version of the package. It is still under development.

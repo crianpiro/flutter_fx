@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'package:flutter/widgets.dart';
 
@@ -15,57 +14,85 @@ enum TransitionDirection {
 @immutable
 final class NavigationArguments {
   final dynamic payload;
-  final TransitionDirection transitionDirection;
+  final Color? barrierColor;
   final RouteTransition pageTransition;
+  final TransitionDirection transitionDirection;
 
   const NavigationArguments(
       {this.payload,
+      this.barrierColor = const Color.fromARGB(0, 0, 0, 0),
       this.pageTransition = RouteTransition.linear,
       this.transitionDirection = TransitionDirection.rightToLeft});
+
+  factory NavigationArguments.noTransition(dynamic payload){
+    return NavigationArguments(
+      payload: payload,
+      barrierColor: const Color.fromARGB(255, 0, 0, 0),
+      transitionDirection: TransitionDirection.none,
+      pageTransition: RouteTransition.none);
+  }
 }
 
 @immutable
 final class FxRouter {
   static bool useDefaultTransition = true;
-  static BuildContext? _mainContext;
+  static GlobalKey<NavigatorState>? _navigatorKey;
+  static Widget Function(String route)? _routeBuilder;
+
   static FxRouter? _singleton;
-  static Widget Function(String route)? _buildRoute;
 
   const FxRouter._();
 
-  factory FxRouter.iniContext(BuildContext context) {
-    _mainContext = context;
-    return _singleton ??= const FxRouter._();
-  }
-
-  factory FxRouter.initRouteBuilder(Widget Function(String route) buildRoute) {
-    _buildRoute = buildRoute;
+  factory FxRouter.init(GlobalKey<NavigatorState>? navigatorKey,
+      Widget Function(String route) buildRoute) {
+    _navigatorKey = navigatorKey;
+    _routeBuilder = buildRoute;
     return _singleton ??= const FxRouter._();
   }
 
   static FutureOr<void> pushTo(String route, {NavigationArguments? arguments}) {
-    assert(_mainContext != null && _buildRoute != null,
+    assert(
+        _navigatorKey != null &&
+            _navigatorKey!.currentState != null &&
+            _routeBuilder != null,
         "Application router must be initialized.");
-    Navigator.of(_mainContext!).push(getPageRouteBuilder(_buildRoute!, route));
+    _navigatorKey!.currentState?.push(_getPageRouteBuilder(route));
   }
 
-  static PageRouteBuilder getPageRouteBuilder(
-      Widget Function(String route) buildRoute, String route,
+  static Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
+    String routeName = routeSettings.name ?? "/";
+
+    final Object? arguments = routeSettings.arguments;
+    NavigationArguments routeArguments = const NavigationArguments();
+
+    if ((arguments == null || arguments is! NavigationArguments) && !useDefaultTransition) {
+      routeArguments =  NavigationArguments.noTransition(arguments);
+    }
+
+    if (arguments is NavigationArguments) {
+      routeArguments = routeSettings.arguments as NavigationArguments;
+    }
+
+    return _getPageRouteBuilder(routeName, arguments: routeArguments);
+  }
+
+  static PageRouteBuilder _getPageRouteBuilder(String route,
       {NavigationArguments? arguments}) {
     if (arguments == null && !useDefaultTransition) {
       arguments = const NavigationArguments(
+          barrierColor: Color.fromARGB(255, 0, 0, 0),
           transitionDirection: TransitionDirection.none,
           pageTransition: RouteTransition.none);
     } else {
-      arguments = const NavigationArguments();
+      arguments ??= const NavigationArguments();
     }
 
     return PageRouteBuilder(
-      settings: RouteSettings(name: route, arguments: arguments),
+      settings: RouteSettings(name: route, arguments: arguments.payload),
       pageBuilder: (context, animation, secondaryAnimation) =>
-          _buildRoute!(route),
+          _routeBuilder!(route),
       opaque: false,
-      barrierColor: const Color(0x00000000),
+      barrierColor: arguments.barrierColor,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         if (arguments!.transitionDirection != TransitionDirection.none) {
           return SlideTransition(
@@ -107,20 +134,20 @@ final class FxRouter {
     return offsetAnimation;
   }
 
-  static void navigatorChannel(Function() navigatorBuilder) {
-    // assert(_mainContext == null, "Application router must be initialized.");
-    // assert(() {
-    //   if (_mainContext. == null) {
-    //     throw FlutterError(
-    //       'Navigator.onGenerateRoute was null, but the route named "$name" was referenced.\n'
-    //       'To use the Navigator API with named routes (pushNamed, pushReplacementNamed, or '
-    //       'pushNamedAndRemoveUntil), the Navigator must be provided with an '
-    //       'onGenerateRoute handler.\n'
-    //       'The Navigator was:\n'
-    //       '  $this',
-    //     );
-    //   }
-    //   return true;
-    // }());
-  }
+  // static void navigatorChannel(Function() navigatorBuilder) {
+  //   // assert(_mainContext == null, "Application router must be initialized.");
+  //   // assert(() {
+  //   //   if (_mainContext. == null) {
+  //   //     throw FlutterError(
+  //   //       'Navigator.onGenerateRoute was null, but the route named "$name" was referenced.\n'
+  //   //       'To use the Navigator API with named routes (pushNamed, pushReplacementNamed, or '
+  //   //       'pushNamedAndRemoveUntil), the Navigator must be provided with an '
+  //   //       'onGenerateRoute handler.\n'
+  //   //       'The Navigator was:\n'
+  //   //       '  $this',
+  //   //     );
+  //   //   }
+  //   //   return true;
+  //   // }());
+  // }
 }
