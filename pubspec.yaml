@@ -5,7 +5,7 @@ homepage: https://crianpiro.de/
 repository: https://github.com/crianpiro/flutter_fx
 issue_tracker: https://github.com/crianpiro/flutter_fx/labels/bug
 funding:
-  - buymeacoffee.com/crianpiro
+  - https://buymeacoffee.com/crianpiro
 topics:
   - state
   - navigation
