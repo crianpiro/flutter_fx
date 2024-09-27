@@ -1,3 +1,7 @@
+## 0.0.4
+* Code formatted.
+* Issue tracket fixed.
+
 ## 0.0.3
 * Basic documentation added.
 * Basic example project added.
