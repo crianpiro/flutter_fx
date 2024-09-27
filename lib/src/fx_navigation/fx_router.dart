@@ -67,7 +67,7 @@ final class FxRouter {
   ///
   /// * [FxRouter.init], which initializes the [FxRouter].
   /// * [FxApp], which is the main widget that uses the [FxRouter].
-  static void ensureProperUse(){
+  static void ensureProperUse() {
     final FlutterError error = FlutterError("""Improper use of a [FxRouter].
         * The [FxRouter] must be initialized.
         * To use [FxRouter] your main Widget must be a [FxApp].""");
@@ -76,22 +76,21 @@ final class FxRouter {
             _navigatorKey!.currentState != null &&
             _routeBuilder != null,
         error);
-        
+
     bool safe = false;
 
-    _navigatorKey!.currentContext?.visitAncestorElements((element){
-      if(element.widget is FxApp){
+    _navigatorKey!.currentContext?.visitAncestorElements((element) {
+      if (element.widget is FxApp) {
         safe = true;
         return false;
       }
       return true;
     });
 
-    if(!safe){
+    if (!safe) {
       throw error;
     }
   }
-
 
   /// Pushes the given [route] onto the navigator.
   ///
@@ -104,7 +103,6 @@ final class FxRouter {
     _navigatorKey!.currentState?.push(_getPageRouteBuilder(
         route, getRouteArguments(navArguments: arguments)));
   }
-
 
   /// Pushes the given [route] onto the navigator and replaces the current route.
   ///
@@ -193,7 +191,7 @@ final class FxRouter {
   }
 
   /// Generates a [PageRouteBuilder] for the given [route] and [arguments].
-  /// 
+  ///
   /// The [transitionsBuilder] is set to use the [SlideTransition] if the
   /// [routeTransition] property of the given [arguments] is
   /// [RouteTransition.animated].

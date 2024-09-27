@@ -32,10 +32,10 @@ FutureOr<void> main() {
 }
 
 class MainPageController {
-  static Fx<String> text  = "data".toFx;
-  static FxString text2  = "NO DATA".toFx;
+  static Fx<String> text = "data".toFx;
+  static FxString text2 = "NO DATA".toFx;
 
-  void changeState(){
+  void changeState() {
     text.value = "new data ${Random().nextDouble().toString()}";
     text2.value = "new data ${Random().nextDouble().toString()}";
   }
@@ -49,22 +49,21 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          FxBuilder(
-            builder: (fxContext) {
-              return Text(MainPageController.text.listen(fxContext));
-            }
-          ),
-          FxBuilder(
-            builder: (fxContext) {
-              return Text(MainPageController.text2.listen(fxContext));
-            }
-          ),
-          ElevatedButton(onPressed: (){
-            FxRouter.goTo("main", arguments: NavigationArguments(transitionDirection: TransitionDirection.bottomToTop));
-          }, child: Text("Change state"))
+          FxBuilder(builder: (fxContext) {
+            return Text(MainPageController.text.listen(fxContext));
+          }),
+          FxBuilder(builder: (fxContext) {
+            return Text(MainPageController.text2.listen(fxContext));
+          }),
+          ElevatedButton(
+              onPressed: () {
+                FxRouter.goTo("main",
+                    arguments: NavigationArguments(
+                        transitionDirection: TransitionDirection.bottomToTop));
+              },
+              child: Text("Change state"))
         ],
       ),
     );
   }
 }
-

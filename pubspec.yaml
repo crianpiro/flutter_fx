@@ -3,7 +3,7 @@ description: "State & navigation manager for flutter. It allows you to update wi
 version: 0.0.3
 homepage: https://crianpiro.de/
 repository: https://github.com/crianpiro/flutter_fx
-issue_tracker: https://github.com/crianpiro/flutter_fx/labels/bug
+issue_tracker: https://github.com/crianpiro/flutter_fx/issues
 funding:
   - https://buymeacoffee.com/crianpiro
 topics:

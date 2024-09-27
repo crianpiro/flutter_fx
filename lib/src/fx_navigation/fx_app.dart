@@ -23,7 +23,7 @@ final class FxApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FxRouter.init(_navKey,routeBuilder);
+    FxRouter.init(_navKey, routeBuilder);
     return WidgetsApp(
       navigatorKey: _navKey,
       color: appColor,

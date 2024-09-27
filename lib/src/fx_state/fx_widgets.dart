@@ -2,11 +2,10 @@ import 'package:flutter/widgets.dart';
 
 import 'fx_notifier.dart';
 
-
 class FxBuilder extends FxWidget {
   final Widget Function(BuildContext fxContext) builder;
 
-  const FxBuilder({required this.builder,super.key});
+  const FxBuilder({required this.builder, super.key});
 
   @override
   Widget build(BuildContext fxContext) => builder(fxContext);
@@ -23,7 +22,6 @@ sealed class FxWidget extends StatefulWidget {
 }
 
 class _FxState extends State<FxWidget> {
-
   @override
   void initState() {
     FxStateNotifier.instance
@@ -42,6 +40,7 @@ class _FxState extends State<FxWidget> {
   }
 
   @override
+
   /// This implementation of [State.build] simply calls the [build]
   /// function of the [FxWidget] and returns the result.
   ///

@@ -4,19 +4,19 @@ import 'package:flutter/widgets.dart';
 typedef FxString = Fx<String>;
 typedef FxBool = Fx<bool>;
 typedef FxList<T> = Fx<List<T>>;
-typedef FxMap<T,M> = Fx<Map<T,M>>;
+typedef FxMap<T, M> = Fx<Map<T, M>>;
 
 extension FxValue<T> on T {
   /// Returns a `Fx` instance with [this] `T` as initial value.
   Fx<T> get toFx => Fx<T>(this);
 }
 
-class Fx <T extends dynamic>{
+class Fx<T extends dynamic> {
   late T _value;
-  
+
   Fx(this._value);
-  
-  set value(value){
+
+  set value(value) {
     _value = value;
     FxStateNotifier.instance.notifyBuilders(fxIdentifier);
   }
@@ -42,12 +42,11 @@ class Fx <T extends dynamic>{
   int get hashCode => _value.hashCode;
 
   @override
-   bool operator ==(Object other) {
+  bool operator ==(Object other) {
     if (other is T) return _value == other;
     return false;
   }
 
   @override
   String toString() => _value.toString();
-
 }

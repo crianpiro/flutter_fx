@@ -28,6 +28,7 @@ final class FxStateNotifier extends FxNotifier {
   final Map<String, LinkedHashSet<String>> _attachedBuilders = {};
 
   @override
+
   /// Attaches the builder's context to a state key.
   ///
   /// The builder is notified when the state changes.
@@ -35,7 +36,7 @@ final class FxStateNotifier extends FxNotifier {
   /// If the context is already attached, this method does nothing.
   void attachBuilder(String stateKey, BuildContext builderContext) {
     ensureProperUse(builderContext);
-    
+
     if (!_attachedBuilders.containsKey(stateKey)) {
       _attachedBuilders[stateKey] = LinkedHashSet();
     }
@@ -46,9 +47,10 @@ final class FxStateNotifier extends FxNotifier {
   }
 
   @override
+
   /// Attaches a widget's context to a state key to be notified when the
-  /// state changes. 
-  /// 
+  /// state changes.
+  ///
   /// The [updater] function is called when the state changes.
   ///
   /// The [builderContextKey] is a key that is used to identify the widget
@@ -81,9 +83,8 @@ final class FxStateNotifier extends FxNotifier {
     }
   }
 
-  
-
   @override
+
   /// Detaches a widget's context from a state key.
   ///
   /// The context is no longer notified when the state changes.
@@ -92,13 +93,14 @@ final class FxStateNotifier extends FxNotifier {
   void detachBuilder(String builderContextKey) {
     _updaters.remove(builderContextKey);
     for (LinkedHashSet receivers in _attachedBuilders.values) {
-      if (receivers.contains(builderContextKey)){
+      if (receivers.contains(builderContextKey)) {
         receivers.remove(builderContextKey);
       }
     }
   }
-  
+
   @override
+
   /// Ensures that a [Fx] is being used properly.
   ///
   /// Checks that the [Fx] is being listened to inside a [FxBuilder] and
@@ -106,12 +108,13 @@ final class FxStateNotifier extends FxNotifier {
   ///
   /// Throws a [FlutterError] if the usage is not proper.
   void ensureProperUse(BuildContext context) {
-
-    final FlutterError error = FlutterError("""Improper use of a [FxValue] variable
+    final FlutterError error =
+        FlutterError("""Improper use of a [FxValue] variable
         * The [FxValue]s can only be listened inside a FxBuilder.
         * The [FxValue.listen] method can only be used with a context from a FxBuilder.""");
 
-    if(!_updaters.containsKey(context.fxIdentifier) || context.widget is! FxBuilder){
+    if (!_updaters.containsKey(context.fxIdentifier) ||
+        context.widget is! FxBuilder) {
       throw error;
     }
   }
