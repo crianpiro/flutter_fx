@@ -63,8 +63,9 @@
     <section class="multi-line-signature">
       const
       <span class="name ">NavigationArguments</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="-param-payload">{<span class="type-annotation">dynamic</span> <span class="parameter-name">payload</span>, </span></li>
+<li><span class="parameter" id="-param-curve"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/animation/Curve-class.html">Curve</a></span> <span class="parameter-name">curve</span> = <span class="default-value">Curves.linear</span>, </span></li>
 <li><span class="parameter" id="-param-barrierColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span> <span class="parameter-name">barrierColor</span> = <span class="default-value">const Color.fromARGB(0, 0, 0, 0)</span>, </span></li>
-<li><span class="parameter" id="-param-pageTransition"><span class="type-annotation"><a href="../../flutter_fx/RouteTransition.html">RouteTransition</a></span> <span class="parameter-name">pageTransition</span> = <span class="default-value">RouteTransition.linear</span>, </span></li>
+<li><span class="parameter" id="-param-routeTransition"><span class="type-annotation"><a href="../../flutter_fx/RouteTransition.html">RouteTransition</a></span> <span class="parameter-name">routeTransition</span> = <span class="default-value">RouteTransition.animated</span>, </span></li>
 <li><span class="parameter" id="-param-transitionDirection"><span class="type-annotation"><a href="../../flutter_fx/TransitionDirection.html">TransitionDirection</a></span> <span class="parameter-name">transitionDirection</span> = <span class="default-value">TransitionDirection.rightToLeft</span>}</span></li>
 </ol>)
     </section>
@@ -77,8 +78,9 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">const NavigationArguments(
     {this.payload,
+    this.curve = Curves.linear,
     this.barrierColor = const Color.fromARGB(0, 0, 0, 0),
-    this.pageTransition = RouteTransition.linear,
+    this.routeTransition = RouteTransition.animated,
     this.transitionDirection = TransitionDirection.rightToLeft});</code></pre>
 </section>
 
@@ -113,7 +115,7 @@
 <footer>
   <span class="no-break">
     flutter_fx
-      0.0.1
+      0.0.3
   </span>
 
   

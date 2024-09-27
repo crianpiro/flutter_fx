@@ -1,27 +1,18 @@
 import 'dart:collection';
-import 'dart:developer';
+
 import 'package:flutter/widgets.dart';
-
-@immutable
-final class StateNotification extends Notification {
-  final String stateKey;
-  const StateNotification(this.stateKey);
-}
-
-typedef ContextSubcriptions = LinkedHashMap<String, BuildContext>;
+import 'package:flutter_fx/src/fx_state/fx_widgets.dart';
 
 extension CustomKeyExtension<T> on T {
-  String get customIdentifier => "$hashCode:$runtimeType";
+  String get fxIdentifier => "$hashCode:$runtimeType";
 }
 
 abstract class FxNotifier {
-  void attachUpdater(String receiverContextKey, Function() updater);
-  void attachReceiver(String stateKey, String receiverContextKey);
-  void attachReceiverContext(BuildContext receiverContext);
-  void notifyReceivers(String stateKey);
-  bool validateAttachedUpdater(String receiverContextKey);
-  bool triggerUpdater(String receiverContextKey);
-  void unAttach(String stateKey, String receiverContextKey);
+  void attachUpdater(String builderContextKey, Function() updater);
+  void attachBuilder(String stateKey, BuildContext builderContext);
+  void notifyBuilders(String stateKey);
+  void detachBuilder(String builderContextKey);
+  void ensureProperUse(BuildContext context);
 }
 
 final class FxStateNotifier extends FxNotifier {
@@ -33,75 +24,95 @@ final class FxStateNotifier extends FxNotifier {
 
   static FxStateNotifier get instance => FxStateNotifier();
 
-  final Map<String, BuildContext> _attachedContexts = {};
-  final Map<String, LinkedHashSet<String>> _attachedReceivers = {};
   final Map<String, Function()> _updaters = {};
+  final Map<String, LinkedHashSet<String>> _attachedBuilders = {};
 
   @override
-  void attachReceiverContext(BuildContext receiverContext) {
-    log("Attaching context: ${receiverContext.customIdentifier}");
-
-    if (!_attachedContexts.containsKey(receiverContext.customIdentifier)) {
-      _attachedContexts[receiverContext.customIdentifier] = receiverContext;
+  /// Attaches the builder's context to a state key.
+  ///
+  /// The builder is notified when the state changes.
+  ///
+  /// If the context is already attached, this method does nothing.
+  void attachBuilder(String stateKey, BuildContext builderContext) {
+    ensureProperUse(builderContext);
+    
+    if (!_attachedBuilders.containsKey(stateKey)) {
+      _attachedBuilders[stateKey] = LinkedHashSet();
     }
 
-    // _attachedContexts[stateKey]![context.customIdentifier] = context;
-  }
-
-  @override
-  void attachReceiver(String stateKey, String receiverContextKey) {
-    log("Attaching listener: $receiverContextKey -> $stateKey");
-
-    if (!_attachedReceivers.containsKey(stateKey)) {
-      _attachedReceivers[stateKey] = LinkedHashSet();
-    }
-
-    if (!_attachedReceivers[stateKey]!.contains(receiverContextKey)) {
-      _attachedReceivers[stateKey]!.add(receiverContextKey);
+    if (!_attachedBuilders[stateKey]!.contains(builderContext.fxIdentifier)) {
+      _attachedBuilders[stateKey]!.add(builderContext.fxIdentifier);
     }
   }
 
   @override
-  void attachUpdater(String receiverContextKey, dynamic Function() updater) {
-    if (!_updaters.containsKey(receiverContextKey)) {
-      log("Attaching updater for -> $receiverContextKey");
-      _updaters[receiverContextKey] = updater;
+  /// Attaches a widget's context to a state key to be notified when the
+  /// state changes. 
+  /// 
+  /// The [updater] function is called when the state changes.
+  ///
+  /// The [builderContextKey] is a key that is used to identify the widget
+  /// that should be notified when the state changes.
+  ///
+  /// If the [builderContextKey] is already attached, the [updater] is ignored.
+  void attachUpdater(String builderContextKey, dynamic Function() updater) {
+    if (!_updaters.containsKey(builderContextKey)) {
+      _updaters[builderContextKey] = updater;
     }
   }
 
   @override
-  void notifyReceivers(String stateKey) {
-    if (_attachedReceivers.containsKey(stateKey)) {
-      LinkedHashSet<String> receivers = _attachedReceivers[stateKey]!;
 
+  /// Notify all builders that have been attached to [stateKey].
+  ///
+  /// The builders are notified by calling the [updater] function that was
+  /// passed to [attachUpdater].
+  ///
+  /// If a builder has not been attached, it is ignored.
+  void notifyBuilders(String stateKey) {
+    if (_attachedBuilders.containsKey(stateKey)) {
+      LinkedHashSet<String> receivers = _attachedBuilders[stateKey]!;
 
       for (String receiverKey in receivers) {
-        log("Notifying receivers over context: $receiverKey");
-        StateNotification(stateKey).dispatch(_attachedContexts[receiverKey]!);
+        if (_updaters.containsKey(receiverKey)) {
+          _updaters[receiverKey]?.call();
+        }
       }
     }
   }
 
-  @override
-  bool validateAttachedUpdater(String receiverContextKey) {
-    log("Validate attached updater for -> $receiverContextKey");
-    return _updaters.containsKey(receiverContextKey);
-  }
+  
 
   @override
-  bool triggerUpdater(String receiverContextKey) {
-    if (_attachedReceivers.containsKey(receiverContextKey) && _updaters.containsKey(receiverContextKey)) {
-      _updaters[receiverContextKey]?.call();
-      return true;
+  /// Detaches a widget's context from a state key.
+  ///
+  /// The context is no longer notified when the state changes.
+  ///
+  /// If the context is not attached, this method does nothing.
+  void detachBuilder(String builderContextKey) {
+    _updaters.remove(builderContextKey);
+    for (LinkedHashSet receivers in _attachedBuilders.values) {
+      if (receivers.contains(builderContextKey)){
+        receivers.remove(builderContextKey);
+      }
     }
-
-    throw FlutterError("Not updater found for -> $receiverContextKey.");
   }
-
+  
   @override
-  void unAttach(String stateKey, String receiverContextKey) {
-    _attachedContexts.remove(receiverContextKey);
-    _attachedReceivers[stateKey]?.remove(receiverContextKey);
-    _updaters.remove(receiverContextKey);
+  /// Ensures that a [Fx] is being used properly.
+  ///
+  /// Checks that the [Fx] is being listened to inside a [FxBuilder] and
+  /// that the context passed to [Fx] is from a [FxBuilder].
+  ///
+  /// Throws a [FlutterError] if the usage is not proper.
+  void ensureProperUse(BuildContext context) {
+
+    final FlutterError error = FlutterError("""Improper use of a [FxValue] variable
+        * The [FxValue]s can only be listened inside a FxBuilder.
+        * The [FxValue.listen] method can only be used with a context from a FxBuilder.""");
+
+    if(!_updaters.containsKey(context.fxIdentifier) || context.widget is! FxBuilder){
+      throw error;
+    }
   }
 }

@@ -1,33 +1,53 @@
 import 'fx_notifier.dart';
 import 'package:flutter/widgets.dart';
 
+typedef FxString = Fx<String>;
+typedef FxBool = Fx<bool>;
+typedef FxList<T> = Fx<List<T>>;
+typedef FxMap<T,M> = Fx<Map<T,M>>;
+
+extension FxValue<T> on T {
+  /// Returns a `Fx` instance with [this] `T` as initial value.
+  Fx<T> get toFx => Fx<T>(this);
+}
+
 class Fx <T extends dynamic>{
-  T _value;
+  late T _value;
   
   Fx(this._value);
   
   set value(value){
     _value = value;
-    FxStateNotifier.instance.notifyReceivers("$hashCode:$runtimeType");
+    FxStateNotifier.instance.notifyBuilders(fxIdentifier);
   }
 
-  T get value {
+  /// Listens to the changes of this `Fx` instance.
+  ///
+  /// The [BuildContext] passed as an argument is used to identify the
+  /// [FxBuilder] that will receive the notifications when the value of this
+  /// `Fx` instance changes.
+  ///
+  /// The [FxBuilder] must be an ancestor of the [BuildContext] passed as an
+  /// argument.
+  ///
+  /// The value of this `Fx` instance is returned.
+  T listen(BuildContext fxContext) {
+    FxStateNotifier.instance.attachBuilder(fxIdentifier, fxContext);
     return _value;
   }
-}
 
-extension FxT<T> on T {
-  /// Returns a `Fx` instance with [this] `T` as initial value.
-  Fx<T> get toFx => Fx<T>(this);
-}
+  dynamic toJson() => _value;
 
-extension ReceiverListener on Fx {
-  T listen<T>(BuildContext fxContext) {
-    if(!FxStateNotifier.instance.validateAttachedUpdater(fxContext.customIdentifier)){
-      throw FlutterError("Improper use of context for the listeners. There is not a listener with the key-> $customIdentifier");
-    }
-    FxStateNotifier.instance.attachReceiverContext(fxContext);
-    FxStateNotifier.instance.attachReceiver(customIdentifier, fxContext.customIdentifier);
-    return _value;
+  @override
+  int get hashCode => _value.hashCode;
+
+  @override
+   bool operator ==(Object other) {
+    if (other is T) return _value == other;
+    return false;
   }
+
+  @override
+  String toString() => _value.toString();
+
 }

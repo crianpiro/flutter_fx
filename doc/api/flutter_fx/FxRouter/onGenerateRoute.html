@@ -71,6 +71,15 @@
 
     </section>
     
+<section class="desc markdown">
+  <p>This callback is used by <a href="https://api.flutter.dev/flutter/widgets/WidgetsApp-class.html">WidgetsApp</a> to generate a route for a given
+<a href="https://api.flutter.dev/flutter/widgets/RouteSettings-class.html">RouteSettings</a>.</p>
+<p>The <a href="https://api.flutter.dev/flutter/widgets/RouteSettings/name.html">RouteSettings.name</a> is the name of the route, and the
+<a href="https://api.flutter.dev/flutter/widgets/RouteSettings/arguments.html">RouteSettings.arguments</a> are the arguments passed to the route.</p>
+<p>The returned <a href="https://api.flutter.dev/flutter/widgets/Route-class.html">Route</a> is the route that will be used to generate the route.</p>
+<p>The <a href="../../flutter_fx/FxRouter-class.html">FxRouter</a> will generate the route using the <code>_getPageRouteBuilder</code>
+method.</p>
+</section>
 
 
     
@@ -79,18 +88,8 @@
   <pre class="language-dart"><code class="language-dart">static Route&lt;dynamic&gt; onGenerateRoute(RouteSettings routeSettings) {
   String routeName = routeSettings.name ?? &quot;&#47;&quot;;
 
-  final Object? arguments = routeSettings.arguments;
-  NavigationArguments routeArguments = const NavigationArguments();
-
-  if ((arguments == null || arguments is! NavigationArguments) &amp;&amp; !useDefaultTransition) {
-    routeArguments =  NavigationArguments.noTransition(arguments);
-  }
-
-  if (arguments is NavigationArguments) {
-    routeArguments = routeSettings.arguments as NavigationArguments;
-  }
-
-  return _getPageRouteBuilder(routeName, arguments: routeArguments);
+  return _getPageRouteBuilder(
+      routeName, getRouteArguments(routeSettings: routeSettings));
 }</code></pre>
 </section>
 
@@ -125,7 +124,7 @@
 <footer>
   <span class="no-break">
     flutter_fx
-      0.0.1
+      0.0.3
   </span>
 
   

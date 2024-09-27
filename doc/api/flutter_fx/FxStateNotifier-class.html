@@ -139,41 +139,55 @@
       id="instance-methods">
     <h2>Methods</h2>
     <dl class="callables">
-        <dt id="attachReceiver" class="callable">
-  <span class="name"><a href="../flutter_fx/FxStateNotifier/attachReceiver.html">attachReceiver</a></span><span class="signature">(<wbr><span class="parameter" id="attachReceiver-param-stateKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">stateKey</span>, </span><span class="parameter" id="attachReceiver-param-receiverContextKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">receiverContextKey</span></span>)
+        <dt id="attachBuilder" class="callable">
+  <span class="name"><a href="../flutter_fx/FxStateNotifier/attachBuilder.html">attachBuilder</a></span><span class="signature">(<wbr><span class="parameter" id="attachBuilder-param-stateKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">stateKey</span>, </span><span class="parameter" id="attachBuilder-param-builderContext"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">builderContext</span></span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
 
 </dt>
 <dd>
-  
-  <div class="features"><span class="feature">override</span></div>
-
-</dd>
-
-        <dt id="attachReceiverContext" class="callable">
-  <span class="name"><a href="../flutter_fx/FxStateNotifier/attachReceiverContext.html">attachReceiverContext</a></span><span class="signature">(<wbr><span class="parameter" id="attachReceiverContext-param-receiverContext"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">receiverContext</span></span>)
-    <span class="returntype parameter">&#8594; void</span>
-  </span>
-  
-
-</dt>
-<dd>
-  
+  Attaches the builder's context to a state key.
   <div class="features"><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="attachUpdater" class="callable">
-  <span class="name"><a href="../flutter_fx/FxStateNotifier/attachUpdater.html">attachUpdater</a></span><span class="signature">(<wbr><span class="parameter" id="attachUpdater-param-receiverContextKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">receiverContextKey</span>, </span><span class="parameter" id="attachUpdater-param-updater"><span class="type-annotation">dynamic</span> <span class="parameter-name">updater</span>()</span>)
+  <span class="name"><a href="../flutter_fx/FxStateNotifier/attachUpdater.html">attachUpdater</a></span><span class="signature">(<wbr><span class="parameter" id="attachUpdater-param-builderContextKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">builderContextKey</span>, </span><span class="parameter" id="attachUpdater-param-updater"><span class="type-annotation">dynamic</span> <span class="parameter-name">updater</span>()</span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
 
 </dt>
 <dd>
+  Attaches a widget's context to a state key to be notified when the
+state changes.
+  <div class="features"><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="detachBuilder" class="callable">
+  <span class="name"><a href="../flutter_fx/FxStateNotifier/detachBuilder.html">detachBuilder</a></span><span class="signature">(<wbr><span class="parameter" id="detachBuilder-param-builderContextKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">builderContextKey</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
   
+
+</dt>
+<dd>
+  Detaches a widget's context from a state key.
+  <div class="features"><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="ensureProperUse" class="callable">
+  <span class="name"><a href="../flutter_fx/FxStateNotifier/ensureProperUse.html">ensureProperUse</a></span><span class="signature">(<wbr><span class="parameter" id="ensureProperUse-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Ensures that a <a href="../flutter_fx/Fx-class.html">Fx</a> is being used properly.
   <div class="features"><span class="feature">override</span></div>
 
 </dd>
@@ -191,15 +205,15 @@
 
 </dd>
 
-        <dt id="notifyReceivers" class="callable">
-  <span class="name"><a href="../flutter_fx/FxStateNotifier/notifyReceivers.html">notifyReceivers</a></span><span class="signature">(<wbr><span class="parameter" id="notifyReceivers-param-stateKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">stateKey</span></span>)
+        <dt id="notifyBuilders" class="callable">
+  <span class="name"><a href="../flutter_fx/FxStateNotifier/notifyBuilders.html">notifyBuilders</a></span><span class="signature">(<wbr><span class="parameter" id="notifyBuilders-param-stateKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">stateKey</span></span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
 
 </dt>
 <dd>
-  
+  Notify all builders that have been attached to <code>stateKey</code>.
   <div class="features"><span class="feature">override</span></div>
 
 </dd>
@@ -214,45 +228,6 @@
 <dd class="inherited">
   A string representation of this object.
   <div class="features"><span class="feature">inherited</span></div>
-
-</dd>
-
-        <dt id="triggerUpdater" class="callable">
-  <span class="name"><a href="../flutter_fx/FxStateNotifier/triggerUpdater.html">triggerUpdater</a></span><span class="signature">(<wbr><span class="parameter" id="triggerUpdater-param-receiverContextKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">receiverContextKey</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
-  </span>
-  
-
-</dt>
-<dd>
-  
-  <div class="features"><span class="feature">override</span></div>
-
-</dd>
-
-        <dt id="unAttach" class="callable">
-  <span class="name"><a href="../flutter_fx/FxStateNotifier/unAttach.html">unAttach</a></span><span class="signature">(<wbr><span class="parameter" id="unAttach-param-stateKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">stateKey</span>, </span><span class="parameter" id="unAttach-param-receiverContextKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">receiverContextKey</span></span>)
-    <span class="returntype parameter">&#8594; void</span>
-  </span>
-  
-
-</dt>
-<dd>
-  
-  <div class="features"><span class="feature">override</span></div>
-
-</dd>
-
-        <dt id="validateAttachedUpdater" class="callable">
-  <span class="name"><a href="../flutter_fx/FxStateNotifier/validateAttachedUpdater.html">validateAttachedUpdater</a></span><span class="signature">(<wbr><span class="parameter" id="validateAttachedUpdater-param-receiverContextKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">receiverContextKey</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
-  </span>
-  
-
-</dt>
-<dd>
-  
-  <div class="features"><span class="feature">override</span></div>
 
 </dd>
 
@@ -331,7 +306,7 @@
 <footer>
   <span class="no-break">
     flutter_fx
-      0.0.1
+      0.0.3
   </span>
 
   

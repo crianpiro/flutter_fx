@@ -1,77 +1,52 @@
-import 'dart:developer';
-
 import 'package:flutter/widgets.dart';
 
 import 'fx_notifier.dart';
 
-class FxBuilder  extends StatelessWidget {
 
+class FxBuilder extends FxWidget {
   final Widget Function(BuildContext fxContext) builder;
 
   const FxBuilder({required this.builder,super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return NotificationListener<StateNotification>(
-      onNotification: (notification) => FxStateNotifier.instance.triggerUpdater(notification.stateKey),
-      child: FxReceiver(builder),
-    );
-  }
-}
-
-class FxReceiver extends FxWidget{
-  final Widget Function(BuildContext fxContext) builder;
-
-  const FxReceiver(this.builder, {super.key});
-
-  @override
-  void onStateChanged(BuildContext fxContext, Function() updater) {
-    FxStateNotifier.instance.attachUpdater(fxContext.customIdentifier, updater);
-  }
-
-  @override
-  Widget build(BuildContext fxContext) {
-    return  builder(fxContext);
-  }
+  Widget build(BuildContext fxContext) => builder(fxContext);
 }
 
 sealed class FxWidget extends StatefulWidget {
   const FxWidget({super.key});
 
   @override
-  FxState createState() => FxState();
+  State createState() => _FxState();
 
   @protected
   Widget build(BuildContext fxContext);
-
-  @protected
-  void onStateChanged(BuildContext fxContext, Function() updater);
 }
 
-class FxState extends State<FxWidget> {
-
-  bool initialized = false;
+class _FxState extends State<FxWidget> {
 
   @override
   void initState() {
+    FxStateNotifier.instance
+        .attachUpdater(context.fxIdentifier, _onStateChanged);
     super.initState();
   }
 
   @override
   void dispose() {
+    FxStateNotifier.instance.detachBuilder(context.fxIdentifier);
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context){
-    if(!initialized){
-      initialized = true;
-      widget.onStateChanged(context, (){
-        log("Updating state");
-        setState(() {});
-      }); 
-    }
-    
-    return widget.build(context);
+  void _onStateChanged() {
+    setState(() {});
   }
+
+  @override
+  /// This implementation of [State.build] simply calls the [build]
+  /// function of the [FxWidget] and returns the result.
+  ///
+  /// See also:
+  ///
+  ///  * [FxWidget.build], the function that is called to build the widget.
+  Widget build(BuildContext context) => widget.build(context);
 }

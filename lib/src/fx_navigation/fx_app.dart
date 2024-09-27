@@ -1,6 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'fx_router.dart';
 
+///[FxApp] sets up the [FxRouter] to navigate between routes, using a [WidgetsApp] as skeleton.
+///[initialRoute] The initial route of the app. This is a required parameter.
+///[routeBuilder] A function that builds a widget for a given route. This is a required parameter.
+///[appColor] The color of the app. This is an optional parameter that defaults to transparent (Color(0x00000000)).
+
 @immutable
 final class FxApp extends StatelessWidget {
   final Color appColor;
