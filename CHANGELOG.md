@@ -1,3 +1,6 @@
+## 0.0.9+2
+* Adding materialLocalizations delegate for compatibility with components.
+
 ## 0.0.9+1
 * fx_components added to the fx_suite.
 

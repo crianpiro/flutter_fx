@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'fx_router.dart';
 
@@ -29,6 +30,10 @@ final class FxApp extends StatelessWidget {
     return WidgetsApp(
       title: title,
       navigatorKey: _navKey,
+      localizationsDelegates: const [
+        DefaultWidgetsLocalizations.delegate,
+        DefaultMaterialLocalizations.delegate,
+      ],
       color: appColor,
       initialRoute: '/',
       onGenerateRoute: FxRouter.onGenerateRoute,
