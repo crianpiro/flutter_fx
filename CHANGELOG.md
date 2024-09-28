@@ -1,5 +1,22 @@
+## 0.0.9+1
+* fx_components added to the fx_suite.
+
+## 0.0.9
+* scaffoldBackgroundColor removed from ViewArguments
+
+## 0.0.8
+* fx_suit to fx_suite. Name corrected.
+
+## 0.0.7
+* Fx_extensions added.
+* FxView completed with parameters.
+
+## 0.0.6
+* FxView moved to fx_suit. To find multiple useful pre-build widgets.
+
 ## 0.0.5
 * FxView added, widgets for faster development.
+
 ## 0.0.4
 * Code formatted.
 * Issue tracket fixed.

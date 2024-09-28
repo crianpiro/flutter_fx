@@ -88,6 +88,7 @@ that the context passed to <a href="../../flutter_fx/Fx-class.html">Fx</a> is fr
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
+
 &#47;&#47;&#47; Ensures that a [Fx] is being used properly.
 &#47;&#47;&#47;
 &#47;&#47;&#47; Checks that the [Fx] is being listened to inside a [FxBuilder] and
@@ -95,12 +96,13 @@ that the context passed to <a href="../../flutter_fx/Fx-class.html">Fx</a> is fr
 &#47;&#47;&#47;
 &#47;&#47;&#47; Throws a [FlutterError] if the usage is not proper.
 void ensureProperUse(BuildContext context) {
-
-  final FlutterError error = FlutterError(&quot;&quot;&quot;Improper use of a [FxValue] variable
+  final FlutterError error =
+      FlutterError(&quot;&quot;&quot;Improper use of a [FxValue] variable
       * The [FxValue]s can only be listened inside a FxBuilder.
       * The [FxValue.listen] method can only be used with a context from a FxBuilder.&quot;&quot;&quot;);
 
-  if(!_updaters.containsKey(context.fxIdentifier) || context.widget is! FxBuilder){
+  if (!_updaters.containsKey(context.fxIdentifier) ||
+      context.widget is! FxBuilder) {
     throw error;
   }
 }</code></pre>
@@ -137,7 +139,7 @@ void ensureProperUse(BuildContext context) {
 <footer>
   <span class="no-break">
     flutter_fx
-      0.0.3
+      0.0.9+1
   </span>
 
   

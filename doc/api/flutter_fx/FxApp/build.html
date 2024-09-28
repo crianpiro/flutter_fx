@@ -118,8 +118,9 @@ and</li>
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
-  FxRouter.init(_navKey,routeBuilder);
+  FxRouter.init(_navKey, routeBuilder);
   return WidgetsApp(
+    title: title,
     navigatorKey: _navKey,
     color: appColor,
     initialRoute: &#39;&#47;&#39;,
@@ -159,7 +160,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     flutter_fx
-      0.0.3
+      0.0.9+1
   </span>
 
   

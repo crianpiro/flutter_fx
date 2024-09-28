@@ -9,11 +9,13 @@ import 'fx_router.dart';
 @immutable
 final class FxApp extends StatelessWidget {
   final Color appColor;
+  final String title;
   final String initialRoute;
   final Widget Function(String route) routeBuilder;
 
   const FxApp(
       {super.key,
+      this.title = "",
       required this.initialRoute,
       required this.routeBuilder,
       this.appColor = const Color(0x00000000)});
@@ -25,6 +27,7 @@ final class FxApp extends StatelessWidget {
   Widget build(BuildContext context) {
     FxRouter.init(_navKey, routeBuilder);
     return WidgetsApp(
+      title: title,
       navigatorKey: _navKey,
       color: appColor,
       initialRoute: '/',

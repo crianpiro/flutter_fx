@@ -87,6 +87,7 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
+
 &#47;&#47;&#47; Detaches a widget&#39;s context from a state key.
 &#47;&#47;&#47;
 &#47;&#47;&#47; The context is no longer notified when the state changes.
@@ -95,7 +96,7 @@
 void detachBuilder(String builderContextKey) {
   _updaters.remove(builderContextKey);
   for (LinkedHashSet receivers in _attachedBuilders.values) {
-    if (receivers.contains(builderContextKey)){
+    if (receivers.contains(builderContextKey)) {
       receivers.remove(builderContextKey);
     }
   }
@@ -133,7 +134,7 @@ void detachBuilder(String builderContextKey) {
 <footer>
   <span class="no-break">
     flutter_fx
-      0.0.3
+      0.0.9+1
   </span>
 
   

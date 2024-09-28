@@ -10,14 +10,31 @@ final class FxView extends StatelessWidget {
   final Widget Function(BuildContext context)? viewBackgroundBuilder;
   final Widget Function(BuildContext context)? viewOverlayBuilder;
   final PreferredSizeWidget? appBar;
-  final Widget? bottomBar;
+  final Color scaffoldBackgroundColor;
+  final Widget? drawer;
+  final Widget? floatingActionButton;
+  final FloatingActionButtonAnimator? floatingActionButtonAnimator;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
+  final void Function(bool)? onDrawerChanged;
+  final Widget? endDrawer;
+  final void Function(bool)? onEndDrawerChanged;
+  final Widget? bottomNavigationBar;
+  final Widget? bottomSheet;
 
   const FxView(
       {required this.viewBuilder,
       this.viewBackgroundBuilder,
       this.viewOverlayBuilder,
       this.appBar,
-      this.bottomBar,
+      this.drawer,
+      this.bottomSheet,
+      this.endDrawer,
+      this.onDrawerChanged,
+      this.onEndDrawerChanged,
+      this.bottomNavigationBar,
+      this.floatingActionButton,
+      this.floatingActionButtonLocation,
+      this.floatingActionButtonAnimator,
       this.arguments = const ViewArguments(
           uiOverlayStyle: SystemUiOverlayStyle(
         systemNavigationBarIconBrightness: Brightness.light,
@@ -25,6 +42,7 @@ final class FxView extends StatelessWidget {
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Colors.transparent,
       )),
+      this.scaffoldBackgroundColor = const Color(0x00000000),
       super.key});
 
   @override
@@ -48,6 +66,16 @@ final class FxView extends StatelessWidget {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: arguments.uiOverlayStyle,
       child: Scaffold(
+        drawer: drawer,
+        endDrawer: endDrawer,
+        bottomSheet: bottomSheet,
+        onDrawerChanged: onDrawerChanged,
+        onEndDrawerChanged: onEndDrawerChanged,
+        bottomNavigationBar: bottomNavigationBar,
+        floatingActionButton: floatingActionButton,
+        backgroundColor: scaffoldBackgroundColor,
+        floatingActionButtonAnimator: floatingActionButtonAnimator,
+        floatingActionButtonLocation: floatingActionButtonLocation,
         body: Stack(
           children: [
             if (viewBackgroundBuilder != null) viewBackgroundBuilder!(context),
@@ -56,7 +84,6 @@ final class FxView extends StatelessWidget {
           ],
         ),
         appBar: appBar,
-        bottomNavigationBar: bottomBar,
         extendBody: arguments.extendBodyBehindNavBar,
         extendBodyBehindAppBar: arguments.extendBodyBehindAppBar,
         resizeToAvoidBottomInset: arguments.resizeToAvoidBottomInset,
