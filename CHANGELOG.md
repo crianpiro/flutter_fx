@@ -1,3 +1,5 @@
+## 0.0.5
+* FxView added, widgets for faster development.
 ## 0.0.4
 * Code formatted.
 * Issue tracket fixed.
