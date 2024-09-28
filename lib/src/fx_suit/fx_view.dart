@@ -10,7 +10,6 @@ final class FxView extends StatelessWidget {
   final Widget Function(BuildContext context)? viewBackgroundBuilder;
   final Widget Function(BuildContext context)? viewOverlayBuilder;
   final PreferredSizeWidget? appBar;
-  final Color scaffoldBackgroundColor;
   final Widget? drawer;
   final Widget? floatingActionButton;
   final FloatingActionButtonAnimator? floatingActionButtonAnimator;
@@ -42,7 +41,6 @@ final class FxView extends StatelessWidget {
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Colors.transparent,
       )),
-      this.scaffoldBackgroundColor = const Color(0x00000000),
       super.key});
 
   @override
@@ -73,7 +71,7 @@ final class FxView extends StatelessWidget {
         onEndDrawerChanged: onEndDrawerChanged,
         bottomNavigationBar: bottomNavigationBar,
         floatingActionButton: floatingActionButton,
-        backgroundColor: scaffoldBackgroundColor,
+        backgroundColor: arguments.scaffoldBackgroundColor,
         floatingActionButtonAnimator: floatingActionButtonAnimator,
         floatingActionButtonLocation: floatingActionButtonLocation,
         body: Stack(

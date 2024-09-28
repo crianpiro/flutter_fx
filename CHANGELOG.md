@@ -1,3 +1,18 @@
+## 0.0.13
+* Styles over the cursor color added.
+
+## 0.0.13
+* ViewArguments supporting more styles.
+
+## 0.0.12
+* FxApp based on Material app for supporting themes and allow faster development.
+
+## 0.0.11
+* FxCustomTextField supporting margin
+
+## 0.0.10
+* FxCustomTextField modified to support more styles
+
 ## 0.0.9+2
 * Adding materialLocalizations delegate for compatibility with components.
 

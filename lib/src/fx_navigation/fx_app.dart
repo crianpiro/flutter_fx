@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'fx_router.dart';
 
 ///[FxApp] sets up the [FxRouter] to navigate between routes, using a [WidgetsApp] as skeleton.
+///[title] The title of the application
 ///[initialRoute] The initial route of the app. This is a required parameter.
 ///[routeBuilder] A function that builds a widget for a given route. This is a required parameter.
 ///[appColor] The color of the app. This is an optional parameter that defaults to transparent (Color(0x00000000)).
 
 @immutable
 final class FxApp extends StatelessWidget {
+  final ThemeData? theme;
   final Color appColor;
   final String title;
   final String initialRoute;
@@ -16,6 +17,7 @@ final class FxApp extends StatelessWidget {
 
   const FxApp(
       {super.key,
+      this.theme,
       this.title = "",
       required this.initialRoute,
       required this.routeBuilder,
@@ -27,8 +29,9 @@ final class FxApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FxRouter.init(_navKey, routeBuilder);
-    return WidgetsApp(
+    return MaterialApp(
       title: title,
+      theme: theme,
       navigatorKey: _navKey,
       localizationsDelegates: const [
         DefaultWidgetsLocalizations.delegate,

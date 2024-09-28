@@ -64,11 +64,15 @@
       const
       <span class="name ">FxCustomTextField</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="-param-key">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
 <li><span class="parameter" id="-param-inputController"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/TextEditingController-class.html">TextEditingController</a>?</span> <span class="parameter-name">inputController</span>, </span></li>
-<li><span class="parameter" id="-param-constraints"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/rendering/BoxConstraints-class.html">BoxConstraints</a>?</span> <span class="parameter-name">constraints</span>, </span></li>
-<li><span class="parameter" id="-param-hasShadow"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">hasShadow</span> = <span class="default-value">false</span>, </span></li>
+<li><span class="parameter" id="-param-cursorColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span> <span class="parameter-name">cursorColor</span>, </span></li>
+<li><span class="parameter" id="-param-maxHeight"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>?</span> <span class="parameter-name">maxHeight</span>, </span></li>
+<li><span class="parameter" id="-param-maxWidth"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>?</span> <span class="parameter-name">maxWidth</span>, </span></li>
+<li><span class="parameter" id="-param-autoUnfocus"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">autoUnfocus</span> = <span class="default-value">false</span>, </span></li>
+<li><span class="parameter" id="-param-maxLines"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">maxLines</span> = <span class="default-value">1</span>, </span></li>
+<li><span class="parameter" id="-param-shadowBlurRadius"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">shadowBlurRadius</span> = <span class="default-value">10.0</span>, </span></li>
+<li><span class="parameter" id="-param-shadowOffset"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Offset-class.html">Offset</a></span> <span class="parameter-name">shadowOffset</span> = <span class="default-value">const Offset(0, 5)</span>, </span></li>
 <li><span class="parameter" id="-param-placeHolder"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">placeHolder</span>, </span></li>
 <li><span class="parameter" id="-param-focusNode"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/FocusNode-class.html">FocusNode</a>?</span> <span class="parameter-name">focusNode</span>, </span></li>
-<li><span class="parameter" id="-param-alignment"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/Alignment-class.html">Alignment</a>?</span> <span class="parameter-name">alignment</span>, </span></li>
 <li><span class="parameter" id="-param-inputType"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextInputType-class.html">TextInputType</a>?</span> <span class="parameter-name">inputType</span>, </span></li>
 <li><span class="parameter" id="-param-onChanged"><span class="type-annotation">dynamic</span> <span class="parameter-name">onChanged</span>(<ol class="parameter-list"><li><span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span></span></li>
 </ol>
@@ -76,11 +80,8 @@
 <li><span class="parameter" id="-param-onSubmitted"><span class="type-annotation">dynamic</span> <span class="parameter-name">onSubmitted</span>(<ol class="parameter-list"><li><span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span></span></li>
 </ol>
 )?, </span></li>
-<li><span class="parameter" id="-param-margin"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/EdgeInsets-class.html">EdgeInsets</a>?</span> <span class="parameter-name">margin</span>, </span></li>
-<li><span class="parameter" id="-param-maxWidth"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>?</span> <span class="parameter-name">maxWidth</span>, </span></li>
 <li><span class="parameter" id="-param-inputPadding"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/EdgeInsets-class.html">EdgeInsets</a>?</span> <span class="parameter-name">inputPadding</span>, </span></li>
 <li><span class="parameter" id="-param-textStyle"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/TextStyle-class.html">TextStyle</a>?</span> <span class="parameter-name">textStyle</span>, </span></li>
-<li><span class="parameter" id="-param-hintStyle"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/TextStyle-class.html">TextStyle</a>?</span> <span class="parameter-name">hintStyle</span>, </span></li>
 <li><span class="parameter" id="-param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span></li>
 <li><span class="parameter" id="-param-errorStyle"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/TextStyle-class.html">TextStyle</a>?</span> <span class="parameter-name">errorStyle</span>, </span></li>
 <li><span class="parameter" id="-param-enableInput"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">enableInput</span>, </span></li>
@@ -90,7 +91,8 @@
 <li><span class="parameter" id="-param-obscureText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">obscureText</span>, </span></li>
 <li><span class="parameter" id="-param-suffixIcon"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>?</span> <span class="parameter-name">suffixIcon</span>, </span></li>
 <li><span class="parameter" id="-param-prefixIcon"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>?</span> <span class="parameter-name">prefixIcon</span>, </span></li>
-<li><span class="parameter" id="-param-fillColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span> <span class="parameter-name">fillColor</span>}</span></li>
+<li><span class="parameter" id="-param-margin"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/EdgeInsetsGeometry-class.html">EdgeInsetsGeometry</a></span> <span class="parameter-name">margin</span> = <span class="default-value">const EdgeInsets.symmetric(vertical: 5.0)</span>, </span></li>
+<li><span class="parameter" id="-param-backgroundColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">backgroundColor</span> = <span class="default-value">const Color.fromARGB(255, 96, 96, 96)</span>}</span></li>
 </ol>)
     </section>
 
@@ -103,19 +105,20 @@
   <pre class="language-dart"><code class="language-dart">const FxCustomTextField({
   super.key,
   required this.inputController,
-  this.constraints,
-  this.hasShadow = false,
+  this.cursorColor,
+  this.maxHeight,
+  this.maxWidth,
+  this.autoUnfocus = false,
+  this.maxLines = 1,
+  this.shadowBlurRadius = 10.0,
+  this.shadowOffset = const Offset(0, 5),
   this.placeHolder,
   this.focusNode,
-  this.alignment,
   this.inputType,
   this.onChanged,
   this.onSubmitted,
-  this.margin,
-  this.maxWidth,
   this.inputPadding,
   this.textStyle,
-  this.hintStyle,
   this.label,
   this.errorStyle,
   this.enableInput,
@@ -125,7 +128,8 @@
   this.obscureText,
   this.suffixIcon,
   this.prefixIcon,
-  this.fillColor,
+  this.margin = const EdgeInsets.symmetric(vertical: 5.0),
+  this.backgroundColor = const Color.fromARGB(255, 96, 96, 96),
 });</code></pre>
 </section>
 
@@ -160,7 +164,7 @@
 <footer>
   <span class="no-break">
     flutter_fx
-      0.0.9+2
+      0.0.14
   </span>
 
   
