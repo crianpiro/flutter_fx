@@ -7,7 +7,7 @@ class FxColors {
   static const Color mainColor = Color.fromARGB(255, 0, 57, 202);
   static const Color grayColor = Color.fromARGB(255, 204, 204, 204);
   static const Color transparentColor = Color(0x00000000);
-  static const Color warningColor = Color.fromARGB(255, 124, 42, 42);
+  static const Color warningColor = Color.fromARGB(255, 123, 7, 7);
   static const Color blackColor = Color.fromARGB(255, 0, 0, 0);
 }
 
@@ -259,7 +259,7 @@ class FxTextField extends StatelessWidget {
             errorText: errorText,
             label: (label != null) ? Text(label!) : null,
             errorStyle: errorStyle ??
-                defaultTextStyle.copyWith(color: FxColors.warningColor),
+                defaultTextStyle.copyWith(color: backgroundColor),
             fillColor: backgroundColor,
             filled: true,
             focusedBorder: inputBorder ??
@@ -269,12 +269,12 @@ class FxTextField extends StatelessWidget {
                 ),
             enabledBorder: inputBorder ??
                 OutlineInputBorder(
-                  borderSide: const BorderSide(color: FxColors.warningColor),
+                  borderSide: BorderSide(color: backgroundColor),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
             border: inputBorder ??
                 OutlineInputBorder(
-                  borderSide: const BorderSide(color: FxColors.warningColor),
+                  borderSide: BorderSide(color: backgroundColor),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
             isDense: true,
