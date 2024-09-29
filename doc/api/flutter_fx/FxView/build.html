@@ -119,19 +119,33 @@ and</li>
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
   Widget encapsuledChild = viewBuilder(context);
+  Widget? encapsuledBacklayer;
+
+  FlutterView window =
+      WidgetsBinding.instance.platformDispatcher.views.single;
+  ViewPadding windowPadding = window.viewPadding;
+  double bottomPadding = windowPadding.bottom &gt; 0
+      ? windowPadding.bottom
+      : window.viewInsets.bottom;
+
+  EdgeInsets boundaries = EdgeInsets.only(
+      bottom: bottomPadding &#47; window.devicePixelRatio,
+      top: windowPadding.top &#47; window.devicePixelRatio);
+
   if (arguments.applyViewPaddings) {
-    FlutterView window =
-        WidgetsBinding.instance.platformDispatcher.views.single;
-    ViewPadding windowPadding = window.viewPadding;
-    double bottomPadding = windowPadding.bottom &gt; 0
-        ? windowPadding.bottom
-        : window.viewInsets.bottom;
     encapsuledChild = Padding(
-      padding: EdgeInsets.only(
-          bottom: bottomPadding &#47; window.devicePixelRatio,
-          top: windowPadding.top &#47; window.devicePixelRatio),
+      padding: boundaries,
       child: viewBuilder(context),
     );
+  }
+
+  if (viewBacklayerBuilder != null) {
+    encapsuledBacklayer = arguments.applyBacklayerPaddings
+        ? Padding(
+            padding: boundaries,
+            child: viewBacklayerBuilder!(context),
+          )
+        : viewBacklayerBuilder!(context);
   }
 
   return AnnotatedRegion&lt;SystemUiOverlayStyle&gt;(
@@ -149,7 +163,7 @@ Widget build(BuildContext context) {
       floatingActionButtonLocation: floatingActionButtonLocation,
       body: Stack(
         children: [
-          if (viewBackgroundBuilder != null) viewBackgroundBuilder!(context),
+          if (encapsuledBacklayer != null) encapsuledBacklayer,
           encapsuledChild,
           if (viewOverlayBuilder != null) viewOverlayBuilder!(context),
         ],
@@ -194,7 +208,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     flutter_fx
-      0.0.14
+      0.0.15
   </span>
 
   

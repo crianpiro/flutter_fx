@@ -8,6 +8,7 @@ final class ViewArguments {
   final bool extendBodyBehindAppBar;
   final bool extendBodyBehindNavBar;
   final bool applyViewPaddings;
+  final bool applyBacklayerPaddings;
   final bool resizeToAvoidBottomInset;
   const ViewArguments(
       {this.uiOverlayStyle = const SystemUiOverlayStyle(
@@ -18,6 +19,7 @@ final class ViewArguments {
       ),
       this.scaffoldBackgroundColor = const Color.fromARGB(255, 255, 255, 255),
       this.applyViewPaddings = true,
+      this.applyBacklayerPaddings = false,
       this.extendBodyBehindAppBar = false,
       this.extendBodyBehindNavBar = false,
       this.resizeToAvoidBottomInset = false});

@@ -1,4 +1,7 @@
-## 0.0.13
+## 0.0.15
+* FxButton, FxTextField and FxTextButton added to the FxSuite.
+
+## 0.0.14
 * Styles over the cursor color added.
 
 ## 0.0.13

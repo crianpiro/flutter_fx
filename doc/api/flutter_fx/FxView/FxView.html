@@ -65,7 +65,7 @@
       <span class="name ">FxView</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="-param-viewBuilder">{<span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">viewBuilder</span>(<ol class="parameter-list"><li><span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span></li>
 </ol>
 ), </span></li>
-<li><span class="parameter" id="-param-viewBackgroundBuilder"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">viewBackgroundBuilder</span>(<ol class="parameter-list"><li><span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span></li>
+<li><span class="parameter" id="-param-viewBacklayerBuilder"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">viewBacklayerBuilder</span>(<ol class="parameter-list"><li><span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span></li>
 </ol>
 )?, </span></li>
 <li><span class="parameter" id="-param-viewOverlayBuilder"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">viewOverlayBuilder</span>(<ol class="parameter-list"><li><span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span></li>
@@ -85,7 +85,7 @@
 <li><span class="parameter" id="-param-floatingActionButton"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>?</span> <span class="parameter-name">floatingActionButton</span>, </span></li>
 <li><span class="parameter" id="-param-floatingActionButtonLocation"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/material/FloatingActionButtonLocation-class.html">FloatingActionButtonLocation</a>?</span> <span class="parameter-name">floatingActionButtonLocation</span>, </span></li>
 <li><span class="parameter" id="-param-floatingActionButtonAnimator"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/material/FloatingActionButtonAnimator-class.html">FloatingActionButtonAnimator</a>?</span> <span class="parameter-name">floatingActionButtonAnimator</span>, </span></li>
-<li><span class="parameter" id="-param-arguments"><span class="type-annotation"><a href="../../flutter_fx/ViewArguments-class.html">ViewArguments</a></span> <span class="parameter-name">arguments</span> = <span class="default-value">const ViewArguments(uiOverlayStyle: SystemUiOverlayStyle(systemNavigationBarIconBrightness: Brightness.light, statusBarIconBrightness: Brightness.light, statusBarColor: Colors.transparent, systemNavigationBarColor: Colors.transparent))</span>, </span></li>
+<li><span class="parameter" id="-param-arguments"><span class="type-annotation">ViewArguments</span> <span class="parameter-name">arguments</span> = <span class="default-value">const ViewArguments(uiOverlayStyle: SystemUiOverlayStyle(systemNavigationBarIconBrightness: Brightness.light, statusBarIconBrightness: Brightness.light, statusBarColor: Colors.transparent, systemNavigationBarColor: Colors.transparent))</span>, </span></li>
 <li><span class="parameter" id="-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>}</span></li>
 </ol>)
     </section>
@@ -98,7 +98,7 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">const FxView(
     {required this.viewBuilder,
-    this.viewBackgroundBuilder,
+    this.viewBacklayerBuilder,
     this.viewOverlayBuilder,
     this.appBar,
     this.drawer,
@@ -151,7 +151,7 @@
 <footer>
   <span class="no-break">
     flutter_fx
-      0.0.14
+      0.0.15
   </span>
 
   
