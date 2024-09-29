@@ -21,6 +21,8 @@ class Fx<T extends dynamic> {
     FxStateNotifier.instance.notifyBuilders(fxIdentifier);
   }
 
+  get value => _value;
+
   /// Listens to the changes of this `Fx` instance.
   ///
   /// The [BuildContext] passed as an argument is used to identify the
