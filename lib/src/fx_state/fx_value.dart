@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter_fx/flutter_fx.dart';
 
-import 'fx_notifier.dart';
 import 'package:flutter/widgets.dart';
 
 typedef FxString = Fx<String>;
@@ -18,7 +17,7 @@ extension FxValue<T> on T {
 class Fx<T extends dynamic> {
   late T _value;
 
-  final String internalIdentifier = "${Random.secure()}";
+  final String internalIdentifier = Random.secure().toString();
 
   Fx(this._value);
 
