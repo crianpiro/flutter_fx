@@ -33,7 +33,7 @@ sealed class FxWidget extends StatefulWidget {
 
 class _FxState extends State<FxWidget> {
   
-  final String internalIdentifier = "${Random.secure()}";
+  final String internalIdentifier = "${Random.secure().nextDouble()}";
 
   @override
   void initState() {

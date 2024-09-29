@@ -35,7 +35,7 @@ class MainPageController {
   static Fx<String> text = "data".toFx;
   static FxString text2 = "NO DATA".toFx;
 
-  void changeState() {
+  static void changeState() {
     text.value = "new data ${Random().nextDouble().toString()}";
     text2.value = "new data ${Random().nextDouble().toString()}";
   }
@@ -51,6 +51,7 @@ class MainPage extends StatelessWidget {
     
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           FxBuilder(builder: (fxContext) {
             return Text(MainPageController.text.listen(fxContext));
@@ -60,9 +61,10 @@ class MainPage extends StatelessWidget {
           }),
           ElevatedButton(
               onPressed: () {
-                FxRouter.goTo("main",
-                    arguments: NavigationArguments(
-                        transitionDirection: TransitionDirection.bottomToTop));
+                MainPageController.changeState();
+                // FxRouter.goTo("main",
+                //     arguments: NavigationArguments(
+                //         transitionDirection: TransitionDirection.bottomToTop));
               },
               child: Text("Change state"))
         ],

@@ -17,7 +17,7 @@ extension FxValue<T> on T {
 class Fx<T extends dynamic> {
   late T _value;
 
-  final String internalIdentifier = "${Random.secure().nextDouble()}!${Random.secure().nextDouble()}";
+  final String internalIdentifier = "${Random.secure().nextDouble()}";
 
   Fx(this._value);
 
