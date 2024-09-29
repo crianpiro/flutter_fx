@@ -1,18 +1,18 @@
 import 'dart:collection';
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_fx/src/fx_state/fx_widgets.dart';
+import 'package:flutter_fx/flutter_fx.dart';
 
-extension CustomKeyExtension<T> on T {
-  String get fxIdentifier => "$hashCode:$runtimeType";
+extension FxCustomKeyExtension<T> on Fx<T> {
+  String get fxIdentifier => "$internalIdentifier:$runtimeType";
 }
 
 abstract class FxNotifier {
   void attachUpdater(String builderContextKey, Function() updater);
-  void attachBuilder(String stateKey, BuildContext builderContext);
+  void attachBuilder(String stateKey, FxBuildContext builderContext);
   void notifyBuilders(String stateKey);
   void detachBuilder(String builderContextKey);
-  void ensureProperUse(BuildContext context);
+  void ensureProperUse(FxBuildContext context);
 }
 
 final class FxStateNotifier extends FxNotifier {
@@ -34,7 +34,7 @@ final class FxStateNotifier extends FxNotifier {
   /// The builder is notified when the state changes.
   ///
   /// If the context is already attached, this method does nothing.
-  void attachBuilder(String stateKey, BuildContext builderContext) {
+  void attachBuilder(String stateKey, FxBuildContext builderContext) {
     ensureProperUse(builderContext);
 
     if (!_attachedBuilders.containsKey(stateKey)) {
@@ -107,14 +107,14 @@ final class FxStateNotifier extends FxNotifier {
   /// that the context passed to [Fx] is from a [FxBuilder].
   ///
   /// Throws a [FlutterError] if the usage is not proper.
-  void ensureProperUse(BuildContext context) {
+  void ensureProperUse(FxBuildContext fxContext) {
     final FlutterError error =
         FlutterError("""Improper use of a [FxValue] variable
         * The [FxValue]s can only be listened inside a FxBuilder.
         * The [FxValue.listen] method can only be used with a context from a FxBuilder.""");
 
-    if (!_updaters.containsKey(context.fxIdentifier) ||
-        context.widget is! FxBuilder) {
+    if (!_updaters.containsKey(fxContext.fxIdentifier) ||
+        fxContext.context.widget is! FxBuilder) {
       throw error;
     }
   }

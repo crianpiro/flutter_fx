@@ -1,3 +1,7 @@
+import 'dart:math';
+
+import 'package:flutter_fx/flutter_fx.dart';
+
 import 'fx_notifier.dart';
 import 'package:flutter/widgets.dart';
 
@@ -13,6 +17,8 @@ extension FxValue<T> on T {
 
 class Fx<T extends dynamic> {
   late T _value;
+
+  final String internalIdentifier = "${Random.secure()}";
 
   Fx(this._value);
 
@@ -33,7 +39,7 @@ class Fx<T extends dynamic> {
   /// argument.
   ///
   /// The value of this `Fx` instance is returned.
-  T listen(BuildContext fxContext) {
+  T listen(FxBuildContext fxContext) {
     FxStateNotifier.instance.attachBuilder(fxIdentifier, fxContext);
     return _value;
   }

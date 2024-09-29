@@ -1,37 +1,50 @@
+import 'dart:math';
+
 import 'package:flutter/widgets.dart';
 
 import 'fx_notifier.dart';
 
+class FxBuildContext{
+  BuildContext context;
+  String fxIdentifier;
+
+  FxBuildContext(this.context, this.fxIdentifier);
+}
+
 class FxBuilder extends FxWidget {
-  final Widget Function(BuildContext fxContext) builder;
+  final Widget Function(FxBuildContext fxContext) builder;
 
   const FxBuilder({required this.builder, super.key});
 
   @override
-  Widget build(BuildContext fxContext) => builder(fxContext);
+  Widget build(FxBuildContext fxContext) => builder(fxContext);
 }
 
 sealed class FxWidget extends StatefulWidget {
+  
   const FxWidget({super.key});
 
   @override
   State createState() => _FxState();
 
   @protected
-  Widget build(BuildContext fxContext);
+  Widget build(FxBuildContext fxContext);
 }
 
 class _FxState extends State<FxWidget> {
+  
+  final String internalIdentifier = "${Random.secure()}";
+
   @override
   void initState() {
     FxStateNotifier.instance
-        .attachUpdater(context.fxIdentifier, _onStateChanged);
+        .attachUpdater(internalIdentifier, _onStateChanged);
     super.initState();
   }
 
   @override
   void dispose() {
-    FxStateNotifier.instance.detachBuilder(context.fxIdentifier);
+    FxStateNotifier.instance.detachBuilder(internalIdentifier);
     super.dispose();
   }
 
@@ -47,5 +60,5 @@ class _FxState extends State<FxWidget> {
   /// See also:
   ///
   ///  * [FxWidget.build], the function that is called to build the widget.
-  Widget build(BuildContext context) => widget.build(context);
+  Widget build(BuildContext context) => widget.build(FxBuildContext(context, internalIdentifier));
 }
