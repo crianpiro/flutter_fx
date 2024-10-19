@@ -9,16 +9,22 @@ import 'fx_router.dart';
 
 @immutable
 final class FxApp extends StatelessWidget {
-  final ThemeData? theme;
   final Color appColor;
   final String title;
   final String initialRoute;
+  final ThemeData? theme;
+  final ThemeData? darkTheme;
+  final ThemeMode? themeMode;
+  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
   final Widget Function(String route) routeBuilder;
 
   const FxApp(
       {super.key,
       this.theme,
       this.title = "",
+      this.darkTheme,
+      this.localizationsDelegates,
+      this.themeMode = ThemeMode.system,
       required this.initialRoute,
       required this.routeBuilder,
       this.appColor = const Color(0x00000000)});
@@ -32,10 +38,13 @@ final class FxApp extends StatelessWidget {
     return MaterialApp(
       title: title,
       theme: theme,
+      darkTheme: darkTheme,
+      themeMode: themeMode,
       navigatorKey: _navKey,
-      localizationsDelegates: const [
+      localizationsDelegates: [
         DefaultWidgetsLocalizations.delegate,
         DefaultMaterialLocalizations.delegate,
+        ...?localizationsDelegates,
       ],
       color: appColor,
       initialRoute: '/',

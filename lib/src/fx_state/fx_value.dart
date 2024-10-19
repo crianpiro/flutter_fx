@@ -1,8 +1,9 @@
 import 'dart:math';
 
-import 'package:flutter_fx/flutter_fx.dart';
-
 import 'package:flutter/widgets.dart';
+
+import 'fx_notifier.dart';
+import 'fx_state.dart';
 
 typedef FxString = Fx<String>;
 typedef FxBool = Fx<bool>;
@@ -12,6 +13,8 @@ typedef FxMap<T, M> = Fx<Map<T, M>>;
 extension FxValue<T> on T {
   /// Returns a `Fx` instance with [this] `T` as initial value.
   Fx<T> get toFx => Fx<T>(this);
+  /// Returns a `Fx` instance with [null] of `T` as initial value.
+  Fx<T?> get toFxNullable => (null as T?).toFx;
 }
 
 class Fx<T extends dynamic> {
@@ -26,7 +29,7 @@ class Fx<T extends dynamic> {
     FxStateNotifier.instance.notifyBuilders(fxIdentifier);
   }
 
-  get value => _value;
+  T get value => _value;
 
   /// Listens to the changes of this `Fx` instance.
   ///

@@ -7,7 +7,7 @@ extension FxCustomKeyExtension<T> on Fx<T> {
   String get fxIdentifier => "$internalIdentifier:$runtimeType";
 }
 
-abstract class FxNotifier {
+abstract class _FxNotifier {
   void attachUpdater(String builderContextKey, Function() updater);
   void attachBuilder(String stateKey, FxBuildContext builderContext);
   void notifyBuilders(String stateKey);
@@ -15,7 +15,7 @@ abstract class FxNotifier {
   void ensureProperUse(FxBuildContext context);
 }
 
-final class FxStateNotifier extends FxNotifier {
+final class FxStateNotifier extends _FxNotifier {
   static FxStateNotifier? _instance;
 
   factory FxStateNotifier() => _instance ??= FxStateNotifier._();

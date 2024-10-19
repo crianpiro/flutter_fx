@@ -47,8 +47,6 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    ViewArguments asdd = ViewArguments();
-    
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

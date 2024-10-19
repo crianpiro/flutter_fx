@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fx/src/fx_suit/fx_colors.dart';
 
-class FxColors {
-  static const Color whiteColor = Color.fromARGB(255, 255, 255, 255);
-  static const Color disabledColor = Color.fromARGB(255, 142, 142, 142);
-  static const Color mainDarkColor = Color.fromARGB(255, 0, 39, 136);
-  static const Color mainColor = Color.fromARGB(255, 0, 57, 202);
-  static const Color grayColor = Color.fromARGB(255, 204, 204, 204);
-  static const Color transparentColor = Color(0x00000000);
-  static const Color warningColor = Color.fromARGB(255, 123, 7, 7);
-  static const Color blackColor = Color.fromARGB(255, 0, 0, 0);
-}
+
 
 /// [FxButton] is a customizable button widget with a default friendly style.
 class FxButton extends StatelessWidget {
@@ -69,13 +61,13 @@ class FxButton extends StatelessWidget {
       this.margin = const EdgeInsets.symmetric(vertical: 1, horizontal: 26),
       this.padding =
           const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-      this.contentColor = FxColors.whiteColor,
-      this.overlayColor = FxColors.mainDarkColor,
-      this.backgroundColor = FxColors.mainColor,
-      this.borderColor = FxColors.mainColor,
+      this.contentColor = FxColors.white,
+      this.overlayColor = FxColors.mainDark,
+      this.backgroundColor = FxColors.main,
+      this.borderColor = FxColors.main,
       this.alignment = Alignment.center,
       this.borderRadius = 7.0,
-      this.disabledColor = FxColors.disabledColor,
+      this.disabledColor = FxColors.disabled,
       this.isCompact = false,
       this.textStyle,
       required this.onPressedF,
@@ -85,7 +77,7 @@ class FxButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
-      color: FxColors.transparentColor,
+      color: FxColors.transparent,
       padding: EdgeInsets.zero,
       child: FilledButton(
           style: ButtonStyle(
@@ -212,7 +204,7 @@ class FxTextField extends StatelessWidget {
   final Function(String)? onSubmitted;
 
   final TextStyle defaultTextStyle =
-      const TextStyle(height: 1, fontSize: 15, color: FxColors.grayColor);
+      const TextStyle(height: 1, fontSize: 15, color: FxColors.gray);
 
   const FxTextField({
     super.key,
@@ -241,7 +233,7 @@ class FxTextField extends StatelessWidget {
     this.suffixIcon,
     this.prefixIcon,
     this.margin = const EdgeInsets.symmetric(vertical: 5.0),
-    this.backgroundColor = FxColors.disabledColor,
+    this.backgroundColor = FxColors.dark,
   });
 
   @override
@@ -297,7 +289,7 @@ class FxTextField extends StatelessWidget {
           textCapitalization: TextCapitalization.words,
           maxLines: maxLines,
           cursorColor: cursorColor,
-          cursorErrorColor: FxColors.warningColor,
+          cursorErrorColor: FxColors.warning,
           keyboardType: inputType ?? TextInputType.text,
           onSubmitted: onSubmitted,
           onChanged: onChanged,
@@ -335,13 +327,13 @@ class FxTextButton extends StatelessWidget {
         alignment: Alignment.center,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         iconColor:
-            WidgetStateProperty.resolveWith((states) => FxColors.mainColor),
+            WidgetStateProperty.resolveWith((states) => FxColors.main),
         padding: WidgetStateProperty.resolveWith(
             (states) => const EdgeInsets.all(5)),
         foregroundColor:
-            WidgetStateProperty.resolveWith((states) => FxColors.mainColor),
+            WidgetStateProperty.resolveWith((states) => FxColors.main),
         overlayColor: WidgetStateProperty.resolveWith(
-            (states) => FxColors.transparentColor),
+            (states) => FxColors.transparent),
       ),
       onPressed: onPressedF,
       child: Text(
