@@ -64,7 +64,7 @@
       
 
 <span class="returntype">T</span>
-<span class="name ">listen</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="listen-param-fxContext"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">fxContext</span></span></li>
+<span class="name ">listen</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="listen-param-fxContext"><span class="type-annotation"><a href="../../flutter_fx/FxBuildContext-class.html">FxBuildContext</a></span> <span class="parameter-name">fxContext</span></span></li>
 </ol>)
 
       
@@ -85,7 +85,7 @@ argument.</p>
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">T listen(BuildContext fxContext) {
+  <pre class="language-dart"><code class="language-dart">T listen(FxBuildContext fxContext) {
   FxStateNotifier.instance.attachBuilder(fxIdentifier, fxContext);
   return _value;
 }</code></pre>
@@ -122,7 +122,7 @@ argument.</p>
 <footer>
   <span class="no-break">
     flutter_fx
-      0.0.15
+      0.1.0
   </span>
 
   

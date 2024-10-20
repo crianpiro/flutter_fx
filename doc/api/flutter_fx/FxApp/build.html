@@ -122,10 +122,13 @@ Widget build(BuildContext context) {
   return MaterialApp(
     title: title,
     theme: theme,
+    darkTheme: darkTheme,
+    themeMode: themeMode,
     navigatorKey: _navKey,
-    localizationsDelegates: const [
+    localizationsDelegates: [
       DefaultWidgetsLocalizations.delegate,
       DefaultMaterialLocalizations.delegate,
+      ...?localizationsDelegates,
     ],
     color: appColor,
     initialRoute: &#39;&#47;&#39;,
@@ -165,7 +168,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     flutter_fx
-      0.0.15
+      0.1.0
   </span>
 
   

@@ -30,7 +30,7 @@ final class FxApp extends StatelessWidget {
       this.appColor = const Color(0x00000000)});
 
   final GlobalKey<NavigatorState> _navKey = const GlobalObjectKey(
-      "FxApplication_NavigatorKey_k%6gh*kj87?612h23!98hkjsad9");
+      "FxApplication_NavigatorKey_k%6gh*kj87?612h23!98hkjBad9");
 
   @override
   Widget build(BuildContext context) {

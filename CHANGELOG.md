@@ -1,13 +1,13 @@
 ## 0.1.0
 ### Breaking changes
-* Changed FxView to FxScreen to unify the package naming.
-* Removed ViewArguments. Options in ViewArguments are now directly in the FxScreen.
+* Changed `FxView` to `FxScreen` to unify the package naming.
+* Removed `ViewArguments`. Options in `ViewArguments` are now directly in the `FxScreen`.
 * Updated exposition over the package APIs.
 ### Enhancements
-* Added support for insidePadding into FxScreen.
-* Added support for darkTheme, themeMode and localizationsDelegates into FxApp.
+* Added support for insidePadding into `FxScreen`.
+* Added support for `darkTheme`, `themeMode` and `localizationsDelegates` into `FxApp`.
 * Added support for Nullable types.
-* Removed default backgroundColor from the FxScreen.
+* Removed default backgroundColor from the `FxScreen`.
 
 ## 0.0.15
 * FxButton, FxTextField and FxTextButton added to the FxSuite.

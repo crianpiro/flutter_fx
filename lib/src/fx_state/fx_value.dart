@@ -10,10 +10,13 @@ typedef FxBool = Fx<bool>;
 typedef FxList<T> = Fx<List<T>>;
 typedef FxMap<T, M> = Fx<Map<T, M>>;
 
+
+/// Extension to convert a value to a `Fx` instance.
 extension FxValue<T> on T {
   /// Returns a `Fx` instance with [this] `T` as initial value.
   Fx<T> get toFx => Fx<T>(this);
-  /// Returns a `Fx` instance with [null] of `T` as initial value.
+  
+  /// Returns a `Fx` instance with `null` of `T` as initial value.
   Fx<T?> get toFxNullable => (null as T?).toFx;
 }
 
@@ -25,7 +28,7 @@ class Fx<T extends dynamic> {
   Fx(this._value);
 
   set value(value) {
-    _value = value;
+    _value = value;    
     FxStateNotifier.instance.notifyBuilders(fxIdentifier);
   }
 

@@ -52,25 +52,273 @@
       
 <section class="desc markdown">
   <p><img src="https://img.shields.io/badge/License-BSD_3_Clause-green" alt="Static Badge"></p>
-<p>State manager &amp; navigation manager for flutter. It allows you to update wisely your states and to navigate easily.</p>
-<p>flutter_fx uses normal and basic structures to handle the states and the navigation in a easier way than the common libraries.</p>
+<p>This package is a suite of widgets, tools, extensions. With state management &amp; navigation management strategies for flutter.</p>
 <h2 id="features">Features</h2>
 <ul>
-<li>State managment</li>
-<li>Navigation managment</li>
+<li><a href="#fxstate">Fx State</a>: To perform and listen changes in the UI.</li>
+<li><a href="#fxnavigation">Fx Navigation</a>: To navigate easily.</li>
+<li><a href="#fxsuite">Fx Suite</a>: To speed up the development, use tools and components.</li>
 </ul>
 <h2 id="getting-started">Getting started</h2>
-<p>First version of the librarie, still on development.</p>
-<h2 id="usage">Usage</h2>
-<p>Basic initial example</p>
-<pre class="language-dart"><code class="language-dart">FxBuilder(
-    builder: (fxContext){
-        return Text(controller.name.listen(fxContext));
-    }
+<h3 id="fxstate">FxState</h3>
+<p>This feature was born from the need to update the states in your application in a simpler way, I have used many state managers in flutter but I have always thought the things could be simpler. A way to just use a class to define all the logic, set all the mutable variables and states in the pages and then simply listen to the states from different widgets in the pages.</p>
+<h4 id="usage">Usage</h4>
+<p>First, let's define a class to allocate all our states or mutable variables. We use the <code>Fx&lt;T&gt;</code> type to define a mutable variable, then we initialize the variable with the <code>T</code> type and convert it to <code>Fx&lt;T&gt;</code> by using the <code>toFx</code> extension.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:flutter_fx/flutter_fx.dart';
+
+class HomeController {
+  static final Fx&lt;int&gt;  currentTab = 0.toFx;
+}
+</code></pre>
+<p>Now all we need to do is to use the <code>FxBuilder</code> in the parts we want to update according to the changes of the variables/states and listen to it using the <code>fxContext</code> of the <code>FxBuilder</code>.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:flutter/material.dart';
+import 'package:flutter_fx/flutter_fx.dart';
+
+
+class HomeScreen extends StatelessWidget {
+  static const String path = "/homeScreen";
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return FxScreen(
+      screenBuilder: (context, paddings) =&gt; Center(
+        child: FxBuilder(
+          builder: (fxContext) {
+            switch (HomeController.currentTab.listen(fxContext)) {
+              case 1:
+                return const CreatePatientTab();
+              case 0:
+              default:
+                return const PatientsList();
+            }
+          },
+        ),
+      ),
+      bottomNavigationBar: FxBuilder(builder: (fxContext) {
+        return BottomNavigationBar(
+            backgroundColor: AppColors.secondaryBackground,
+            currentIndex: HomeController.currentTab.listen(fxContext),
+            onTap: (value) =&gt; HomeController.changeTabIndex(value),
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.people),
+                label: "Patients",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: "Create patient",
+              ),
+            ]);
+      }),
+    );
+  }
+}
+
+</code></pre>
+<p>Now to update the variable/state we just need to call the <code>value</code> setter and the <code>FxState</code> will notify the widgets that are listening to this variable and update their state.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:flutter_fx/flutter_fx.dart';
+
+class HomeController {
+  static final Fx&lt;int&gt;  currentTab = 0.toFx;
+
+  void changeTabIndex(int newIndex){
+    currentTab.value = newIndex;
+  }
+}
+</code></pre>
+<hr>
+<h3 id="fxnavigation">FxNavigation</h3>
+<p>This feature allows you to navigate without using the context. It also allows you to use custom transitions when navigating.</p>
+<h4 id="usage-2">Usage</h4>
+<p>To use the <code>FxNavigation</code> you need to use <code>FxApp</code> that uses <a href="https://api.flutter.dev/flutter/material/MaterialApp-class.html">MaterialApp</a> and therefore you can set some of the properties for <code>Material</code>.</p>
+<p>The <code>FxApp</code> requires two arguments, the <code>initialRoute</code> so the app knows which will be the first route pushed into the stack, and the <code>routeBuilder</code> where you can define which widget to build in case of a specific path.</p>
+<pre class="language-dart"><code class="language-dart">FxApp(
+    initialRoute: "/",
+    routeBuilder: (String path){
+        switch (path) {
+            case HomeScreen.path:
+                return const HomeScreen();
+            case "/":
+            case SplashScreen.path:
+            default:
+                return const SplashScreen();
+        }
+    },
 )
 </code></pre>
-<h2 id="additional-information">Additional information</h2>
-<p>This is the first version of the package. It is still under development.</p>
+<p>Later, to navigate within your application you can just use the <code>FxRouter</code> and send arguments to customize the transitions which the page will be pushed.</p>
+<pre class="language-dart"><code class="language-dart">FxRouter.goToAndReplace(HomeScreen.path,
+    arguments: NavigationArguments(
+        payload: "Coming from SplashScreen",
+        curve: Curves.easeInOut,
+        barrierColor: Colors.transparent,
+        routeTransition: RouteTransition.animated,
+        transitionDirection: TransitionDirection.rightToLeft,
+      ));
+</code></pre>
+<hr>
+<h3 id="fxsuite">FxSuite</h3>
+<p>This feature was born from the need to have in new projects the single basic characteristics that almost every application has. Have a look at the few components available I am sure you will find them useful.</p>
+<h4 id="fxscreen">FxScreen</h4>
+<p>This component is focused on simplify the way a UI screen is built. It allows you to have customize easily backgrounds, overlays, screenPaddings, etc.</p>
+<p>:bulb: <strong>Tip:</strong> To have full control over the screen customization in android there are two important things to do.</p>
+<ul>
+<li>First, you must add or edit <code>android/app/src/main/res/values/styles.xml</code> and <code>android/app/src/main/res/values-night/styles.xml</code> files in your project.</li>
+</ul>
+<pre class="language-xml"><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar"&gt;
+        &lt;item name="android:windowBackground"&gt;@drawable/launch_background&lt;/item&gt;
+        
+        &lt;!-- Start of the section to add --&gt;
+        &lt;item name="android:navigationBarColor"&gt;#00000000&lt;/item&gt;
+        &lt;item name="android:statusBarColor"&gt;#00000000&lt;/item&gt;
+        &lt;item name="android:windowTranslucentNavigation"&gt;true&lt;/item&gt;
+        &lt;item name="android:enforceNavigationBarContrast"&gt;false&lt;/item&gt;
+        &lt;item name="android:windowDrawsSystemBarBackgrounds"&gt;true&lt;/item&gt;
+        &lt;!-- End of the section to add --&gt;
+        
+        &lt;item name="android:windowSplashScreenBackground"&gt;#171717&lt;/item&gt;
+        &lt;item name="android:windowSplashScreenAnimatedIcon"&gt;@drawable/launch_background&lt;/item&gt;
+    &lt;/style&gt;
+    &lt;style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar"&gt;
+        &lt;item name="android:windowBackground"&gt;?android:colorBackground&lt;/item&gt;
+    &lt;/style&gt;
+&lt;/resources&gt;
+</code></pre>
+<ul>
+<li>Second, you must use the <code>WidgetsFlutterBinding.ensureInitialized</code> function and enable the edge to edge mode for Android in flutter before running your app.</li>
+</ul>
+<pre class="language-dart"><code class="language-dart">import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+
+void main() {
+    WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    runApp(const MyApp());
+}
+</code></pre>
+<h5 id="usage-3">Usage</h5>
+<p>Import the library</p>
+<pre class="language-dart"><code class="language-dart">import 'package:flutter_fx/flutter_fx.dart';
+</code></pre>
+<p>Return the <a href="https://pub.dev/documentation/flutter_fx/latest/flutter_fx/FxScreen-class.html">FxScreen</a> in your page</p>
+<pre class="language-dart"><code class="language-dart">import 'package:flutter/services.dart';
+import 'package:flutter_fx/flutter_fx.dart';
+
+class ExamplePage extends StatelessWidget {
+  const ExamplePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return FxScreen(
+      /// required
+      screenBuilder: (context, paddings) =&gt; 
+      /// By default the encapsulateScreen property is true, therefore the screen will be encapsulated 
+      /// into paddings that will keep the content away from the navigation and status bars.
+      /// However if you need to achieve something and customize the way you use the screen 
+      /// paddings you can use the paddings parameter from the screenBuilder function.
+
+      /// You can now put the widgets in the screen builder without worrying about anything else
+      const MyScreenContent(),
+      /// By using the uiOverlayStyle property you can customize the status bar and navigation bar look like.
+      /// uiOverlayStyle: SystemUiOverlayStyle(
+      ///  statusBarColor: Colors.transparent,
+      ///  statusBarIconBrightness: Brightness.light,
+      ///  statusBarBrightness: Brightness.light,
+      ///  systemNavigationBarColor: Colors.transparent,
+      ///  systemNavigationBarIconBrightness: Brightness.light,
+      /// ),
+      uiOverlayStyle: SystemUiOverlayStyle.dark,
+      /// You can add a background to the screen using the screenBackgroundBuilder
+      screenBackgroundBuilder: (context, paddings) =&gt;
+      /// Same as the screenBuilder, you can use the paddings parameter to customize the way you use the screen paddings
+      Image.asset(
+        "custom_background.png",
+      ),
+      /// You can add a overlay to the screen using the screenOverlayBuilder. 
+      /// I use it to show a loading indicator while performing operations
+      screenOverlayBuilder: (context) =&gt; const CircularProgressIndicator(),
+    );
+  }
+}
+</code></pre>
+<h4 id="fxcomponents">FxComponents</h4>
+<ul>
+<li><a href="https://pub.dev/documentation/flutter_fx/latest/flutter_fx/FxButton-class.html"><strong>FxButton</strong></a> is a <a href="https://api.flutter.dev/flutter/material/FilledButton-class.html">FilledButton</a> with a default style, wrapped with paddings to simplify separation between components. It allows full customization.</li>
+</ul>
+<pre class="language-dart"><code class="language-dart">FxButton(          
+    content: "Press me",
+    ///required
+    onPressedF: (){}
+)
+</code></pre>
+<ul>
+<li><a href="https://pub.dev/documentation/flutter_fx/latest/flutter_fx/FxTextField-class.html"><strong>FxTextField</strong></a> is a <a href="https://api.flutter.dev/flutter/material/TextField-class.html">TextField</a> with a default style wrapped with paddings to facilitate the separation of fields in forms. It allows full customization.</li>
+</ul>
+<pre class="language-dart"><code class="language-dart">FxTextField(
+    label: "Text field"
+    ///required
+    inputController: textController
+)
+</code></pre>
+<ul>
+<li><a href="https://pub.dev/documentation/flutter_fx/latest/flutter_fx/FxTextButton-class.html"><strong>FxTextButton</strong></a> is a <a href="https://api.flutter.dev/flutter/material/TextButton-class.html">TextButton</a> with a default style using <code>shrinkWrap</code> as <code>tapTargetSize</code>.</li>
+</ul>
+<pre class="language-dart"><code class="language-dart">FxTextButton(
+    ///required
+    textContent: "Content", 
+    ///required
+    onPressedF: (){}
+),
+</code></pre>
+<h4 id="fxextensions">FxExtensions</h4>
+<ul>
+<li><strong>FxScaleSize</strong> allows to scale the size taking into account the size of viewport in which the design was created.</li>
+</ul>
+<p>To set the size of the viewport that applies to you set the following before your <code>runApp</code> method:</p>
+<pre class="language-dart"><code class="language-dart">FxScaleSize.viewportWidth = 500 // Your viewport width
+FxScaleSize.viewportHeight = 1200 // Your viewport height
+</code></pre>
+<h4 id="fxvalidators">FxValidators</h4>
+<p>This feature is just a copy of some validators I used at some point, Soon I will improve them and add some more of the most used ones.</p>
+<ul>
+<li>validateEmail</li>
+<li>validateUsernameText</li>
+<li>validateText</li>
+<li>compareText</li>
+<li>validatePhoneNumber</li>
+<li>validateDouble</li>
+<li>validatePositiveDouble</li>
+<li>validatePositiveInt</li>
+<li>validateNCFSequence</li>
+<li>validateMinorThan</li>
+<li>validateGreaterThan</li>
+</ul>
+<h5 id="usage-4">Usage</h5>
+<p>Import the library</p>
+<pre class="language-dart"><code class="language-dart">import 'package:flutter_fx/flutter_fx.dart';
+</code></pre>
+<p>Use the validator</p>
+<pre class="language-dart"><code class="language-dart">final String? error = FxValidators.validateEmail("hola@as.co");
+</code></pre>
+<hr>
+<p>This package is under constant development because was born from my need to centralize the tools and strategies I like to use in different flutter projects.</p>
+<p>If you find it useful and want to contribute please feel free to create an issue. Also if you feel you need something that is not still in the package and you would like me to prioritize or if you find a bug.</p>
+<hr>
+<h2 id="roadmap-coming-soon">Roadmap, coming soon</h2>
+<ul>
+<li><code> </code> Support more customization in the navigation transitions.</li>
+<li><code> </code> <code>FxPage</code> widget to support the controller based page and simplify the way to use <code>FxState</code>.</li>
+<li><code> </code> Support more <code>Material</code> properties in the <code>FxApp</code>.</li>
+<li><code> </code> Support operations with the <code>Fx&lt;T&gt;</code> and improve the way the structures can be updated.</li>
+<li><code> </code> Include more <code>FxComponents</code>.</li>
+<li><code> </code> Improve the <code>FxValidators</code>.</li>
+<li><code> </code> Package snippets to speed up the development.</li>
+<li><code> </code> <code>FxKeyState</code> to allow a state management based on specific keys.</li>
+<li><code> </code> Performance report, advantages and disadvantages.</li>
+</ul>
 </section>
 
 
@@ -81,7 +329,8 @@
   <span class="name"><a href="flutter_fx/flutter_fx-library.html">flutter_fx</a></span> 
 
 </dt>
-<dd>
+<dd>A suite of widgets, tools, extensions.
+With state management &amp; navigation management strategies for flutter.
 </dd>
 
         </dl>
@@ -118,7 +367,7 @@
 <footer>
   <span class="no-break">
     flutter_fx
-      0.0.15
+      0.1.0
   </span>
 
   

@@ -33,7 +33,7 @@ FutureOr<void> main() {
 
 class MainPageController {
   static Fx<String> text = "data".toFx;
-  static FxString text2 = "NO DATA".toFx;
+  static Fx<String> text2 = Fx("NO DATA");
 
   static void changeState() {
     text.value = "new data ${Random().nextDouble().toString()}";
