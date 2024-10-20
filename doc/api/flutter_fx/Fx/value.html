@@ -61,6 +61,27 @@
 </h1></div>
 
 
+        
+  <section id="getter">
+
+    <section class="multi-line-signature">
+      
+      <span class="returntype">T</span>
+      <span class="name ">value</span>
+      
+
+    </section>
+
+    
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">T get value =&gt; _value;</code></pre>
+</section>
+
+  </section>
+
 
         
   <section id="setter">
@@ -78,7 +99,7 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">set value(value){
+  <pre class="language-dart"><code class="language-dart">set value(value) {
   _value = value;
   FxStateNotifier.instance.notifyBuilders(fxIdentifier);
 }</code></pre>
@@ -116,7 +137,7 @@
 <footer>
   <span class="no-break">
     flutter_fx
-      0.0.3
+      0.1.0
   </span>
 
   

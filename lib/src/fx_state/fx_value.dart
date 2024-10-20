@@ -1,25 +1,38 @@
-import 'fx_notifier.dart';
+import 'dart:math';
+
 import 'package:flutter/widgets.dart';
+
+import 'fx_notifier.dart';
+import 'fx_state.dart';
 
 typedef FxString = Fx<String>;
 typedef FxBool = Fx<bool>;
 typedef FxList<T> = Fx<List<T>>;
 typedef FxMap<T, M> = Fx<Map<T, M>>;
 
+
+/// Extension to convert a value to a `Fx` instance.
 extension FxValue<T> on T {
   /// Returns a `Fx` instance with [this] `T` as initial value.
   Fx<T> get toFx => Fx<T>(this);
+  
+  /// Returns a `Fx` instance with `null` of `T` as initial value.
+  Fx<T?> get toFxNullable => (null as T?).toFx;
 }
 
 class Fx<T extends dynamic> {
   late T _value;
 
+  final String internalIdentifier = "${Random.secure().nextDouble()}";
+
   Fx(this._value);
 
   set value(value) {
-    _value = value;
+    _value = value;    
     FxStateNotifier.instance.notifyBuilders(fxIdentifier);
   }
+
+  T get value => _value;
 
   /// Listens to the changes of this `Fx` instance.
   ///
@@ -31,7 +44,7 @@ class Fx<T extends dynamic> {
   /// argument.
   ///
   /// The value of this `Fx` instance is returned.
-  T listen(BuildContext fxContext) {
+  T listen(FxBuildContext fxContext) {
     FxStateNotifier.instance.attachBuilder(fxIdentifier, fxContext);
     return _value;
   }

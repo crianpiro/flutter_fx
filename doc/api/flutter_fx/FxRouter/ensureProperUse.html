@@ -87,7 +87,7 @@ properly. You should not call this method directly.</p>
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static void ensureProperUse(){
+  <pre class="language-dart"><code class="language-dart">static void ensureProperUse() {
   final FlutterError error = FlutterError(&quot;&quot;&quot;Improper use of a [FxRouter].
       * The [FxRouter] must be initialized.
       * To use [FxRouter] your main Widget must be a [FxApp].&quot;&quot;&quot;);
@@ -99,15 +99,15 @@ properly. You should not call this method directly.</p>
 
   bool safe = false;
 
-  _navigatorKey!.currentContext?.visitAncestorElements((element){
-    if(element.widget is FxApp){
+  _navigatorKey!.currentContext?.visitAncestorElements((element) {
+    if (element.widget is FxApp) {
       safe = true;
       return false;
     }
     return true;
   });
 
-  if(!safe){
+  if (!safe) {
     throw error;
   }
 }</code></pre>
@@ -144,7 +144,7 @@ properly. You should not call this method directly.</p>
 <footer>
   <span class="no-break">
     flutter_fx
-      0.0.3
+      0.1.0
   </span>
 
   
