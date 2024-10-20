@@ -3,4 +3,4 @@
 .fvm/
 .dart_tool/
 *.DS_Store
-*/*.DS_Store
+*/.DS_Store

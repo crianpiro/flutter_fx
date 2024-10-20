@@ -1,3 +1,54 @@
+## 0.1.0
+### Breaking changes
+* Changed `FxView` to `FxScreen` to unify the package naming.
+* Removed `ViewArguments`. Options in `ViewArguments` are now directly in the `FxScreen`.
+* Updated exposition over the package APIs.
+### Enhancements
+* Added support for insidePadding into `FxScreen`.
+* Added support for `darkTheme`, `themeMode` and `localizationsDelegates` into `FxApp`.
+* Added support for Nullable types.
+* Removed default backgroundColor from the `FxScreen`.
+
+## 0.0.15
+* FxButton, FxTextField and FxTextButton added to the FxSuite.
+
+## 0.0.14
+* Styles over the cursor color added.
+
+## 0.0.13
+* ViewArguments supporting more styles.
+
+## 0.0.12
+* FxApp based on Material app for supporting themes and allow faster development.
+
+## 0.0.11
+* FxCustomTextField supporting margin
+
+## 0.0.10
+* FxCustomTextField modified to support more styles
+
+## 0.0.9+2
+* Adding materialLocalizations delegate for compatibility with components.
+
+## 0.0.9+1
+* fx_components added to the fx_suite.
+
+## 0.0.9
+* scaffoldBackgroundColor removed from ViewArguments
+
+## 0.0.8
+* fx_suit to fx_suite. Name corrected.
+
+## 0.0.7
+* Fx_extensions added.
+* FxView completed with parameters.
+
+## 0.0.6
+* FxView moved to fx_suit. To find multiple useful pre-build widgets.
+
+## 0.0.5
+* FxView added, widgets for faster development.
+
 ## 0.0.4
 * Code formatted.
 * Issue tracket fixed.

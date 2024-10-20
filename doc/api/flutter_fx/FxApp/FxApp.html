@@ -63,6 +63,11 @@
     <section class="multi-line-signature">
       const
       <span class="name ">FxApp</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="-param-key">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
+<li><span class="parameter" id="-param-theme"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/material/ThemeData-class.html">ThemeData</a>?</span> <span class="parameter-name">theme</span>, </span></li>
+<li><span class="parameter" id="-param-title"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">title</span> = <span class="default-value">&quot;&quot;</span>, </span></li>
+<li><span class="parameter" id="-param-darkTheme"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/material/ThemeData-class.html">ThemeData</a>?</span> <span class="parameter-name">darkTheme</span>, </span></li>
+<li><span class="parameter" id="-param-localizationsDelegates"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Iterable-class.html">Iterable</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/widgets/LocalizationsDelegate-class.html">LocalizationsDelegate</a></span>&gt;</span>?</span> <span class="parameter-name">localizationsDelegates</span>, </span></li>
+<li><span class="parameter" id="-param-themeMode"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/material/ThemeMode.html">ThemeMode</a>?</span> <span class="parameter-name">themeMode</span> = <span class="default-value">ThemeMode.system</span>, </span></li>
 <li><span class="parameter" id="-param-initialRoute"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">initialRoute</span>, </span></li>
 <li><span class="parameter" id="-param-routeBuilder"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">routeBuilder</span>(<ol class="parameter-list"><li><span class="parameter" id="param-route"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">route</span></span></li>
 </ol>
@@ -79,6 +84,11 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">const FxApp(
     {super.key,
+    this.theme,
+    this.title = &quot;&quot;,
+    this.darkTheme,
+    this.localizationsDelegates,
+    this.themeMode = ThemeMode.system,
     required this.initialRoute,
     required this.routeBuilder,
     this.appColor = const Color(0x00000000)});</code></pre>
@@ -115,7 +125,7 @@
 <footer>
   <span class="no-break">
     flutter_fx
-      0.0.3
+      0.1.0
   </span>
 
   
