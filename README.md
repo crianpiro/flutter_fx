@@ -1,4 +1,4 @@
-![Static Badge](https://img.shields.io/badge/License-BSD_3_Clause-green) ![Pub Version](https://img.shields.io/pub/v/flutter_fx?color=green) ![GitHub labels](https://img.shields.io/github/labels/crianpiro/flutter_fx/bug?style=flat)
+![Static Badge](https://img.shields.io/badge/License-BSD_3_Clause-green) ![Pub Version](https://img.shields.io/pub/v/flutter_fx?color=blue) ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/crianpiro/flutter_fx?label=bug)
 
 
 
@@ -94,8 +94,6 @@ class HomeController {
 }
 ```
 
----
-
 ## :collision: FxNavigation
 
 This feature allows you to navigate without using the context. It also allows you to use custom transitions when navigating.
@@ -135,8 +133,6 @@ FxRouter.goToAndReplace(HomeScreen.path,
       ));
 ```
 
----
-
 ## :collision: FxSuite
 
 This feature was born from the need to have in new projects the single basic characteristics that almost every application has. Have a look at the few components available I am sure you will find them useful.
@@ -148,7 +144,7 @@ This component is focused on simplify the way a UI screen is built. It allows yo
 
 * First, you must add or edit `android/app/src/main/res/values/styles.xml` and `android/app/src/main/res/values-night/styles.xml` files in your project.
 
-  :eight_spoked_asterisk: You can also save this step and use the plugin [mobile_window_features](https://pub.dev/packages/mobile_window_features) by  merakidevelop.com.co.
+  :eight_spoked_asterisk: You can also save this step and use the plugin [mobile_window_features](https://pub.dev/packages/mobile_window_features) by  [merakidevelop.com.co](merakidevelop.com.co)
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -319,14 +315,14 @@ If you find it useful and want to contribute please feel free to create an issue
 
 ## :heavy_exclamation_mark: :mega: :soon: Roadmap 
 
-:white_square_button: Support more customization in the navigation transitions.
-:white_square_button: `FxPage` widget to support the controller based page and simplify the way to use `FxState`.
-:white_square_button: Support more `Material` properties in the `FxApp`.
-:white_square_button: Support operations with the `Fx<T>` and improve the way the structures can be updated.
-:white_square_button: Include more `FxComponents`.
-:white_square_button: Improve the `FxValidators`.
-:white_square_button: Package snippets to speed up the development.
-:white_square_button: `FxKeyState` to allow a state management based on specific keys.
-:white_square_button: Performance report, advantages and disadvantages.
+* :white_square_button: Support more customization in the navigation transitions.
+* :white_square_button: `FxPage` widget to support the controller based page and simplify the way to use `FxState`.
+* :white_square_button: Support more `Material` properties in the `FxApp`.
+* :white_square_button: Support operations with the `Fx<T>` and improve the way the structures can be updated.
+* :white_square_button: Include more `FxComponents`.
+* :white_square_button: Improve the `FxValidators`.
+* :white_square_button: Package snippets to speed up the development.
+* :white_square_button: `FxKeyState` to allow a state management based on specific keys.
+* :white_square_button: Performance report, advantages and disadvantages.
 
 
