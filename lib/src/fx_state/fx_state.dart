@@ -1,4 +1,4 @@
 library fx_state;
 
 export 'fx_value.dart';
-export 'fx_widgets.dart';
+export 'fx_widgets.dart' hide FxBuildContext;

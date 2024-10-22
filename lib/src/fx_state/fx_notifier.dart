@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_fx/flutter_fx.dart';
+import 'package:flutter_fx/src/fx_state/fx_widgets.dart';
 
 extension FxCustomKeyExtension<T> on Fx<T> {
   String get fxIdentifier => "$internalIdentifier:$runtimeType";

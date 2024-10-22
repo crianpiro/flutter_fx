@@ -118,12 +118,16 @@ and</li>
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
-  FlutterView window = WidgetsBinding.instance.platformDispatcher.views.single;
+  FlutterView window =
+      WidgetsBinding.instance.platformDispatcher.views.single;
   ViewPadding windowPadding = window.viewPadding;
-  double bottomPadding = windowPadding.bottom &gt; 0 ? windowPadding.bottom : window.viewInsets.bottom;
+  double bottomPadding = windowPadding.bottom &gt; 0
+      ? windowPadding.bottom
+      : window.viewInsets.bottom;
 
-  EdgeInsets boundaries =
-      EdgeInsets.only(bottom: bottomPadding &#47; window.devicePixelRatio, top: windowPadding.top &#47; window.devicePixelRatio);
+  EdgeInsets boundaries = EdgeInsets.only(
+      bottom: bottomPadding &#47; window.devicePixelRatio,
+      top: windowPadding.top &#47; window.devicePixelRatio);
 
   Widget encapsulatedScreen = screenBuilder(context, boundaries);
   Widget? encapsulatedBackground;
@@ -204,7 +208,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.0
+      0.1.1
   </span>
 
   

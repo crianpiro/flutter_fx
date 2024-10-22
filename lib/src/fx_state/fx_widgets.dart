@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 
 import 'fx_notifier.dart';
 
-class FxBuildContext{
+class FxBuildContext {
   BuildContext context;
   String fxIdentifier;
 
@@ -21,7 +21,6 @@ class FxBuilder extends FxWidget {
 }
 
 sealed class FxWidget extends StatefulWidget {
-  
   const FxWidget({super.key});
 
   @override
@@ -32,13 +31,11 @@ sealed class FxWidget extends StatefulWidget {
 }
 
 class _FxState extends State<FxWidget> {
-  
   final String internalIdentifier = "${Random.secure().nextDouble()}";
 
   @override
   void initState() {
-    FxStateNotifier.instance
-        .attachUpdater(internalIdentifier, _onStateChanged);
+    FxStateNotifier.instance.attachUpdater(internalIdentifier, _onStateChanged);
     super.initState();
   }
 
@@ -60,5 +57,6 @@ class _FxState extends State<FxWidget> {
   /// See also:
   ///
   ///  * [FxWidget.build], the function that is called to build the widget.
-  Widget build(BuildContext context) => widget.build(FxBuildContext(context, internalIdentifier));
+  Widget build(BuildContext context) =>
+      widget.build(FxBuildContext(context, internalIdentifier));
 }

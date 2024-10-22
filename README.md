@@ -1,4 +1,8 @@
-![Static Badge](https://img.shields.io/badge/License-BSD_3_Clause-green)
+![Static Badge](https://img.shields.io/badge/License-BSD_3_Clause-green) ![Pub Version](https://img.shields.io/pub/v/flutter_fx?color=green) ![GitHub labels](https://img.shields.io/github/labels/crianpiro/flutter_fx/bug?style=flat)
+
+
+
+
 
 This package is a suite of widgets, tools, extensions. With state management & navigation management strategies for flutter.
 
@@ -8,13 +12,14 @@ This package is a suite of widgets, tools, extensions. With state management & n
 * [Fx Navigation](#fxnavigation): To navigate easily.
 * [Fx Suite](#fxsuite): To speed up the development, use tools and components.
 
+---
 ## Getting started
 
-### FxState
+## :collision: FxState
 
 This feature was born from the need to update the states in your application in a simpler way, I have used many state managers in flutter but I have always thought the things could be simpler. A way to just use a class to define all the logic, set all the mutable variables and states in the pages and then simply listen to the states from different widgets in the pages.
 
-#### Usage
+### Usage
 
 First, let's define a class to allocate all our states or mutable variables. We use the `Fx<T>` type to define a mutable variable, then we initialize the variable with the `T` type and convert it to `Fx<T>` by using the `toFx` extension.
 
@@ -91,11 +96,11 @@ class HomeController {
 
 ---
 
-### FxNavigation
+## :collision: FxNavigation
 
 This feature allows you to navigate without using the context. It also allows you to use custom transitions when navigating.
 
-#### Usage
+### Usage
 
 To use the `FxNavigation` you need to use `FxApp` that uses [MaterialApp](https://api.flutter.dev/flutter/material/MaterialApp-class.html) and therefore you can set some of the properties for `Material`.
 
@@ -132,16 +137,18 @@ FxRouter.goToAndReplace(HomeScreen.path,
 
 ---
 
-### FxSuite
+## :collision: FxSuite
 
 This feature was born from the need to have in new projects the single basic characteristics that almost every application has. Have a look at the few components available I am sure you will find them useful.
 
-#### FxScreen
+### FxScreen
 This component is focused on simplify the way a UI screen is built. It allows you to have customize easily backgrounds, overlays, screenPaddings, etc.
 
 :bulb: **Tip:** To have full control over the screen customization in android there are two important things to do.
 
 * First, you must add or edit `android/app/src/main/res/values/styles.xml` and `android/app/src/main/res/values-night/styles.xml` files in your project.
+
+  :eight_spoked_asterisk: You can also save this step and use the plugin [mobile_window_features](https://pub.dev/packages/mobile_window_features) by  merakidevelop.com.co.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -179,7 +186,7 @@ void main() {
 }
 ```
 
-##### Usage
+### Usage
 
 Import the library
 
@@ -231,7 +238,7 @@ class ExamplePage extends StatelessWidget {
 }
 ```
 
-#### FxComponents
+### FxComponents
 
 * [**FxButton**](https://pub.dev/documentation/flutter_fx/latest/flutter_fx/FxButton-class.html) is a [FilledButton](https://api.flutter.dev/flutter/material/FilledButton-class.html) with a default style, wrapped with paddings to simplify separation between components. It allows full customization.
 
@@ -264,7 +271,7 @@ FxTextButton(
 ),
 ```
 
-#### FxExtensions
+### FxExtensions
 
 * **FxScaleSize** allows to scale the size taking into account the size of viewport in which the design was created.
 
@@ -275,7 +282,7 @@ FxScaleSize.viewportWidth = 500 // Your viewport width
 FxScaleSize.viewportHeight = 1200 // Your viewport height
 ```
 
-#### FxValidators
+### FxValidators
 
 This feature is just a copy of some validators I used at some point, Soon I will improve them and add some more of the most used ones.
 
@@ -291,7 +298,7 @@ This feature is just a copy of some validators I used at some point, Soon I will
 * validateMinorThan
 * validateGreaterThan
 
-##### Usage
+#### Usage
 
 Import the library
 ```dart
@@ -310,16 +317,16 @@ If you find it useful and want to contribute please feel free to create an issue
 
 ---
 
-## Roadmap, coming soon
+## :heavy_exclamation_mark: :mega: :soon: Roadmap 
 
-- [ ] Support more customization in the navigation transitions.
-- [ ] `FxPage` widget to support the controller based page and simplify the way to use `FxState`.
-- [ ] Support more `Material` properties in the `FxApp`.
-- [ ] Support operations with the `Fx<T>` and improve the way the structures can be updated.
-- [ ] Include more `FxComponents`.
-- [ ] Improve the `FxValidators`.
-- [ ] Package snippets to speed up the development.
-- [ ] `FxKeyState` to allow a state management based on specific keys.
-- [ ] Performance report, advantages and disadvantages.
+:white_square_button: Support more customization in the navigation transitions.
+:white_square_button: `FxPage` widget to support the controller based page and simplify the way to use `FxState`.
+:white_square_button: Support more `Material` properties in the `FxApp`.
+:white_square_button: Support operations with the `Fx<T>` and improve the way the structures can be updated.
+:white_square_button: Include more `FxComponents`.
+:white_square_button: Improve the `FxValidators`.
+:white_square_button: Package snippets to speed up the development.
+:white_square_button: `FxKeyState` to allow a state management based on specific keys.
+:white_square_button: Performance report, advantages and disadvantages.
 
 

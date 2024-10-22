@@ -122,14 +122,13 @@ Widget build(BuildContext context) {
     style: ButtonStyle(
       alignment: Alignment.center,
       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      iconColor:
-          WidgetStateProperty.resolveWith((states) =&gt; FxColors.main),
+      iconColor: WidgetStateProperty.resolveWith((states) =&gt; FxColors.main),
       padding: WidgetStateProperty.resolveWith(
           (states) =&gt; const EdgeInsets.all(5)),
       foregroundColor:
           WidgetStateProperty.resolveWith((states) =&gt; FxColors.main),
-      overlayColor: WidgetStateProperty.resolveWith(
-          (states) =&gt; FxColors.transparent),
+      overlayColor:
+          WidgetStateProperty.resolveWith((states) =&gt; FxColors.transparent),
     ),
     onPressed: onPressedF,
     child: Text(
@@ -171,7 +170,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.0
+      0.1.1
   </span>
 
   

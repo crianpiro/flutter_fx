@@ -85,10 +85,10 @@ If the condition is not met, it will return the <code>message</code>.</p>
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">static String? validateMinorThan(String minor, String major, String message) {
-  if(minor.isEmpty || major.isEmpty){
+  if (minor.isEmpty || major.isEmpty) {
     return &quot;Required&quot;;
   }
-  if(double.tryParse(minor) == null || double.tryParse(major) == null){
+  if (double.tryParse(minor) == null || double.tryParse(major) == null) {
     return &quot;Invalid&quot;;
   }
   double minorNum = double.parse(minor);
@@ -128,7 +128,7 @@ If the condition is not met, it will return the <code>message</code>.</p>
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.0
+      0.1.1
   </span>
 
   

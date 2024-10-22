@@ -1,4 +1,4 @@
-/// A suite of widgets, tools, extensions. 
+/// A suite of widgets, tools, extensions.
 /// With state management & navigation management strategies for flutter.
 library flutter_fx;
 

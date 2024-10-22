@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fx/src/fx_suite/fx_colors.dart';
 
-
-
 /// [FxButton] is a customizable button widget with a default friendly style.
 class FxButton extends StatelessWidget {
   /// The text content of the button.
@@ -250,8 +248,8 @@ class FxTextField extends StatelessWidget {
           decoration: InputDecoration(
             errorText: errorText,
             label: (label != null) ? Text(label!) : null,
-            errorStyle: errorStyle ??
-                defaultTextStyle.copyWith(color: backgroundColor),
+            errorStyle:
+                errorStyle ?? defaultTextStyle.copyWith(color: backgroundColor),
             fillColor: backgroundColor,
             filled: true,
             focusedBorder: inputBorder ??
@@ -326,14 +324,13 @@ class FxTextButton extends StatelessWidget {
       style: ButtonStyle(
         alignment: Alignment.center,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        iconColor:
-            WidgetStateProperty.resolveWith((states) => FxColors.main),
+        iconColor: WidgetStateProperty.resolveWith((states) => FxColors.main),
         padding: WidgetStateProperty.resolveWith(
             (states) => const EdgeInsets.all(5)),
         foregroundColor:
             WidgetStateProperty.resolveWith((states) => FxColors.main),
-        overlayColor: WidgetStateProperty.resolveWith(
-            (states) => FxColors.transparent),
+        overlayColor:
+            WidgetStateProperty.resolveWith((states) => FxColors.transparent),
       ),
       onPressed: onPressedF,
       child: Text(

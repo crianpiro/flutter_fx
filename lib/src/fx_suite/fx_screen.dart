@@ -4,8 +4,10 @@ import 'package:flutter/services.dart';
 
 @immutable
 final class FxScreen extends StatelessWidget {
-  final Widget Function(BuildContext context, EdgeInsets screenPadding) screenBuilder;
-  final Widget Function(BuildContext context, EdgeInsets screenPadding)? screenBackgroundBuilder;
+  final Widget Function(BuildContext context, EdgeInsets screenPadding)
+      screenBuilder;
+  final Widget Function(BuildContext context, EdgeInsets screenPadding)?
+      screenBackgroundBuilder;
   final Widget Function(BuildContext context)? screenOverlayBuilder;
   final PreferredSizeWidget? appBar;
   final Widget? drawer;
@@ -55,12 +57,16 @@ final class FxScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FlutterView window = WidgetsBinding.instance.platformDispatcher.views.single;
+    FlutterView window =
+        WidgetsBinding.instance.platformDispatcher.views.single;
     ViewPadding windowPadding = window.viewPadding;
-    double bottomPadding = windowPadding.bottom > 0 ? windowPadding.bottom : window.viewInsets.bottom;
+    double bottomPadding = windowPadding.bottom > 0
+        ? windowPadding.bottom
+        : window.viewInsets.bottom;
 
-    EdgeInsets boundaries =
-        EdgeInsets.only(bottom: bottomPadding / window.devicePixelRatio, top: windowPadding.top / window.devicePixelRatio);
+    EdgeInsets boundaries = EdgeInsets.only(
+        bottom: bottomPadding / window.devicePixelRatio,
+        top: windowPadding.top / window.devicePixelRatio);
 
     Widget encapsulatedScreen = screenBuilder(context, boundaries);
     Widget? encapsulatedBackground;

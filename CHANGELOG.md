@@ -1,3 +1,10 @@
+## 0.1.1
+### Breaking changes
+* Removed `toFxNullable` extension due to wrong casting.
+* FxBuildContext hidden from public APIs.
+### Enhancements
+* Added FxNullable class to allow the null casting.
+
 ## 0.1.0
 ### Breaking changes
 * Changed `FxView` to `FxScreen` to unify the package naming.
