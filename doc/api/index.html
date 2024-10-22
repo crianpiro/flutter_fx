@@ -51,7 +51,7 @@
   <div id="dartdoc-main-content" class="main-content">
       
 <section class="desc markdown">
-  <p><img src="https://img.shields.io/badge/License-BSD_3_Clause-green" alt="Static Badge"> <img src="https://img.shields.io/pub/v/flutter_fx?color=green" alt="Pub Version"> <img src="https://img.shields.io/github/labels/crianpiro/flutter_fx/bug?style=flat" alt="GitHub labels"></p>
+  <p><img src="https://img.shields.io/badge/License-BSD_3_Clause-green" alt="Static Badge"> <img src="https://img.shields.io/pub/v/flutter_fx?color=blue" alt="Pub Version"> <img src="https://img.shields.io/github/issues/crianpiro/flutter_fx?label=bug" alt="GitHub Issues or Pull Requests"></p>
 <p>This package is a suite of widgets, tools, extensions. With state management &amp; navigation management strategies for flutter.</p>
 <h2 id="features">Features</h2>
 <ul>
@@ -128,7 +128,25 @@ class HomeController {
   }
 }
 </code></pre>
-<hr>
+<h4 id="other-types">Other types</h4>
+<pre class="language-dart"><code class="language-dart">// Using the Fx&lt;T&gt; definition and toFx extension
+Fx&lt;int&gt; myInt = 0.toFx;
+// Using the Fx&lt;T&gt; definition and toFx extension
+Fx&lt;String&gt; myString = "Hello".toFx;
+// Using the Fx&lt;T&gt; definition and toFx extension
+Fx&lt;Map&lt;String,int&gt;&gt; myString = &lt;String,int&gt;{}.toFx;
+// Using the Fx&lt;T&gt; definition and toFx extension
+Fx&lt;List&lt;String&gt;&gt; myString = &lt;String&gt;[].toFx;
+// Using the FxString type definition and toFx extension
+FxString myFxString = "Hello".toFx;
+// Using the FxInt type definition and toFx extension
+FxInt myFxInt = 0.toFx;
+// Using the FxBool type definition and the Fx constructor.
+FxBool myBool = Fx(false);
+// Using the Fx&lt;T&gt; type definition and the FxNullable class to support nullable types.
+Fx&lt;bool?&gt; myNullableBool = FxNullable&lt;bool?&gt;.setNull();
+
+</code></pre>
 <h2 id="collision-fxnavigation">:collision: FxNavigation</h2>
 <p>This feature allows you to navigate without using the context. It also allows you to use custom transitions when navigating.</p>
 <h3 id="usage-2">Usage</h3>
@@ -158,7 +176,6 @@ class HomeController {
         transitionDirection: TransitionDirection.rightToLeft,
       ));
 </code></pre>
-<hr>
 <h2 id="collision-fxsuite">:collision: FxSuite</h2>
 <p>This feature was born from the need to have in new projects the single basic characteristics that almost every application has. Have a look at the few components available I am sure you will find them useful.</p>
 <h3 id="fxscreen">FxScreen</h3>
@@ -167,7 +184,7 @@ class HomeController {
 <ul>
 <li>
 <p>First, you must add or edit <code>android/app/src/main/res/values/styles.xml</code> and <code>android/app/src/main/res/values-night/styles.xml</code> files in your project.</p>
-<p>:eight_spoked_asterisk: You can also save this step and use the plugin <a href="https://pub.dev/packages/mobile_window_features">mobile_window_features</a> by  merakidevelop.com.co.</p>
+<p>:eight_spoked_asterisk: You can also save this step and use the plugin <a href="https://pub.dev/packages/mobile_window_features">mobile_window_features</a> by  <a href="merakidevelop.com.co">merakidevelop.com.co</a></p>
 </li>
 </ul>
 <pre class="language-xml"><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
@@ -311,16 +328,18 @@ FxScaleSize.viewportHeight = 1200 // Your viewport height
 <p>This package is under constant development because was born from my need to centralize the tools and strategies I like to use in different flutter projects.</p>
 <p>If you find it useful and want to contribute please feel free to create an issue. Also if you feel you need something that is not still in the package and you would like me to prioritize or if you find a bug.</p>
 <hr>
-<h2 id="heavy_exclamation_mark-mega-roadmap-coming-soon">:heavy_exclamation_mark: :mega: Roadmap, coming soon</h2>
-<p>:white_square_button: Support more customization in the navigation transitions.
-:white_square_button: <code>FxPage</code> widget to support the controller based page and simplify the way to use <code>FxState</code>.
-:white_square_button: Support more <code>Material</code> properties in the <code>FxApp</code>.
-:white_square_button: Support operations with the <code>Fx&lt;T&gt;</code> and improve the way the structures can be updated.
-:white_square_button: Include more <code>FxComponents</code>.
-:white_square_button: Improve the <code>FxValidators</code>.
-:white_square_button: Package snippets to speed up the development.
-:white_square_button: <code>FxKeyState</code> to allow a state management based on specific keys.
-:white_square_button: Performance report, advantages and disadvantages.</p>
+<h2 id="heavy_exclamation_mark-mega-soon-roadmap">:heavy_exclamation_mark: :mega: :soon: Roadmap</h2>
+<ul>
+<li>:white_square_button: Support more customization in the navigation transitions.</li>
+<li>:white_square_button: <code>FxPage</code> widget to support the controller based page and simplify the way to use <code>FxState</code>.</li>
+<li>:white_square_button: Support more <code>Material</code> properties in the <code>FxApp</code>.</li>
+<li>:white_square_button: Support operations with the <code>Fx&lt;T&gt;</code> and improve the way the structures can be updated.</li>
+<li>:white_square_button: Include more <code>FxComponents</code>.</li>
+<li>:white_square_button: Improve the <code>FxValidators</code>.</li>
+<li>:white_square_button: Package snippets to speed up the development.</li>
+<li>:white_square_button: <code>FxKeyState</code> to allow a state management based on specific keys.</li>
+<li>:white_square_button: Performance report, advantages and disadvantages.</li>
+</ul>
 </section>
 
 
@@ -369,7 +388,7 @@ With state management &amp; navigation management strategies for flutter.
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.1
+      0.1.2
   </span>
 
   

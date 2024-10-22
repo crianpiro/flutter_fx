@@ -30,8 +30,8 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">flutter_fx</a></li>
     <li><a href="../../flutter_fx/flutter_fx-library.html">flutter_fx.dart</a></li>
-    <li><a href="../../flutter_fx/FxNullable-class.html">FxNullable</a></li>
-    <li class="self-crumb">setNull&lt;<wbr><span class="type-parameter">T</span>&gt; static method</li>
+    <li><a href="../../flutter_fx/FxNullable-class.html">FxNullable<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></a></li>
+    <li class="self-crumb">setNull method</li>
   </ol>
   <div class="self-name">setNull</div>
   <form class="search navbar-right" role="search">
@@ -57,25 +57,35 @@
     data-above-sidebar="flutter_fx&#47;FxNullable-class-sidebar.html"
     data-below-sidebar="">
     <div>
-<h1><span class="kind-method">setNull&lt;<wbr><span class="type-parameter">T</span>&gt;</span> static method 
+<h1><span class="kind-method">setNull</span> method 
 </h1></div>
 
     <section class="multi-line-signature">
       
 
 <span class="returntype"><a href="../../flutter_fx/Fx-class.html">Fx</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
-<span class="name ">setNull</span>&lt;<wbr><span class="type-parameter">T</span>&gt;(<wbr>)
+<span class="name ">setNull</span>(<wbr>)
 
       
 
     </section>
     
+<section class="desc markdown">
+  <p>Returns an <a href="../../flutter_fx/Fx-class.html">Fx</a> instance with a null value of type <code>T</code>.</p>
+<p>This method is useful when you need to represent the absence of a value in a type-safe way.</p>
+<p>Returns an <a href="../../flutter_fx/Fx-class.html">Fx</a> instance containing a null value of type <code>T</code>.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">FxNullable&lt;String&gt; nullableString = FxNullable&lt;String&gt;();
+Fx&lt;String&gt; nullFx = nullableString.setNull();
+print(nullFx.value); // prints: null
+</code></pre>
+</section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static Fx&lt;T&gt; setNull&lt;T&gt;() =&gt; (null as T).toFx;</code></pre>
+  <pre class="language-dart"><code class="language-dart">Fx&lt;T&gt; setNull() =&gt; (null as T).toFx;</code></pre>
 </section>
 
 
@@ -92,8 +102,8 @@
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">flutter_fx</a></li>
     <li><a href="../../flutter_fx/flutter_fx-library.html">flutter_fx</a></li>
-    <li><a href="../../flutter_fx/FxNullable-class.html">FxNullable</a></li>
-    <li class="self-crumb">setNull&lt;<wbr><span class="type-parameter">T</span>&gt; static method</li>
+    <li><a href="../../flutter_fx/FxNullable-class.html">FxNullable<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></a></li>
+    <li class="self-crumb">setNull method</li>
 </ol>
 
 
@@ -109,7 +119,7 @@
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.1
+      0.1.2
   </span>
 
   

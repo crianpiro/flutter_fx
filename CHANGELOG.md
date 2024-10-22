@@ -1,3 +1,7 @@
+## 0.1.2
+### Enhancements
+* Documentation improved.
+
 ## 0.1.1
 ### Breaking changes
 * Removed `toFxNullable` extension due to wrong casting.

@@ -94,6 +94,29 @@ class HomeController {
 }
 ```
 
+#### Other types
+
+```dart
+// Using the Fx<T> definition and toFx extension
+Fx<int> myInt = 0.toFx;
+// Using the Fx<T> definition and toFx extension
+Fx<String> myString = "Hello".toFx;
+// Using the Fx<T> definition and toFx extension
+Fx<Map<String,int>> myString = <String,int>{}.toFx;
+// Using the Fx<T> definition and toFx extension
+Fx<List<String>> myString = <String>[].toFx;
+// Using the FxString type definition and toFx extension
+FxString myFxString = "Hello".toFx;
+// Using the FxInt type definition and toFx extension
+FxInt myFxInt = 0.toFx;
+// Using the FxBool type definition and the Fx constructor.
+FxBool myBool = Fx(false);
+// Using the Fx<T> type definition and the FxNullable class to support nullable types.
+Fx<bool?> myNullableBool = FxNullable<bool?>.setNull();
+
+```
+
+
 ## :collision: FxNavigation
 
 This feature allows you to navigate without using the context. It also allows you to use custom transitions when navigating.
