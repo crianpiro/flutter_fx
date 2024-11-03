@@ -86,10 +86,8 @@ none left.</p>
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static FutureOr&lt;void&gt; backUntil(bool Function(Route&lt;dynamic&gt;) predicate) {
-  ensureProperUse();
-  _navigatorKey!.currentState?.popUntil(predicate);
-}</code></pre>
+  <pre class="language-dart"><code class="language-dart">static FutureOr&lt;void&gt; backUntil(bool Function(Route&lt;dynamic&gt;) predicate) =&gt;
+    FxRouterInternal.backUntil(predicate);</code></pre>
 </section>
 
 
@@ -123,7 +121,7 @@ none left.</p>
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.2
+      0.1.3
   </span>
 
   

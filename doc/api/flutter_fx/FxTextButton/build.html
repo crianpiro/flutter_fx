@@ -119,17 +119,14 @@ and</li>
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
   return TextButton(
-    style: ButtonStyle(
-      alignment: Alignment.center,
-      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      iconColor: WidgetStateProperty.resolveWith((states) =&gt; FxColors.main),
-      padding: WidgetStateProperty.resolveWith(
-          (states) =&gt; const EdgeInsets.all(5)),
-      foregroundColor:
-          WidgetStateProperty.resolveWith((states) =&gt; FxColors.main),
-      overlayColor:
-          WidgetStateProperty.resolveWith((states) =&gt; FxColors.transparent),
-    ),
+    style: Theme.of(context).textButtonTheme.style?.copyWith(
+          alignment: Alignment.center,
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          padding: WidgetStateProperty.resolveWith(
+              (states) =&gt; const EdgeInsets.all(5)),
+          overlayColor: WidgetStateProperty.resolveWith(
+              (states) =&gt; FxColors.transparent),
+        ),
     onPressed: onPressedF,
     child: Text(
       textContent,
@@ -170,7 +167,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.2
+      0.1.3
   </span>
 
   

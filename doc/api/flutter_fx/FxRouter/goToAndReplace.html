@@ -31,7 +31,7 @@
     <li><a href="../../index.html">flutter_fx</a></li>
     <li><a href="../../flutter_fx/flutter_fx-library.html">flutter_fx.dart</a></li>
     <li><a href="../../flutter_fx/FxRouter-class.html">FxRouter</a></li>
-    <li class="self-crumb">goToAndReplace static method</li>
+    <li class="self-crumb">goToAndReplace&lt;<wbr><span class="type-parameter">T extends Object?</span>&gt; static method</li>
   </ol>
   <div class="self-name">goToAndReplace</div>
   <form class="search navbar-right" role="search">
@@ -57,14 +57,14 @@
     data-above-sidebar="flutter_fx&#47;FxRouter-class-sidebar.html"
     data-below-sidebar="">
     <div>
-<h1><span class="kind-method">goToAndReplace</span> static method 
+<h1><span class="kind-method">goToAndReplace&lt;<wbr><span class="type-parameter">T extends Object?</span>&gt;</span> static method 
 </h1></div>
 
     <section class="multi-line-signature">
       
 
-<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/FutureOr-class.html">FutureOr</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
-<span class="name ">goToAndReplace</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="goToAndReplace-param-route"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">route</span>, </span></li>
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span>
+<span class="name ">goToAndReplace</span>&lt;<wbr><span class="type-parameter">T extends Object?</span>&gt;(<wbr><ol class="parameter-list"><li><span class="parameter" id="goToAndReplace-param-path"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">path</span>, </span></li>
 <li><span class="parameter" id="goToAndReplace-param-arguments">{<span class="type-annotation"><a href="../../flutter_fx/NavigationArguments-class.html">NavigationArguments</a>?</span> <span class="parameter-name">arguments</span>}</span></li>
 </ol>)
 
@@ -73,25 +73,21 @@
     </section>
     
 <section class="desc markdown">
-  <p>Pushes the given <code>route</code> onto the navigator and replaces the current route.</p>
+  <p>Pushes the given <code>path</code> onto the navigator and replaces the current route.</p>
 <p>The <code>arguments</code> are used to generate the <a href="https://api.flutter.dev/flutter/widgets/PageRouteBuilder-class.html">PageRouteBuilder</a> for the new
 route.</p>
-<p>If the <code>arguments</code> are not provided, the default transition is used.</p>
-<p>The <code>predicate</code> is called with the current route as argument. If the
-predicate returns <code>true</code>, the navigator pops the route and stops. If the
-predicate returns <code>false</code>, the navigator continues to the next route.</p>
+<p>If <a href="../../flutter_fx/FxRouter/saveHistory.html">saveHistory</a> is true, the new route is saved to the history.</p>
+<p>Returns a <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a> which resolves to the result of the route when it is
+popped from the navigator.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static FutureOr&lt;void&gt; goToAndReplace(String route,
-    {NavigationArguments? arguments}) {
-  ensureProperUse();
-  _navigatorKey!.currentState?.pushReplacement(_getPageRouteBuilder(
-      route, getRouteArguments(navArguments: arguments)));
-}</code></pre>
+  <pre class="language-dart"><code class="language-dart">static Future&lt;T?&gt; goToAndReplace&lt;T extends Object?&gt;(String path,
+        {NavigationArguments? arguments}) =&gt;
+    FxRouterInternal.goToAndReplace(path, arguments: arguments);</code></pre>
 </section>
 
 
@@ -109,7 +105,7 @@ predicate returns <code>false</code>, the navigator continues to the next route.
     <li><a href="../../index.html">flutter_fx</a></li>
     <li><a href="../../flutter_fx/flutter_fx-library.html">flutter_fx</a></li>
     <li><a href="../../flutter_fx/FxRouter-class.html">FxRouter</a></li>
-    <li class="self-crumb">goToAndReplace static method</li>
+    <li class="self-crumb">goToAndReplace&lt;<wbr><span class="type-parameter">T extends Object?</span>&gt; static method</li>
 </ol>
 
 
@@ -125,7 +121,7 @@ predicate returns <code>false</code>, the navigator continues to the next route.
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.2
+      0.1.3
   </span>
 
   

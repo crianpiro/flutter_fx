@@ -1,6 +1,6 @@
 name: flutter_fx
 description: "A set of state & navigation manager for flutter. It allows you to update wisely your states and to navigate easily."
-version: 0.1.2
+version: 0.1.3
 homepage: https://crianpiro.de/
 repository: https://github.com/crianpiro/flutter_fx
 issue_tracker: https://github.com/crianpiro/flutter_fx/issues

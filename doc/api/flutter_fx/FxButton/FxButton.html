@@ -68,13 +68,13 @@
 <li><span class="parameter" id="-param-maximumSize"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Size-class.html">Size</a></span> <span class="parameter-name">maximumSize</span> = <span class="default-value">const Size(double.maxFinite, 50)</span>, </span></li>
 <li><span class="parameter" id="-param-margin"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/EdgeInsets-class.html">EdgeInsets</a></span> <span class="parameter-name">margin</span> = <span class="default-value">const EdgeInsets.symmetric(vertical: 1, horizontal: 26)</span>, </span></li>
 <li><span class="parameter" id="-param-padding"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/EdgeInsets-class.html">EdgeInsets</a></span> <span class="parameter-name">padding</span> = <span class="default-value">const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0)</span>, </span></li>
-<li><span class="parameter" id="-param-contentColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">contentColor</span> = <span class="default-value">FxColors.white</span>, </span></li>
-<li><span class="parameter" id="-param-overlayColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">overlayColor</span> = <span class="default-value">FxColors.mainDark</span>, </span></li>
-<li><span class="parameter" id="-param-backgroundColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">backgroundColor</span> = <span class="default-value">FxColors.main</span>, </span></li>
-<li><span class="parameter" id="-param-borderColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">borderColor</span> = <span class="default-value">FxColors.main</span>, </span></li>
+<li><span class="parameter" id="-param-contentColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span> <span class="parameter-name">contentColor</span>, </span></li>
+<li><span class="parameter" id="-param-overlayColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span> <span class="parameter-name">overlayColor</span>, </span></li>
+<li><span class="parameter" id="-param-backgroundColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span> <span class="parameter-name">backgroundColor</span>, </span></li>
+<li><span class="parameter" id="-param-borderColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span> <span class="parameter-name">borderColor</span>, </span></li>
 <li><span class="parameter" id="-param-alignment"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/AlignmentGeometry-class.html">AlignmentGeometry</a></span> <span class="parameter-name">alignment</span> = <span class="default-value">Alignment.center</span>, </span></li>
 <li><span class="parameter" id="-param-borderRadius"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">borderRadius</span> = <span class="default-value">7.0</span>, </span></li>
-<li><span class="parameter" id="-param-disabledColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a></span> <span class="parameter-name">disabledColor</span> = <span class="default-value">FxColors.disabled</span>, </span></li>
+<li><span class="parameter" id="-param-disabledColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span> <span class="parameter-name">disabledColor</span>, </span></li>
 <li><span class="parameter" id="-param-isCompact"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isCompact</span> = <span class="default-value">false</span>, </span></li>
 <li><span class="parameter" id="-param-textStyle"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/TextStyle-class.html">TextStyle</a>?</span> <span class="parameter-name">textStyle</span>, </span></li>
 <li><span class="parameter" id="-param-onPressedF"><span>required</span> <span class="type-annotation">dynamic</span> <span class="parameter-name">onPressedF</span>(<ol class="parameter-list"></ol>
@@ -97,13 +97,13 @@
     this.margin = const EdgeInsets.symmetric(vertical: 1, horizontal: 26),
     this.padding =
         const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-    this.contentColor = FxColors.white,
-    this.overlayColor = FxColors.mainDark,
-    this.backgroundColor = FxColors.main,
-    this.borderColor = FxColors.main,
+    this.contentColor,
+    this.overlayColor,
+    this.backgroundColor,
+    this.borderColor,
     this.alignment = Alignment.center,
     this.borderRadius = 7.0,
-    this.disabledColor = FxColors.disabled,
+    this.disabledColor,
     this.isCompact = false,
     this.textStyle,
     required this.onPressedF,
@@ -141,7 +141,7 @@
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.2
+      0.1.3
   </span>
 
   

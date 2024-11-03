@@ -127,6 +127,8 @@ To use the `FxNavigation` you need to use `FxApp` that uses [MaterialApp](https:
 
 The `FxApp` requires two arguments, the `initialRoute` so the app knows which will be the first route pushed into the stack, and the `routeBuilder` where you can define which widget to build in case of a specific path.
 
+:bulb: **Tip:**  To avoid the re-construction of the routes in web for a SPA, don't start their paths with `/`; or avoid to start navigation in the construction of the page.
+
 ```dart
 FxApp(
     initialRoute: "/",

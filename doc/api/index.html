@@ -152,6 +152,7 @@ Fx&lt;bool?&gt; myNullableBool = FxNullable&lt;bool?&gt;.setNull();
 <h3 id="usage-2">Usage</h3>
 <p>To use the <code>FxNavigation</code> you need to use <code>FxApp</code> that uses <a href="https://api.flutter.dev/flutter/material/MaterialApp-class.html">MaterialApp</a> and therefore you can set some of the properties for <code>Material</code>.</p>
 <p>The <code>FxApp</code> requires two arguments, the <code>initialRoute</code> so the app knows which will be the first route pushed into the stack, and the <code>routeBuilder</code> where you can define which widget to build in case of a specific path.</p>
+<p>:bulb: <strong>Tip:</strong>  To avoid the re-construction of the routes in web for a SPA, don't start their paths with <code>/</code>; or avoid to start navigation in the construction of the page.</p>
 <pre class="language-dart"><code class="language-dart">FxApp(
     initialRoute: "/",
     routeBuilder: (String path){
@@ -388,7 +389,7 @@ With state management &amp; navigation management strategies for flutter.
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.2
+      0.1.3
   </span>
 
   

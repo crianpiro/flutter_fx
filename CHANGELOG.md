@@ -1,3 +1,9 @@
+## 0.1.3
+### Enhancements
+* scaleSize extension improved to guarantee a proper scaling according the device.
+* FxComponents adapted to use the theme.
+* FxRouter exposition limited.
+
 ## 0.1.2
 ### Enhancements
 * Documentation improved.

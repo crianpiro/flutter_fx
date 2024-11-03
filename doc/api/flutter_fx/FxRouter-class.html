@@ -90,12 +90,11 @@
     <h2>Constructors</h2>
 
     <dl class="constructor-summary-list">
-        <dt id="FxRouter.init" class="callable">
-          <span class="name"><a href="../flutter_fx/FxRouter/FxRouter.init.html">FxRouter.init</a></span><span class="signature">(<span class="parameter" id="init-param-navigatorKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/GlobalKey-class.html">GlobalKey</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/widgets/NavigatorState-class.html">NavigatorState</a></span>&gt;</span>?</span> <span class="parameter-name">navigatorKey</span>, </span><span class="parameter" id="init-param-buildRoute"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">buildRoute</span>(<span class="parameter" id="param-route"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">route</span></span>)</span>)</span>
+        <dt id="FxRouter" class="callable">
+          <span class="name"><a href="../flutter_fx/FxRouter/FxRouter.html">FxRouter</a></span><span class="signature">()</span>
         </dt>
         <dd>
           
-            <div class="constructor-modifier features">factory</div>
         </dd>
     </dl>
   </section>
@@ -187,24 +186,6 @@
     </dl>
   </section>
     
-  <section class="summary offset-anchor" id="static-properties">
-    <h2>Static Properties</h2>
-
-    <dl class="properties">
-        <dt id="useDefaultTransition" class="property">
-  <span class="name"><a href="../flutter_fx/FxRouter/useDefaultTransition.html">useDefaultTransition</a></span>
-  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
-  
-
-</dt>
-<dd>
-  
-  <div class="features"><span class="feature">getter/setter pair</span></div>
-
-</dd>
-
-    </dl>
-  </section>
     
   <section class="summary offset-anchor" id="static-methods">
     <h2>Static Methods</h2>
@@ -217,8 +198,7 @@
 
 </dt>
 <dd>
-  Pops the top-most route off the navigator that most tightly encloses the
-given <a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a>.
+  Pops the top-most route off the navigator.
   
 
 </dd>
@@ -236,69 +216,82 @@ given <a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">
 
 </dd>
 
-        <dt id="ensureProperUse" class="callable">
-  <span class="name"><a href="../flutter_fx/FxRouter/ensureProperUse.html">ensureProperUse</a></span><span class="signature">(<wbr>)
-    <span class="returntype parameter">&#8594; void</span>
-  </span>
-  
-
-</dt>
-<dd>
-  Ensures that the <a href="../flutter_fx/FxRouter-class.html">FxRouter</a> is used properly.
-  
-
-</dd>
-
-        <dt id="getRouteArguments" class="callable">
-  <span class="name"><a href="../flutter_fx/FxRouter/getRouteArguments.html">getRouteArguments</a></span><span class="signature">(<wbr><span class="parameter" id="getRouteArguments-param-routeSettings">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/RouteSettings-class.html">RouteSettings</a>?</span> <span class="parameter-name">routeSettings</span>, </span><span class="parameter" id="getRouteArguments-param-navArguments"><span class="type-annotation"><a href="../flutter_fx/NavigationArguments-class.html">NavigationArguments</a>?</span> <span class="parameter-name">navArguments</span>}</span>)
-    <span class="returntype parameter">&#8594; <a href="../flutter_fx/NavigationArguments-class.html">NavigationArguments</a></span>
-  </span>
-  
-
-</dt>
-<dd>
-  Gets the <a href="../flutter_fx/NavigationArguments-class.html">NavigationArguments</a> for the given <a href="https://api.flutter.dev/flutter/widgets/RouteSettings-class.html">RouteSettings</a> or
-<a href="../flutter_fx/NavigationArguments-class.html">NavigationArguments</a>.
-  
-
-</dd>
-
         <dt id="goTo" class="callable">
-  <span class="name"><a href="../flutter_fx/FxRouter/goTo.html">goTo</a></span><span class="signature">(<wbr><span class="parameter" id="goTo-param-route"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">route</span>, </span><span class="parameter" id="goTo-param-arguments">{<span class="type-annotation"><a href="../flutter_fx/NavigationArguments-class.html">NavigationArguments</a>?</span> <span class="parameter-name">arguments</span>}</span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/FutureOr-class.html">FutureOr</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  <span class="name"><a href="../flutter_fx/FxRouter/goTo.html">goTo</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="goTo-param-path"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">path</span>, </span><span class="parameter" id="goTo-param-arguments">{<span class="type-annotation"><a href="../flutter_fx/NavigationArguments-class.html">NavigationArguments</a>?</span> <span class="parameter-name">arguments</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span>
   </span>
   
 
 </dt>
 <dd>
-  Pushes the given <code>route</code> onto the navigator.
+  Pushes the given <code>path</code> onto the navigator.
   
 
 </dd>
 
         <dt id="goToAndReplace" class="callable">
-  <span class="name"><a href="../flutter_fx/FxRouter/goToAndReplace.html">goToAndReplace</a></span><span class="signature">(<wbr><span class="parameter" id="goToAndReplace-param-route"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">route</span>, </span><span class="parameter" id="goToAndReplace-param-arguments">{<span class="type-annotation"><a href="../flutter_fx/NavigationArguments-class.html">NavigationArguments</a>?</span> <span class="parameter-name">arguments</span>}</span>)
+  <span class="name"><a href="../flutter_fx/FxRouter/goToAndReplace.html">goToAndReplace</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="goToAndReplace-param-path"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">path</span>, </span><span class="parameter" id="goToAndReplace-param-arguments">{<span class="type-annotation"><a href="../flutter_fx/NavigationArguments-class.html">NavigationArguments</a>?</span> <span class="parameter-name">arguments</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Pushes the given <code>path</code> onto the navigator and replaces the current route.
+  
+
+</dd>
+
+        <dt id="maybeBack" class="callable">
+  <span class="name"><a href="../flutter_fx/FxRouter/maybeBack.html">maybeBack</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/FutureOr-class.html">FutureOr</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Pops the top-most route off the navigator that most tightly encloses the
+given <a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a> if possible.
+  
+
+</dd>
+
+        <dt id="removeRoute" class="callable">
+  <span class="name"><a href="../flutter_fx/FxRouter/removeRoute.html">removeRoute</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="removeRoute-param-route"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Route-class.html">Route</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">route</span></span>)
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/FutureOr-class.html">FutureOr</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
   </span>
   
 
 </dt>
 <dd>
-  Pushes the given <code>route</code> onto the navigator and replaces the current route.
+  Removes the given <code>route</code> from the history.
   
 
 </dd>
 
-        <dt id="onGenerateRoute" class="callable">
-  <span class="name"><a href="../flutter_fx/FxRouter/onGenerateRoute.html">onGenerateRoute</a></span><span class="signature">(<wbr><span class="parameter" id="onGenerateRoute-param-routeSettings"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/RouteSettings-class.html">RouteSettings</a></span> <span class="parameter-name">routeSettings</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Route-class.html">Route</a></span>
+        <dt id="saveHistory" class="callable">
+  <span class="name"><a href="../flutter_fx/FxRouter/saveHistory.html">saveHistory</a></span><span class="signature">(<wbr><span class="parameter" id="saveHistory-param-value"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
   </span>
   
 
 </dt>
 <dd>
-  This callback is used by <a href="https://api.flutter.dev/flutter/widgets/WidgetsApp-class.html">WidgetsApp</a> to generate a route for a given
-<a href="https://api.flutter.dev/flutter/widgets/RouteSettings-class.html">RouteSettings</a>.
+  Sets whether the navigation history should be saved.
+  
+
+</dd>
+
+        <dt id="useDefaultTransition" class="callable">
+  <span class="name"><a href="../flutter_fx/FxRouter/useDefaultTransition.html">useDefaultTransition</a></span><span class="signature">(<wbr><span class="parameter" id="useDefaultTransition-param-value"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Controls whether the default transition should be used when going to a new
+route.
   
 
 </dd>
@@ -337,7 +330,7 @@ given <a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.2
+      0.1.3
   </span>
 
   

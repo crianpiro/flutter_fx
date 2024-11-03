@@ -118,7 +118,7 @@ and</li>
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
-  FxRouter.init(_navKey, routeBuilder);
+  FxRouterInternal.init(_navKey, routeBuilder);
   return MaterialApp(
     title: title,
     theme: theme,
@@ -132,7 +132,7 @@ Widget build(BuildContext context) {
     ],
     color: appColor,
     initialRoute: &#39;&#47;&#39;,
-    onGenerateRoute: FxRouter.onGenerateRoute,
+    onGenerateRoute: FxRouterInternal.onGenerateRoute,
   );
 }</code></pre>
 </section>
@@ -168,7 +168,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.2
+      0.1.3
   </span>
 
   
