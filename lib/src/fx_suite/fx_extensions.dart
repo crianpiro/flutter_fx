@@ -69,19 +69,24 @@ extension FxScaleSize on double {
         (_windowPadding.left + _windowPadding.right) / _window.devicePixelRatio;
     final double screenWidth = _logicalSize.width - viewPaddings;
 
-    double targetProportion = (screenWidth / targetViewportWidth);
-    double scaled = px * targetProportion;
+    double proportion = (screenWidth / targetViewportWidth);
+    double scaled = px * proportion;
 
-    if (targetProportion > 1.1) {
+    if (proportion > 1.1) {
       if (isDesktop) {
-        return px * (screenWidth / _desktopWidth);
+        proportion = screenWidth / _desktopWidth; 
+        scaled = px * proportion;
       } else if (isTablet || isTabletLandscape) {
-        return px * (screenWidth / _tabletWidth);
+        proportion = screenWidth / _tabletWidth; 
+        scaled = px * proportion;
       } else if (isMobile || isMobileLandscape) {
-        return px * (screenWidth / _mobileWidth);
+        proportion = screenWidth / _mobileWidth; 
+        scaled = px * proportion;
       }
 
-      return scaled;
+      if (proportion > 1.1) {
+        return px * 1;
+      }
     }
 
     return scaled;
