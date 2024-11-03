@@ -82,7 +82,8 @@ With state management &amp; navigation management strategies for flutter.</p>
 
 </dt>
 <dd>
-  
+  A generic class that wraps a value of type <code>T</code> and provides methods to listen to changes,
+notify builders, and convert to JSON.
 </dd>
 
           <dt id="FxApp">
@@ -90,19 +91,11 @@ With state management &amp; navigation management strategies for flutter.</p>
 
 </dt>
 <dd>
-  <a href="../flutter_fx/FxApp-class.html">FxApp</a> sets up the <a href="../flutter_fx/FxRouter-class.html">FxRouter</a> to navigate between routes, using a <a href="https://api.flutter.dev/flutter/widgets/WidgetsApp-class.html">WidgetsApp</a> as skeleton.
+  <a href="../flutter_fx/FxApp-class.html">FxApp</a> sets up the <code>FxRouterInternal</code> to navigate between routes, using a <a href="https://api.flutter.dev/flutter/widgets/WidgetsApp-class.html">WidgetsApp</a> as skeleton.
 <a href="../flutter_fx/FxApp/title.html">title</a> The title of the application
 <a href="../flutter_fx/FxApp/initialRoute.html">initialRoute</a> The initial route of the app. This is a required parameter.
 <a href="../flutter_fx/FxApp/routeBuilder.html">routeBuilder</a> A function that builds a widget for a given route. This is a required parameter.
 <a href="../flutter_fx/FxApp/appColor.html">appColor</a> The color of the app. This is an optional parameter that defaults to transparent (Color(0x00000000)).
-</dd>
-
-          <dt id="FxBuildContext">
-  <span class="name "><a href="../flutter_fx/FxBuildContext-class.html">FxBuildContext</a></span> 
-
-</dt>
-<dd>
-  
 </dd>
 
           <dt id="FxBuilder">
@@ -119,6 +112,14 @@ With state management &amp; navigation management strategies for flutter.</p>
 </dt>
 <dd>
   <a href="../flutter_fx/FxButton-class.html">FxButton</a> is a customizable button widget with a default friendly style.
+</dd>
+
+          <dt id="FxNullable">
+  <span class="name "><a href="../flutter_fx/FxNullable-class.html">FxNullable</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> 
+
+</dt>
+<dd>
+  The <a href="../flutter_fx/FxNullable-class.html">FxNullable</a> class is a generic class that provides a way to create an <a href="../flutter_fx/Fx-class.html">Fx</a> instance with a null value of type <code>T</code>.
 </dd>
 
           <dt id="FxRouter">
@@ -227,7 +228,7 @@ With state management &amp; navigation management strategies for flutter.</p>
 
 </dt>
 <dd>
-  Extension to convert a value to a <code>Fx</code> instance.
+  Extension to convert a value to a <a href="../flutter_fx/Fx-class.html">Fx</a> instance.
 </dd>
 
 
@@ -250,7 +251,23 @@ With state management &amp; navigation management strategies for flutter.</p>
 
 </dt>
 <dd>
+  A type alias for <code>Fx&lt;bool&gt;</code>.
   
+
+</dd>
+
+
+          
+  <dt id="FxInt" class="">
+  <span class="name"><a href="../flutter_fx/FxInt.html">FxInt</a></span>
+    = <a href="../flutter_fx/Fx-class.html">Fx</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>&gt;</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Type aliases for common <code>Fx</code> types.
+A type alias for <code>Fx&lt;String&gt;</code>.
   
 
 </dd>
@@ -265,7 +282,7 @@ With state management &amp; navigation management strategies for flutter.</p>
 
 </dt>
 <dd>
-  
+  A type alias for <code>Fx&lt;List&lt;T&gt;&gt;</code>.
   
 
 </dd>
@@ -280,7 +297,7 @@ With state management &amp; navigation management strategies for flutter.</p>
 
 </dt>
 <dd>
-  
+  A type alias for <code>Fx&lt;Map&lt;T, M&gt;&gt;</code>.
   
 
 </dd>
@@ -295,7 +312,8 @@ With state management &amp; navigation management strategies for flutter.</p>
 
 </dt>
 <dd>
-  
+  Type aliases for common <code>Fx</code> types.
+A type alias for <code>Fx&lt;String&gt;</code>.
   
 
 </dd>
@@ -338,7 +356,7 @@ With state management &amp; navigation management strategies for flutter.</p>
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.0
+      0.1.3
   </span>
 
   

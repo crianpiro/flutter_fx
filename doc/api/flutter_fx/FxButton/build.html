@@ -123,39 +123,24 @@ Widget build(BuildContext context) {
     color: FxColors.transparent,
     padding: EdgeInsets.zero,
     child: FilledButton(
-        style: ButtonStyle(
+        style: Theme.of(context).filledButtonTheme.style?.copyWith(
             visualDensity:
                 isCompact ? VisualDensity.compact : VisualDensity.comfortable,
             alignment: alignment,
-            elevation: WidgetStateProperty.resolveWith((states) =&gt; 0),
-            padding: WidgetStateProperty.resolveWith((states) =&gt; padding),
+            elevation: const WidgetStatePropertyAll(0),
+            padding: WidgetStatePropertyAll(padding),
             tapTargetSize: isCompact
                 ? MaterialTapTargetSize.shrinkWrap
                 : MaterialTapTargetSize.padded,
-            fixedSize: !isCompact
-                ? WidgetStateProperty.resolveWith((states) =&gt; maximumSize)
-                : null,
-            minimumSize:
-                WidgetStateProperty.resolveWith((states) =&gt; minimumSize),
-            maximumSize:
-                WidgetStateProperty.resolveWith((states) =&gt; maximumSize),
-            backgroundColor: WidgetStateProperty.resolveWith((states) {
-              if (states.contains(WidgetState.disabled)) {
-                return disabledColor;
-              }
-              return backgroundColor;
-            }),
-            foregroundColor:
-                WidgetStateProperty.resolveWith((states) =&gt; contentColor),
-            overlayColor:
-                WidgetStateProperty.resolveWith((states) =&gt; overlayColor),
-            shape: WidgetStateProperty.resolveWith((states) =&gt;
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(borderRadius))),
-            side: WidgetStateProperty.resolveWith((states) =&gt; BorderSide(
-                color: states.contains(WidgetState.disabled)
-                    ? disabledColor
-                    : borderColor))),
+            fixedSize:
+                !isCompact ? WidgetStatePropertyAll(maximumSize) : null,
+            minimumSize: WidgetStatePropertyAll(minimumSize),
+            maximumSize: WidgetStatePropertyAll(maximumSize),
+            foregroundColor: WidgetStatePropertyAll(contentColor),
+            overlayColor: WidgetStatePropertyAll(overlayColor),
+            shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(borderRadius))),
+            side: const WidgetStatePropertyAll(BorderSide.none)),
         onPressed: onPressedF,
         child: widgetContent ??
             Text(
@@ -197,7 +182,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.0
+      0.1.3
   </span>
 
   

@@ -83,7 +83,9 @@ class FxValidators {
   /// If the value is empty, it will return "Required".
   static String? validatePositiveDouble(String number) {
     if (number.isNotEmpty) {
-      return RegExp(r'^(0\.\d*[1-9]\d*|[1-9]\d*(\.\d+)?)$').hasMatch(number) ? null : "Invalid";
+      return RegExp(r'^(0\.\d*[1-9]\d*|[1-9]\d*(\.\d+)?)$').hasMatch(number)
+          ? null
+          : "Invalid";
     } else {
       return "Required";
     }
@@ -116,10 +118,10 @@ class FxValidators {
   /// If the values are empty, it will return "Required".
   /// If the condition is not met, it will return the [message].
   static String? validateMinorThan(String minor, String major, String message) {
-    if(minor.isEmpty || major.isEmpty){
+    if (minor.isEmpty || major.isEmpty) {
       return "Required";
     }
-    if(double.tryParse(minor) == null || double.tryParse(major) == null){
+    if (double.tryParse(minor) == null || double.tryParse(major) == null) {
       return "Invalid";
     }
     double minorNum = double.parse(minor);
@@ -127,17 +129,17 @@ class FxValidators {
     return minorNum <= majorNum ? null : message;
   }
 
-
   /// Validate if the value in [minor] is greater than the value in [major].
   /// If the values are invalid, it will return "Invalid".
   /// If the values are empty, it will return "Required".
   /// If the condition is not met, it will return the [message].
   ///
-  static String? validateGreaterThan(String minor, String major, String message) {
-    if(minor.isEmpty || major.isEmpty){
+  static String? validateGreaterThan(
+      String minor, String major, String message) {
+    if (minor.isEmpty || major.isEmpty) {
       return "Required";
     }
-    if(double.tryParse(minor) == null || double.tryParse(major) == null){
+    if (double.tryParse(minor) == null || double.tryParse(major) == null) {
       return "Invalid";
     }
     double minorNum = double.parse(minor);

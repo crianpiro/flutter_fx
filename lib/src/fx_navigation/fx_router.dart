@@ -7,35 +7,133 @@ import 'fx_app.dart';
 
 @immutable
 final class FxRouter {
-  static bool useDefaultTransition = true;
-  static GlobalKey<NavigatorState>? _navigatorKey;
-  static Widget Function(String route)? _routeBuilder;
-
-  static FxRouter? _singleton;
-
-  const FxRouter._();
-
-  factory FxRouter.init(GlobalKey<NavigatorState>? navigatorKey,
-      Widget Function(String route) buildRoute) {
-    _navigatorKey = navigatorKey;
-    _routeBuilder = buildRoute;
-    return _singleton ??= const FxRouter._();
-  }
-
-  /// Ensures that the [FxRouter] is used properly.
+  /// Controls whether the default transition should be used when going to a new
+  /// route.
   ///
-  /// Before using the [FxRouter] you must call [FxRouter.init] to initialize it.
+  /// If [value] is true, the default transition will be used.
   ///
-  /// This method is used internally by the [FxRouter] to check if it is used
-  /// properly. You should not call this method directly.
+  /// If [value] is false, the transition for the new route will be determined by
+  /// the [NavigationArguments] passed.
   ///
-  /// If the [FxRouter] is used improperly, a [FlutterError] will be thrown.
+  /// The default transition is a [RouteTransition.animated] transition.
+  ///
+  /// The default value is true.
+  static useDefaultTransition(bool value) =>
+      FxRouterInternal.useDefaultTransition = value;
+
+  /// Sets whether the navigation history should be saved.
+  ///
+  /// If [value] is true, each new route navigated to will be added to the
+  /// history, allowing for back navigation.
+  ///
+  /// If [value] is false, the routes will not be saved to history.
+  static saveHistory(bool value) => FxRouterInternal.saveHistory = value;
+
+  /// Pushes the given [path] onto the navigator.
+  ///
+  /// The [arguments] are used to generate the [PageRouteBuilder] for the new
+  /// route.
+  ///
+  /// If [saveHistory] is true, the new route is saved to the history.
+  ///
+  /// Returns a [Future] which resolves to the result of the route when it is
+  /// popped from the navigator.
   ///
   /// See also:
   ///
-  /// * [FxRouter.init], which initializes the [FxRouter].
-  /// * [FxApp], which is the main widget that uses the [FxRouter].
-  static void ensureProperUse() {
+  /// * [saveHistory], which controls whether the new route is saved to the
+  ///   history.
+  /// * [goToAndReplace], which pushes the given [path] onto the navigator and
+  ///   replaces the current route.
+  static Future<T?> goTo<T extends Object?>(String path,
+          {NavigationArguments? arguments}) =>
+      FxRouterInternal.goTo(path, arguments: arguments);
+
+  /// Pushes the given [path] onto the navigator and replaces the current route.
+  ///
+  /// The [arguments] are used to generate the [PageRouteBuilder] for the new
+  /// route.
+  ///
+  /// If [saveHistory] is true, the new route is saved to the history.
+  ///
+  /// Returns a [Future] which resolves to the result of the route when it is
+  /// popped from the navigator.
+  static Future<T?> goToAndReplace<T extends Object?>(String path,
+          {NavigationArguments? arguments}) =>
+      FxRouterInternal.goToAndReplace(path, arguments: arguments);
+
+  /// Removes all the top-most routes until the [predicate] returns `true`.
+  ///
+  /// The [predicate] is called with the current route as argument. If the
+  /// predicate returns `true`, the navigator pops the route and stops. If the
+  /// predicate returns `false`, the navigator continues to the next route.
+  ///
+  /// If the [predicate] is `null`, the navigator pops all routes until it has
+  /// none left.
+  static FutureOr<void> backUntil(bool Function(Route<dynamic>) predicate) =>
+      FxRouterInternal.backUntil(predicate);
+
+  /// Pops the top-most route off the navigator.
+  ///
+  /// The current route's [Route.didPop] method is called when the route is
+  /// popped. This method is called regardless of whether the route is popped
+  /// normally (e.g. by pressing the back button) or by calling [back].
+  static FutureOr<void> back() => FxRouterInternal.back();
+
+  /// Pops the top-most route off the navigator that most tightly encloses the
+  /// given [BuildContext] if possible.
+  ///
+  /// Returns `true` if the route was popped, `false` otherwise.
+  ///
+  /// The current route's [Route.didPop] method is called when the route is
+  /// popped. This method is called regardless of whether the route is popped
+  /// normally (e.g. by pressing the back button) or by calling [maybeBack].
+  static FutureOr<bool> maybeBack() => FxRouterInternal.maybeBack();
+
+  /// Removes the given [route] from the history.
+  ///
+  /// This method is used by [FxRouter.backUntil] and [FxRouter.back] to remove
+  /// the top-most route from the history.
+  ///
+  /// Returns a [Future] which resolves when the route is removed from the
+  /// history.
+  static FutureOr<void> removeRoute<T extends Object?>(Route<T> route) =>
+      FxRouterInternal.removeRoute(route);
+}
+
+@immutable
+final class FxRouterInternal {
+  static bool useDefaultTransition = true;
+  static bool saveHistory = false;
+  static GlobalKey<NavigatorState>? _navigatorKey;
+  static final List<Route> _routesHistory = [];
+  static Widget Function(String route)? _routeBuilder;
+
+  static FxRouterInternal? _singleton;
+
+  const FxRouterInternal._();
+
+  factory FxRouterInternal.init(GlobalKey<NavigatorState>? navigatorKey,
+      Widget Function(String route) buildRoute) {
+    _navigatorKey = navigatorKey;
+    _routeBuilder = buildRoute;
+    return _singleton ??= const FxRouterInternal._();
+  }
+
+  /// Ensures that the [FxRouterInternal] is used properly.
+  ///
+  /// Before using the [FxRouterInternal] you must call [FxRouter.init] to initialize it.
+  ///
+  /// This method is used internally by the [FxRouterInternal] to check if it is used
+  /// properly. You should not call this method directly.
+  ///
+  /// If the [FxRouterInternal] is used improperly, a [FlutterError] will be thrown.
+  ///
+  /// See also:
+  ///
+  /// * [FxRouter.init], which initializes the [FxRouterInternal].
+  /// * [FxApp], which is the main widget that uses the [FxRouterInternal].
+  static void _ensureProperUse() {
     final FlutterError error = FlutterError("""Improper use of a [FxRouter].
         * The [FxRouter] must be initialized.
         * To use [FxRouter] your main Widget must be a [FxApp].""");
@@ -60,33 +158,56 @@ final class FxRouter {
     }
   }
 
-  /// Pushes the given [route] onto the navigator.
+  /// Pushes the given [path] onto the navigator.
   ///
   /// The [arguments] are used to generate the [PageRouteBuilder] for the new
   /// route.
   ///
-  /// If the [arguments] are not provided, the default transition is used.
-  static FutureOr<void> goTo(String route, {NavigationArguments? arguments}) {
-    ensureProperUse();
-    _navigatorKey!.currentState?.push(_getPageRouteBuilder(
-        route, getRouteArguments(navArguments: arguments)));
+  /// If [saveHistory] is true, the new route is saved to the history.
+  ///
+  /// Returns a [Future] which resolves to the result of the route when it is
+  /// popped from the navigator.
+  ///
+  /// See also:
+  ///
+  /// * [saveHistory], which controls whether the new route is saved to the
+  ///   history.
+  /// * [goToAndReplace], which pushes the given [path] onto the navigator and
+  ///   replaces the current route.
+  static Future<T?> goTo<T extends Object?>(String path,
+      {NavigationArguments? arguments}) {
+    _ensureProperUse();
+    Route<T> route =
+        _getPageRouteBuilder(path, _getRouteArguments(navArguments: arguments));
+
+    if (saveHistory) {
+      _routesHistory.add(route);
+    }
+
+    return _navigatorKey!.currentState!.push(route);
   }
 
-  /// Pushes the given [route] onto the navigator and replaces the current route.
+  /// Pushes the given [path] onto the navigator and replaces the current route.
   ///
   /// The [arguments] are used to generate the [PageRouteBuilder] for the new
   /// route.
   ///
-  /// If the [arguments] are not provided, the default transition is used.
+  /// If [saveHistory] is true, the new route is saved to the history.
   ///
-  /// The [predicate] is called with the current route as argument. If the
-  /// predicate returns `true`, the navigator pops the route and stops. If the
-  /// predicate returns `false`, the navigator continues to the next route.
-  static FutureOr<void> goToAndReplace(String route,
+  /// Returns a [Future] which resolves to the result of the route when it is
+  /// popped from the navigator.
+  ///
+  static Future<T?> goToAndReplace<T extends Object?>(String path,
       {NavigationArguments? arguments}) {
-    ensureProperUse();
-    _navigatorKey!.currentState?.pushReplacement(_getPageRouteBuilder(
-        route, getRouteArguments(navArguments: arguments)));
+    _ensureProperUse();
+    Route<T> route =
+        _getPageRouteBuilder(path, _getRouteArguments(navArguments: arguments));
+
+    if (saveHistory) {
+      _routesHistory.removeLast();
+      _routesHistory.add(route);
+    }
+    return _navigatorKey!.currentState!.pushReplacement(route);
   }
 
   /// Removes all the top-most routes until the [predicate] returns `true`.
@@ -98,8 +219,11 @@ final class FxRouter {
   /// If the [predicate] is `null`, the navigator pops all routes until it has
   /// none left.
   static FutureOr<void> backUntil(bool Function(Route<dynamic>) predicate) {
-    ensureProperUse();
-    _navigatorKey!.currentState?.popUntil(predicate);
+    _ensureProperUse();
+    if (saveHistory) {
+      _routesHistory.removeWhere(predicate);
+    }
+    _navigatorKey!.currentState!.popUntil(predicate);
   }
 
   /// Pops the top-most route off the navigator that most tightly encloses the
@@ -109,8 +233,42 @@ final class FxRouter {
   /// popped. This method is called regardless of whether the route is popped
   /// normally (e.g. by pressing the back button) or by calling [back].
   static FutureOr<void> back() {
-    ensureProperUse();
+    _ensureProperUse();
+    if (saveHistory) {
+      _routesHistory.removeLast();
+    }
     _navigatorKey!.currentState?.pop();
+  }
+
+  /// Removes a route from the navigator.
+  ///
+  /// The given [route] will be removed from the navigator.
+  ///
+  /// This method is used internally by the [FxRouterInternal] to remove routes. You
+  /// should not call this method directly.
+  ///
+  /// If the navigator does not contain the given [route], this method does
+  /// nothing.
+  ///
+  /// See also:
+  ///
+  /// * [Navigator.removeRoute], which is the method that this method calls.
+  static FutureOr<void> removeRoute<T extends Object?>(Route<T> route) {
+    _ensureProperUse();
+    _navigatorKey!.currentState?.removeRoute(route);
+  }
+
+  /// Pops the top-most route off the navigator that most tightly encloses the
+  /// given [BuildContext] if possible.
+  ///
+  /// Returns `true` if the route was popped, `false` otherwise.
+  ///
+  /// The current route's [Route.didPop] method is called when the route is
+  /// popped. This method is called regardless of whether the route is popped
+  /// normally (e.g. by pressing the back button) or by calling [maybeBack].
+  static Future<bool> maybeBack() {
+    _ensureProperUse();
+    return _navigatorKey!.currentState!.maybePop();
   }
 
   /// This callback is used by [WidgetsApp] to generate a route for a given
@@ -121,13 +279,13 @@ final class FxRouter {
   ///
   /// The returned [Route] is the route that will be used to generate the route.
   ///
-  /// The [FxRouter] will generate the route using the [_getPageRouteBuilder]
+  /// The [FxRouterInternal] will generate the route using the [_getPageRouteBuilder]
   /// method.
   static Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
     String routeName = routeSettings.name ?? "/";
 
     return _getPageRouteBuilder(
-        routeName, getRouteArguments(routeSettings: routeSettings));
+        routeName, _getRouteArguments(routeSettings: routeSettings));
   }
 
   /// Gets the [NavigationArguments] for the given [RouteSettings] or
@@ -141,7 +299,7 @@ final class FxRouter {
   ///
   /// Otherwise, a [NavigationArguments] with the given [arguments] is
   /// returned.
-  static NavigationArguments getRouteArguments(
+  static NavigationArguments _getRouteArguments(
       {RouteSettings? routeSettings, NavigationArguments? navArguments}) {
     final Object? arguments = routeSettings?.arguments ?? navArguments;
     NavigationArguments routeArguments = const NavigationArguments();
@@ -166,7 +324,7 @@ final class FxRouter {
   ///
   /// If the [routeTransition] property of the given [arguments] is
   /// [RouteTransition.none], then the [transitionsBuilder] does not include the animaction, just returngs.
-  static PageRouteBuilder _getPageRouteBuilder(
+  static PageRouteBuilder<T> _getPageRouteBuilder<T extends Object>(
       String route, NavigationArguments arguments) {
     return PageRouteBuilder(
       settings: RouteSettings(name: route, arguments: arguments.payload),

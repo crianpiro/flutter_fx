@@ -51,7 +51,7 @@
   <div id="dartdoc-main-content" class="main-content">
       
 <section class="desc markdown">
-  <p><img src="https://img.shields.io/badge/License-BSD_3_Clause-green" alt="Static Badge"></p>
+  <p><img src="https://img.shields.io/badge/License-BSD_3_Clause-green" alt="Static Badge"> <img src="https://img.shields.io/pub/v/flutter_fx?color=blue" alt="Pub Version"> <img src="https://img.shields.io/github/issues/crianpiro/flutter_fx?label=bug" alt="GitHub Issues or Pull Requests"></p>
 <p>This package is a suite of widgets, tools, extensions. With state management &amp; navigation management strategies for flutter.</p>
 <h2 id="features">Features</h2>
 <ul>
@@ -59,10 +59,11 @@
 <li><a href="#fxnavigation">Fx Navigation</a>: To navigate easily.</li>
 <li><a href="#fxsuite">Fx Suite</a>: To speed up the development, use tools and components.</li>
 </ul>
+<hr>
 <h2 id="getting-started">Getting started</h2>
-<h3 id="fxstate">FxState</h3>
+<h2 id="collision-fxstate">:collision: FxState</h2>
 <p>This feature was born from the need to update the states in your application in a simpler way, I have used many state managers in flutter but I have always thought the things could be simpler. A way to just use a class to define all the logic, set all the mutable variables and states in the pages and then simply listen to the states from different widgets in the pages.</p>
-<h4 id="usage">Usage</h4>
+<h3 id="usage">Usage</h3>
 <p>First, let's define a class to allocate all our states or mutable variables. We use the <code>Fx&lt;T&gt;</code> type to define a mutable variable, then we initialize the variable with the <code>T</code> type and convert it to <code>Fx&lt;T&gt;</code> by using the <code>toFx</code> extension.</p>
 <pre class="language-dart"><code class="language-dart">import 'package:flutter_fx/flutter_fx.dart';
 
@@ -127,12 +128,31 @@ class HomeController {
   }
 }
 </code></pre>
-<hr>
-<h3 id="fxnavigation">FxNavigation</h3>
+<h4 id="other-types">Other types</h4>
+<pre class="language-dart"><code class="language-dart">// Using the Fx&lt;T&gt; definition and toFx extension
+Fx&lt;int&gt; myInt = 0.toFx;
+// Using the Fx&lt;T&gt; definition and toFx extension
+Fx&lt;String&gt; myString = "Hello".toFx;
+// Using the Fx&lt;T&gt; definition and toFx extension
+Fx&lt;Map&lt;String,int&gt;&gt; myString = &lt;String,int&gt;{}.toFx;
+// Using the Fx&lt;T&gt; definition and toFx extension
+Fx&lt;List&lt;String&gt;&gt; myString = &lt;String&gt;[].toFx;
+// Using the FxString type definition and toFx extension
+FxString myFxString = "Hello".toFx;
+// Using the FxInt type definition and toFx extension
+FxInt myFxInt = 0.toFx;
+// Using the FxBool type definition and the Fx constructor.
+FxBool myBool = Fx(false);
+// Using the Fx&lt;T&gt; type definition and the FxNullable class to support nullable types.
+Fx&lt;bool?&gt; myNullableBool = FxNullable&lt;bool?&gt;.setNull();
+
+</code></pre>
+<h2 id="collision-fxnavigation">:collision: FxNavigation</h2>
 <p>This feature allows you to navigate without using the context. It also allows you to use custom transitions when navigating.</p>
-<h4 id="usage-2">Usage</h4>
+<h3 id="usage-2">Usage</h3>
 <p>To use the <code>FxNavigation</code> you need to use <code>FxApp</code> that uses <a href="https://api.flutter.dev/flutter/material/MaterialApp-class.html">MaterialApp</a> and therefore you can set some of the properties for <code>Material</code>.</p>
 <p>The <code>FxApp</code> requires two arguments, the <code>initialRoute</code> so the app knows which will be the first route pushed into the stack, and the <code>routeBuilder</code> where you can define which widget to build in case of a specific path.</p>
+<p>:bulb: <strong>Tip:</strong>  To avoid the re-construction of the routes in web for a SPA, don't start their paths with <code>/</code>; or avoid to start navigation in the construction of the page.</p>
 <pre class="language-dart"><code class="language-dart">FxApp(
     initialRoute: "/",
     routeBuilder: (String path){
@@ -157,14 +177,16 @@ class HomeController {
         transitionDirection: TransitionDirection.rightToLeft,
       ));
 </code></pre>
-<hr>
-<h3 id="fxsuite">FxSuite</h3>
+<h2 id="collision-fxsuite">:collision: FxSuite</h2>
 <p>This feature was born from the need to have in new projects the single basic characteristics that almost every application has. Have a look at the few components available I am sure you will find them useful.</p>
-<h4 id="fxscreen">FxScreen</h4>
+<h3 id="fxscreen">FxScreen</h3>
 <p>This component is focused on simplify the way a UI screen is built. It allows you to have customize easily backgrounds, overlays, screenPaddings, etc.</p>
 <p>:bulb: <strong>Tip:</strong> To have full control over the screen customization in android there are two important things to do.</p>
 <ul>
-<li>First, you must add or edit <code>android/app/src/main/res/values/styles.xml</code> and <code>android/app/src/main/res/values-night/styles.xml</code> files in your project.</li>
+<li>
+<p>First, you must add or edit <code>android/app/src/main/res/values/styles.xml</code> and <code>android/app/src/main/res/values-night/styles.xml</code> files in your project.</p>
+<p>:eight_spoked_asterisk: You can also save this step and use the plugin <a href="https://pub.dev/packages/mobile_window_features">mobile_window_features</a> by  <a href="merakidevelop.com.co">merakidevelop.com.co</a></p>
+</li>
 </ul>
 <pre class="language-xml"><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;resources&gt;
@@ -199,7 +221,7 @@ void main() {
     runApp(const MyApp());
 }
 </code></pre>
-<h5 id="usage-3">Usage</h5>
+<h3 id="usage-3">Usage</h3>
 <p>Import the library</p>
 <pre class="language-dart"><code class="language-dart">import 'package:flutter_fx/flutter_fx.dart';
 </code></pre>
@@ -244,7 +266,7 @@ class ExamplePage extends StatelessWidget {
   }
 }
 </code></pre>
-<h4 id="fxcomponents">FxComponents</h4>
+<h3 id="fxcomponents">FxComponents</h3>
 <ul>
 <li><a href="https://pub.dev/documentation/flutter_fx/latest/flutter_fx/FxButton-class.html"><strong>FxButton</strong></a> is a <a href="https://api.flutter.dev/flutter/material/FilledButton-class.html">FilledButton</a> with a default style, wrapped with paddings to simplify separation between components. It allows full customization.</li>
 </ul>
@@ -273,7 +295,7 @@ class ExamplePage extends StatelessWidget {
     onPressedF: (){}
 ),
 </code></pre>
-<h4 id="fxextensions">FxExtensions</h4>
+<h3 id="fxextensions">FxExtensions</h3>
 <ul>
 <li><strong>FxScaleSize</strong> allows to scale the size taking into account the size of viewport in which the design was created.</li>
 </ul>
@@ -281,7 +303,7 @@ class ExamplePage extends StatelessWidget {
 <pre class="language-dart"><code class="language-dart">FxScaleSize.viewportWidth = 500 // Your viewport width
 FxScaleSize.viewportHeight = 1200 // Your viewport height
 </code></pre>
-<h4 id="fxvalidators">FxValidators</h4>
+<h3 id="fxvalidators">FxValidators</h3>
 <p>This feature is just a copy of some validators I used at some point, Soon I will improve them and add some more of the most used ones.</p>
 <ul>
 <li>validateEmail</li>
@@ -296,7 +318,7 @@ FxScaleSize.viewportHeight = 1200 // Your viewport height
 <li>validateMinorThan</li>
 <li>validateGreaterThan</li>
 </ul>
-<h5 id="usage-4">Usage</h5>
+<h4 id="usage-4">Usage</h4>
 <p>Import the library</p>
 <pre class="language-dart"><code class="language-dart">import 'package:flutter_fx/flutter_fx.dart';
 </code></pre>
@@ -307,17 +329,17 @@ FxScaleSize.viewportHeight = 1200 // Your viewport height
 <p>This package is under constant development because was born from my need to centralize the tools and strategies I like to use in different flutter projects.</p>
 <p>If you find it useful and want to contribute please feel free to create an issue. Also if you feel you need something that is not still in the package and you would like me to prioritize or if you find a bug.</p>
 <hr>
-<h2 id="roadmap-coming-soon">Roadmap, coming soon</h2>
+<h2 id="heavy_exclamation_mark-mega-soon-roadmap">:heavy_exclamation_mark: :mega: :soon: Roadmap</h2>
 <ul>
-<li><code> </code> Support more customization in the navigation transitions.</li>
-<li><code> </code> <code>FxPage</code> widget to support the controller based page and simplify the way to use <code>FxState</code>.</li>
-<li><code> </code> Support more <code>Material</code> properties in the <code>FxApp</code>.</li>
-<li><code> </code> Support operations with the <code>Fx&lt;T&gt;</code> and improve the way the structures can be updated.</li>
-<li><code> </code> Include more <code>FxComponents</code>.</li>
-<li><code> </code> Improve the <code>FxValidators</code>.</li>
-<li><code> </code> Package snippets to speed up the development.</li>
-<li><code> </code> <code>FxKeyState</code> to allow a state management based on specific keys.</li>
-<li><code> </code> Performance report, advantages and disadvantages.</li>
+<li>:white_square_button: Support more customization in the navigation transitions.</li>
+<li>:white_square_button: <code>FxPage</code> widget to support the controller based page and simplify the way to use <code>FxState</code>.</li>
+<li>:white_square_button: Support more <code>Material</code> properties in the <code>FxApp</code>.</li>
+<li>:white_square_button: Support operations with the <code>Fx&lt;T&gt;</code> and improve the way the structures can be updated.</li>
+<li>:white_square_button: Include more <code>FxComponents</code>.</li>
+<li>:white_square_button: Improve the <code>FxValidators</code>.</li>
+<li>:white_square_button: Package snippets to speed up the development.</li>
+<li>:white_square_button: <code>FxKeyState</code> to allow a state management based on specific keys.</li>
+<li>:white_square_button: Performance report, advantages and disadvantages.</li>
 </ul>
 </section>
 
@@ -367,7 +389,7 @@ With state management &amp; navigation management strategies for flutter.
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.0
+      0.1.3
   </span>
 
   

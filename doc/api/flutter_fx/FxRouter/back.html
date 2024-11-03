@@ -71,8 +71,7 @@
     </section>
     
 <section class="desc markdown">
-  <p>Pops the top-most route off the navigator that most tightly encloses the
-given <a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a>.</p>
+  <p>Pops the top-most route off the navigator.</p>
 <p>The current route's <a href="https://api.flutter.dev/flutter/widgets/Route/didPop.html">Route.didPop</a> method is called when the route is
 popped. This method is called regardless of whether the route is popped
 normally (e.g. by pressing the back button) or by calling <a href="../../flutter_fx/FxRouter/back.html">back</a>.</p>
@@ -82,10 +81,7 @@ normally (e.g. by pressing the back button) or by calling <a href="../../flutter
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static FutureOr&lt;void&gt; back() {
-  ensureProperUse();
-  _navigatorKey!.currentState?.pop();
-}</code></pre>
+  <pre class="language-dart"><code class="language-dart">static FutureOr&lt;void&gt; back() =&gt; FxRouterInternal.back();</code></pre>
 </section>
 
 
@@ -119,7 +115,7 @@ normally (e.g. by pressing the back button) or by calling <a href="../../flutter
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.0
+      0.1.3
   </span>
 
   

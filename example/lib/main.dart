@@ -34,10 +34,13 @@ FutureOr<void> main() {
 class MainPageController {
   static Fx<String> text = "data".toFx;
   static Fx<String> text2 = Fx("NO DATA");
+  static FxBool bool1 = Fx(false);
+  static Fx<String?> text3 = FxNullable<String?>().setNull();
 
   static void changeState() {
     text.value = "new data ${Random().nextDouble().toString()}";
     text2.value = "new data ${Random().nextDouble().toString()}";
+    text3.value = "new data ${Random().nextDouble().toString()}";
   }
 }
 
@@ -46,7 +49,6 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fx/src/fx_suite/fx_colors.dart';
 
-
-
 /// [FxButton] is a customizable button widget with a default friendly style.
 class FxButton extends StatelessWidget {
   /// The text content of the button.
@@ -24,16 +22,16 @@ class FxButton extends StatelessWidget {
   final EdgeInsets padding;
 
   /// The color of the button's content.
-  final Color contentColor;
+  final Color? contentColor;
 
   /// The color of the button's overlay.
-  final Color overlayColor;
+  final Color? overlayColor;
 
   /// The background color of the button.
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// The color of the button's border.
-  final Color borderColor;
+  final Color? borderColor;
 
   /// The alignment of the button's content.
   final AlignmentGeometry alignment;
@@ -42,7 +40,7 @@ class FxButton extends StatelessWidget {
   final double borderRadius;
 
   /// The color of the button when it is disabled.
-  final Color disabledColor;
+  final Color? disabledColor;
 
   /// Whether the button should be compact or not.
   final bool isCompact;
@@ -61,13 +59,13 @@ class FxButton extends StatelessWidget {
       this.margin = const EdgeInsets.symmetric(vertical: 1, horizontal: 26),
       this.padding =
           const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-      this.contentColor = FxColors.white,
-      this.overlayColor = FxColors.mainDark,
-      this.backgroundColor = FxColors.main,
-      this.borderColor = FxColors.main,
+      this.contentColor,
+      this.overlayColor,
+      this.backgroundColor,
+      this.borderColor,
       this.alignment = Alignment.center,
       this.borderRadius = 7.0,
-      this.disabledColor = FxColors.disabled,
+      this.disabledColor,
       this.isCompact = false,
       this.textStyle,
       required this.onPressedF,
@@ -80,39 +78,24 @@ class FxButton extends StatelessWidget {
       color: FxColors.transparent,
       padding: EdgeInsets.zero,
       child: FilledButton(
-          style: ButtonStyle(
+          style: Theme.of(context).filledButtonTheme.style?.copyWith(
               visualDensity:
                   isCompact ? VisualDensity.compact : VisualDensity.comfortable,
               alignment: alignment,
-              elevation: WidgetStateProperty.resolveWith((states) => 0),
-              padding: WidgetStateProperty.resolveWith((states) => padding),
+              elevation: const WidgetStatePropertyAll(0),
+              padding: WidgetStatePropertyAll(padding),
               tapTargetSize: isCompact
                   ? MaterialTapTargetSize.shrinkWrap
                   : MaterialTapTargetSize.padded,
-              fixedSize: !isCompact
-                  ? WidgetStateProperty.resolveWith((states) => maximumSize)
-                  : null,
-              minimumSize:
-                  WidgetStateProperty.resolveWith((states) => minimumSize),
-              maximumSize:
-                  WidgetStateProperty.resolveWith((states) => maximumSize),
-              backgroundColor: WidgetStateProperty.resolveWith((states) {
-                if (states.contains(WidgetState.disabled)) {
-                  return disabledColor;
-                }
-                return backgroundColor;
-              }),
-              foregroundColor:
-                  WidgetStateProperty.resolveWith((states) => contentColor),
-              overlayColor:
-                  WidgetStateProperty.resolveWith((states) => overlayColor),
-              shape: WidgetStateProperty.resolveWith((states) =>
-                  RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(borderRadius))),
-              side: WidgetStateProperty.resolveWith((states) => BorderSide(
-                  color: states.contains(WidgetState.disabled)
-                      ? disabledColor
-                      : borderColor))),
+              fixedSize:
+                  !isCompact ? WidgetStatePropertyAll(maximumSize) : null,
+              minimumSize: WidgetStatePropertyAll(minimumSize),
+              maximumSize: WidgetStatePropertyAll(maximumSize),
+              foregroundColor: WidgetStatePropertyAll(contentColor),
+              overlayColor: WidgetStatePropertyAll(overlayColor),
+              shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(borderRadius))),
+              side: const WidgetStatePropertyAll(BorderSide.none)),
           onPressed: onPressedF,
           child: widgetContent ??
               Text(
@@ -233,7 +216,7 @@ class FxTextField extends StatelessWidget {
     this.suffixIcon,
     this.prefixIcon,
     this.margin = const EdgeInsets.symmetric(vertical: 5.0),
-    this.backgroundColor = FxColors.dark,
+    this.backgroundColor = FxColors.lightGray,
   });
 
   @override
@@ -250,24 +233,24 @@ class FxTextField extends StatelessWidget {
           decoration: InputDecoration(
             errorText: errorText,
             label: (label != null) ? Text(label!) : null,
-            errorStyle: errorStyle ??
-                defaultTextStyle.copyWith(color: backgroundColor),
+            errorStyle:
+                errorStyle ?? defaultTextStyle.copyWith(color: backgroundColor),
             fillColor: backgroundColor,
             filled: true,
             focusedBorder: inputBorder ??
                 OutlineInputBorder(
                   borderSide: BorderSide(color: backgroundColor),
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(7.0),
                 ),
             enabledBorder: inputBorder ??
                 OutlineInputBorder(
                   borderSide: BorderSide(color: backgroundColor),
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(7.0),
                 ),
             border: inputBorder ??
                 OutlineInputBorder(
                   borderSide: BorderSide(color: backgroundColor),
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(7.0),
                 ),
             isDense: true,
             contentPadding: inputPadding ??
@@ -323,18 +306,14 @@ class FxTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      style: ButtonStyle(
-        alignment: Alignment.center,
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        iconColor:
-            WidgetStateProperty.resolveWith((states) => FxColors.main),
-        padding: WidgetStateProperty.resolveWith(
-            (states) => const EdgeInsets.all(5)),
-        foregroundColor:
-            WidgetStateProperty.resolveWith((states) => FxColors.main),
-        overlayColor: WidgetStateProperty.resolveWith(
-            (states) => FxColors.transparent),
-      ),
+      style: Theme.of(context).textButtonTheme.style?.copyWith(
+            alignment: Alignment.center,
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            padding: WidgetStateProperty.resolveWith(
+                (states) => const EdgeInsets.all(5)),
+            overlayColor: WidgetStateProperty.resolveWith(
+                (states) => FxColors.transparent),
+          ),
       onPressed: onPressedF,
       child: Text(
         textContent,
