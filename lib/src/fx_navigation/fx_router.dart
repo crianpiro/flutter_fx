@@ -281,7 +281,8 @@ final class FxRouterInternal {
   ///
   /// The [FxRouterInternal] will generate the route using the [_getPageRouteBuilder]
   /// method.
-  static Route<dynamic> onGenerateRoute(RouteSettings routeSettings) {
+  static Route<T> onGenerateRoute<T extends Object?>(
+      RouteSettings routeSettings) {
     String routeName = routeSettings.name ?? "/";
 
     return _getPageRouteBuilder(
@@ -324,7 +325,7 @@ final class FxRouterInternal {
   ///
   /// If the [routeTransition] property of the given [arguments] is
   /// [RouteTransition.none], then the [transitionsBuilder] does not include the animaction, just returngs.
-  static PageRouteBuilder<T> _getPageRouteBuilder<T extends Object>(
+  static PageRouteBuilder<T> _getPageRouteBuilder<T extends Object?>(
       String route, NavigationArguments arguments) {
     return PageRouteBuilder(
       settings: RouteSettings(name: route, arguments: arguments.payload),

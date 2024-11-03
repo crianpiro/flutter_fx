@@ -1,4 +1,4 @@
-## 0.1.3
+## 0.1.4
 ### Enhancements
 * scaleSize extension improved to guarantee a proper scaling according the device.
 * FxComponents adapted to use the theme.

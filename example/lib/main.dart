@@ -1,73 +1,75 @@
-import 'dart:async';
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_fx/flutter_fx.dart';
 
-FutureOr<void> main() {
-  runZonedGuarded<Future<void>>(() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    // await ErrorHandler.initialize();
-    // await Preferences.initPreferences();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    // FlutterError.onError =
-    //     (FlutterErrorDetails details) => ErrorHandler.handleError(details);
-    runApp(FxApp(
-      initialRoute: "/",
-      routeBuilder: (route) {
-        switch (route) {
-          case "main":
-            return Scaffold(
-              backgroundColor: Colors.red,
-            );
-          case "/":
-          default:
-            return const MainPage();
-        }
-      },
-    ));
-  }, ((error, stack) {
-    // ErrorHandler.handleException(error, stack);
-  }));
+void main() {
+  runApp(const MyApp());
 }
 
-class MainPageController {
-  static Fx<String> text = "data".toFx;
-  static Fx<String> text2 = Fx("NO DATA");
-  static FxBool bool1 = Fx(false);
-  static Fx<String?> text3 = FxNullable<String?>().setNull();
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-  static void changeState() {
-    text.value = "new data ${Random().nextDouble().toString()}";
-    text2.value = "new data ${Random().nextDouble().toString()}";
-    text3.value = "new data ${Random().nextDouble().toString()}";
+  @override
+  Widget build(BuildContext context) {
+    return FxApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      initialRoute: "/",
+      routeBuilder: (path) {
+        switch (path) {
+          case "/":
+          default:
+            return const MyHomePage(title: 'Flutter Demo Home Page');
+        }
+      },
+    );
   }
 }
 
-class MainPage extends StatelessWidget {
-  const MainPage({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final FxInt _counter = 0.toFx;
+
+  void _incrementCounter() {
+    _counter.value++;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          FxBuilder(builder: (fxContext) {
-            return Text(MainPageController.text.listen(fxContext));
-          }),
-          FxBuilder(builder: (fxContext) {
-            return Text(MainPageController.text2.listen(fxContext));
-          }),
-          ElevatedButton(
-              onPressed: () {
-                MainPageController.changeState();
-                // FxRouter.goTo("main",
-                //     arguments: NavigationArguments(
-                //         transitionDirection: TransitionDirection.bottomToTop));
-              },
-              child: Text("Change state"))
-        ],
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'You have pushed the button this many times:',
+            ),
+            FxBuilder(
+                builder: (fxContext) => Text(
+                      '${_counter.listen(fxContext)}',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    )),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
       ),
     );
   }
