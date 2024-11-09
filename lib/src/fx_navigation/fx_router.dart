@@ -39,6 +39,9 @@ final class FxRouter {
   /// route.
   ///
   /// If [saveHistory] is true, the new route is saved to the history.
+  /// 
+  /// If [whenInRoute] is not null, the new route is pushed only if the current
+  /// route is [whenInRoute].
   ///
   /// Returns a [Future] which resolves to the result of the route when it is
   /// popped from the navigator.
@@ -49,24 +52,8 @@ final class FxRouter {
   ///   history.
   /// * [goToAndReplace], which pushes the given [path] onto the navigator and
   ///   replaces the current route.
-  static Future<T?> goTo<T extends Object?>(String path, {NavigationArguments? arguments}) =>
-      FxRouterInternal.goTo(path, arguments: arguments);
-
-  /// Pushes the given [path] onto the navigator if the current route is [currentPath].
-  ///
-  /// The [arguments] are used to pass additional information to the new route.
-  ///
-  /// Returns a [Future] which resolves to the result of the route when it is
-  /// popped from the navigator if the current route is [currentPath], otherwise
-  /// returns a [Future] with a null value.
-  ///
-  /// See also:
-  ///
-  /// * [goTo], which pushes the given [path] onto the navigator.
-  /// * [goToAndReplace], which pushes the given [path] onto the navigator and
-  ///   replaces the current route.
-  static Future<T?> goToWhenInRoute<T extends Object?>(String path, String currentPath, {NavigationArguments? arguments}) =>
-      FxRouterInternal.goToWhenInRoute(path, currentPath, arguments: arguments);
+  static Future<T?> goTo<T extends Object?>(String path, {NavigationArguments? arguments, String? whenInRoute}) =>
+      FxRouterInternal.goTo(path, arguments: arguments, whenInRoute: whenInRoute);
 
   /// Pushes the given [path] onto the navigator and replaces the current route.
   ///
@@ -74,11 +61,14 @@ final class FxRouter {
   /// route.
   ///
   /// If [saveHistory] is true, the new route is saved to the history.
+  /// 
+  /// If [whenInRoute] is not null, the new route is pushed only if the current
+  /// route is [whenInRoute].
   ///
   /// Returns a [Future] which resolves to the result of the route when it is
   /// popped from the navigator.
-  static Future<T?> goToAndReplace<T extends Object?>(String path, {NavigationArguments? arguments}) =>
-      FxRouterInternal.goToAndReplace(path, arguments: arguments);
+  static Future<T?> goToAndReplace<T extends Object?>(String path, {NavigationArguments? arguments, String? whenInRoute}) =>
+      FxRouterInternal.goToAndReplace(path, arguments: arguments, whenInRoute: whenInRoute);
 
   /// Removes all the top-most routes until the [predicate] returns `true`.
   ///
@@ -198,6 +188,7 @@ final class FxRouterInternal {
     }
   }
 
+
   /// Pushes the given [path] onto the navigator.
   ///
   /// The [arguments] are used to generate the [PageRouteBuilder] for the new
@@ -205,46 +196,15 @@ final class FxRouterInternal {
   ///
   /// If [saveHistory] is true, the new route is saved to the history.
   ///
+  /// If [whenInRoute] is not null, the new route is pushed only if the current
+  /// route is [whenInRoute].
+  ///
   /// Returns a [Future] which resolves to the result of the route when it is
   /// popped from the navigator.
-  ///
-  /// See also:
-  ///
-  /// * [saveHistory], which controls whether the new route is saved to the
-  ///   history.
-  /// * [goToAndReplace], which pushes the given [path] onto the navigator and
-  ///   replaces the current route.
-  static Future<T?> goTo<T extends Object?>(String path, {NavigationArguments? arguments}) {
-    _ensureProperUse();
-    Route<T> route = _getPageRouteBuilder(path, _getRouteArguments(navArguments: arguments));
-
-    if (saveHistory) {
-      _routesHistory.add(route);
-    }
-
-    return _navigatorKey!.currentState!.push(route);
-  }
-
-  /// Pushes the given [path] onto the navigator if the current route is [currentPath].
-  ///
-  /// The [arguments] are used to generate the [PageRouteBuilder] for the new
-  /// route.
-  ///
-  /// If [saveHistory] is true, the new route is saved to the history.
-  ///
-  /// Returns a [Future] which resolves to the result of the route when it is
-  /// popped from the navigator if the current route is [currentPath], otherwise
-  /// returns a [Future] with a null value.
-  ///
-  /// See also:
-  ///
-  /// * [goTo], which pushes the given [path] onto the navigator.
-  /// * [goToAndReplace], which pushes the given [path] onto the navigator and
-  ///   replaces the current route.
-  static Future<T?> goToWhenInRoute<T extends Object?>(String path, String currentPath, {NavigationArguments? arguments}) {
+  static Future<T?> goTo<T extends Object?>(String path, {NavigationArguments? arguments, String? whenInRoute}) {
     _ensureProperUse();
 
-    if (_currentRoute != currentPath) {
+    if (_currentRoute != whenInRoute) {
       return Future.value(null);
     }
 
@@ -257,6 +217,7 @@ final class FxRouterInternal {
     return _navigatorKey!.currentState!.push(route);
   }
 
+
   /// Pushes the given [path] onto the navigator and replaces the current route.
   ///
   /// The [arguments] are used to generate the [PageRouteBuilder] for the new
@@ -264,11 +225,18 @@ final class FxRouterInternal {
   ///
   /// If [saveHistory] is true, the new route is saved to the history.
   ///
+  /// If [whenInRoute] is not null, the new route is pushed only if the current
+  /// route is [whenInRoute].
+  ///
   /// Returns a [Future] which resolves to the result of the route when it is
   /// popped from the navigator.
-  ///
-  static Future<T?> goToAndReplace<T extends Object?>(String path, {NavigationArguments? arguments}) {
+  static Future<T?> goToAndReplace<T extends Object?>(String path, {NavigationArguments? arguments, String? whenInRoute}) {
     _ensureProperUse();
+
+    if (_currentRoute != whenInRoute) {
+      return Future.value(null);
+    }
+
     Route<T> route = _getPageRouteBuilder(path, _getRouteArguments(navArguments: arguments));
 
     if (saveHistory) {
