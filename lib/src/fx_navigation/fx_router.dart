@@ -204,7 +204,7 @@ final class FxRouterInternal {
   static Future<T?> goTo<T extends Object?>(String path, {NavigationArguments? arguments, String? whenInRoute}) {
     _ensureProperUse();
 
-    if (_currentRoute != whenInRoute) {
+    if (whenInRoute != null && _currentRoute != whenInRoute) {
       return Future.value(null);
     }
 
@@ -233,7 +233,7 @@ final class FxRouterInternal {
   static Future<T?> goToAndReplace<T extends Object?>(String path, {NavigationArguments? arguments, String? whenInRoute}) {
     _ensureProperUse();
 
-    if (_currentRoute != whenInRoute) {
+    if (whenInRoute != null && _currentRoute != whenInRoute) {
       return Future.value(null);
     }
 
