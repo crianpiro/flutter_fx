@@ -9,6 +9,12 @@ import 'fx_router.dart';
 
 @immutable
 final class FxApp extends StatelessWidget {
+
+  static GlobalKey get contextKey => _navKey;
+  
+  static const GlobalKey<NavigatorState> _navKey = GlobalObjectKey(
+      "FxApplication_NavigatorKey_k%6gh*kj87?612h23!98hkjBad9");
+
   final Color appColor;
   final String title;
   final String initialRoute;
@@ -29,12 +35,9 @@ final class FxApp extends StatelessWidget {
       required this.routeBuilder,
       this.appColor = const Color(0x00000000)});
 
-  final GlobalKey<NavigatorState> _navKey = const GlobalObjectKey(
-      "FxApplication_NavigatorKey_k%6gh*kj87?612h23!98hkjBad9");
-
   @override
   Widget build(BuildContext context) {
-    FxRouterInternal.init(_navKey, routeBuilder);
+    FxRouterInternal.initialize(_navKey, routeBuilder);
     return MaterialApp(
       title: title,
       theme: theme,
@@ -48,7 +51,7 @@ final class FxApp extends StatelessWidget {
       ],
       color: appColor,
       initialRoute: '/',
-      onGenerateRoute: FxRouterInternal.onGenerateRoute,
+      onGenerateRoute: FxRouterInternal.instance.onGenerateRoute,
     );
   }
 }
