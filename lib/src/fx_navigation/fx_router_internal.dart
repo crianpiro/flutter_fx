@@ -36,7 +36,7 @@ final class FxRouterInternal {
   /// Holds a reference to a function that builds a widget for a given route.
   ///
   /// This function is used to create the widget tree for each route.
-  final FxRoute Function(String route) _routeBuilder;
+  final FxRoute Function(String route, dynamic payload) _routeBuilder;
 
   /// Stores the current route as a string.
   ///
@@ -49,7 +49,7 @@ final class FxRouterInternal {
 
   FxRouterInternal._(this._navigatorKey, this._routeBuilder);
 
-  factory FxRouterInternal.initialize(GlobalKey<NavigatorState> navigatorKey, FxRoute Function(String route) routeBuilder) {
+  factory FxRouterInternal.initialize(GlobalKey<NavigatorState> navigatorKey, FxRoute Function(String route, dynamic payload) routeBuilder) {
     _instance = FxRouterInternal._(navigatorKey, routeBuilder);
     return _instance;
   }
@@ -272,7 +272,7 @@ final class FxRouterInternal {
     NavigationArguments routeArguments = const NavigationArguments();
 
     if ((arguments == null || arguments is! NavigationArguments) && !useDefaultTransition) {
-      routeArguments = NavigationArguments.noTransition(arguments);
+      routeArguments = NavigationArguments.noTransition(payload: arguments);
     }
 
     if (arguments is NavigationArguments) {
@@ -292,9 +292,9 @@ final class FxRouterInternal {
   /// [RouteTransition.none], then the [transitionsBuilder] does not include the animaction, just returngs.
   PageRouteBuilder<T> _getPageRouteBuilder<T extends Object?>(String route, NavigationArguments arguments) {
     
-    FxRoute fxRoute = _routeBuilder(route);
+    FxRoute fxRoute = _routeBuilder(route, arguments.payload);
     _currentRoute = fxRoute.settings?.name ?? route;
-    
+
     return PageRouteBuilder(
       settings: fxRoute.settings ??  RouteSettings(name: route, arguments: arguments.payload),
       pageBuilder: (context, animation, secondaryAnimation) => fxRoute.child,

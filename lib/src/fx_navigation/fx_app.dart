@@ -23,7 +23,7 @@ final class FxApp extends StatelessWidget {
   final ThemeMode? themeMode;
   final Iterable<Locale>? supportedLocales;
   final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
-  final FxRoute Function(String route) routeBuilder;
+  final FxRoute Function(String route, dynamic payload) routeBuilder;
 
   const FxApp(
       {super.key,

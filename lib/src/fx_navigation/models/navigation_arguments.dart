@@ -16,7 +16,7 @@ final class NavigationArguments {
       this.routeTransition = RouteTransition.animated,
       this.transitionDirection = TransitionDirection.rightToLeft});
 
-  factory NavigationArguments.noTransition(dynamic payload) {
+  factory NavigationArguments.noTransition({dynamic payload}) {
     return NavigationArguments(
         payload: payload,
         barrierColor: const Color.fromARGB(255, 0, 0, 0),
