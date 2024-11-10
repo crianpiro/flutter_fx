@@ -21,6 +21,7 @@ final class FxApp extends StatelessWidget {
   final ThemeData? theme;
   final ThemeData? darkTheme;
   final ThemeMode? themeMode;
+  final Iterable<Locale>? supportedLocales;
   final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
   final Widget Function(String route) routeBuilder;
 
@@ -29,6 +30,7 @@ final class FxApp extends StatelessWidget {
       this.theme,
       this.title = "",
       this.darkTheme,
+      this.supportedLocales,
       this.localizationsDelegates,
       this.themeMode = ThemeMode.system,
       required this.initialRoute,
@@ -44,6 +46,10 @@ final class FxApp extends StatelessWidget {
       darkTheme: darkTheme,
       themeMode: themeMode,
       navigatorKey: _navKey,
+      supportedLocales: supportedLocales ?? const [
+        Locale('en'),
+        Locale('es'),
+      ],
       localizationsDelegates: [
         DefaultWidgetsLocalizations.delegate,
         DefaultMaterialLocalizations.delegate,
