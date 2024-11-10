@@ -75,6 +75,27 @@ final class FxRouter {
   static Future<T?> goToAndReplace<T extends Object?>(String path, {NavigationArguments? arguments, String? whenInRoute}) =>
       _internal.goToAndReplace(path, arguments: arguments, whenInRoute: whenInRoute);
 
+  
+  /// Pushes the given [path] onto the navigator and removes all the top-most
+  /// routes until the [predicate] returns `true`.
+  ///
+  /// The [predicate] is called with the current route as argument. If the
+  /// predicate returns `true`, the navigator stops. If the predicate returns
+  /// `false`, the navigator continues to the next route.
+  ///
+  /// If the [predicate] is `null`, the navigator removes all routes until it has
+  /// none left.
+  ///
+  /// If [saveHistory] is true, the new route is saved to the history.
+  /// 
+  /// If [whenInRoute] is not null, the new route is pushed only if the current
+  /// route is [whenInRoute].
+  ///
+  /// Returns a [Future] which resolves to the result of the route when it is
+  /// popped from the navigator.
+  static Future<T?> goToAndRemoveUntil<T extends Object?>(String path, bool Function(Route<dynamic>) predicate, {NavigationArguments? arguments, String? whenInRoute}) =>
+      _internal.goToAndRemoveUntil(path, predicate, arguments: arguments, whenInRoute: whenInRoute);
+
   /// Removes all the top-most routes until the [predicate] returns `true`.
   ///
   /// The [predicate] is called with the current route as argument. If the

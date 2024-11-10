@@ -139,6 +139,39 @@ final class FxRouterInternal {
     return _navigatorKey.currentState!.pushReplacement(route);
   }
 
+  /// Pushes the given [path] onto the navigator and removes all the top-most
+  /// routes until the [predicate] returns `true`.
+  ///
+  /// The [predicate] is called with the current route as argument. If the
+  /// predicate returns `true`, the navigator stops. If the predicate returns
+  /// `false`, the navigator continues to the next route.
+  ///
+  /// If the [predicate] is `null`, the navigator removes all routes until it has
+  /// none left.
+  ///
+  /// If [saveHistory] is true, the new route is saved to the history.
+  ///
+  /// If [whenInRoute] is not null, the new route is pushed only if the current
+  /// route is [whenInRoute].
+  ///
+  /// Returns a [Future] which resolves to the result of the route when it is
+  /// popped from the navigator.
+  Future<T?> goToAndRemoveUntil<T extends Object?>(String path, bool Function(Route<dynamic>) predicate, {NavigationArguments? arguments, String? whenInRoute}) {
+    _ensureProperUse();
+
+    if (whenInRoute != null && _currentRoute != whenInRoute) {
+      return Future.value(null);
+    }
+
+    Route<T> route = _getPageRouteBuilder(path, _getRouteArguments(navArguments: arguments));
+
+    if (saveHistory) {
+      _routesHistory.removeWhere(predicate);
+      _routesHistory.add(route);
+    }
+    return _navigatorKey.currentState!.pushAndRemoveUntil(route, predicate);
+  }
+
   /// Removes all the top-most routes until the [predicate] returns `true`.
   ///
   /// The [predicate] is called with the current route as argument. If the
