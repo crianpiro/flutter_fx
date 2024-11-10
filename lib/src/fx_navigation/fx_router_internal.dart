@@ -1,5 +1,12 @@
 part of 'fx_router.dart';
 
+final class FxRoute {
+  Widget child;
+  RouteSettings? settings;
+
+  FxRoute({required this.child, this.settings});
+}
+
 final class FxRouterInternal {
   /// Determines whether to use the default transition animation when navigating
   /// between routes. The default transition is set to [RouteTransition.animated],
@@ -29,7 +36,7 @@ final class FxRouterInternal {
   /// Holds a reference to a function that builds a widget for a given route.
   ///
   /// This function is used to create the widget tree for each route.
-  final Widget Function(String route)? _routeBuilder;
+  final FxRoute Function(String route) _routeBuilder;
 
   /// Stores the current route as a string.
   ///
@@ -42,7 +49,7 @@ final class FxRouterInternal {
 
   FxRouterInternal._(this._navigatorKey, this._routeBuilder);
 
-  factory FxRouterInternal.initialize(GlobalKey<NavigatorState> navigatorKey, Widget Function(String route) routeBuilder) {
+  factory FxRouterInternal.initialize(GlobalKey<NavigatorState> navigatorKey, FxRoute Function(String route) routeBuilder) {
     _instance = FxRouterInternal._(navigatorKey, routeBuilder);
     return _instance;
   }
@@ -64,7 +71,7 @@ final class FxRouterInternal {
     final FlutterError error = FlutterError("""Improper use of a [FxRouter].
         * The [FxRouter] must be initialized.
         * To use [FxRouter] your main Widget must be a [FxApp].""");
-    assert(_navigatorKey.currentState != null && _routeBuilder != null, error);
+    assert(_navigatorKey.currentState != null, error);
 
     bool safe = false;
 
@@ -246,8 +253,6 @@ final class FxRouterInternal {
   Route<T> onGenerateRoute<T extends Object?>(RouteSettings routeSettings) {
     String routeName = routeSettings.name ?? "/";
 
-    _currentRoute = routeName;
-
     return _getPageRouteBuilder(routeName, _getRouteArguments(routeSettings: routeSettings));
   }
 
@@ -286,9 +291,13 @@ final class FxRouterInternal {
   /// If the [routeTransition] property of the given [arguments] is
   /// [RouteTransition.none], then the [transitionsBuilder] does not include the animaction, just returngs.
   PageRouteBuilder<T> _getPageRouteBuilder<T extends Object?>(String route, NavigationArguments arguments) {
+    
+    FxRoute fxRoute = _routeBuilder(route);
+    _currentRoute = fxRoute.settings?.name ?? route;
+    
     return PageRouteBuilder(
-      settings: RouteSettings(name: route, arguments: arguments.payload),
-      pageBuilder: (context, animation, secondaryAnimation) => _routeBuilder!(route),
+      settings: fxRoute.settings ??  RouteSettings(name: route, arguments: arguments.payload),
+      pageBuilder: (context, animation, secondaryAnimation) => fxRoute.child,
       opaque: false,
       barrierColor: arguments.barrierColor,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
