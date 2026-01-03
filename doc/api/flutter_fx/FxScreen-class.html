@@ -16,20 +16,16 @@
   <link rel="stylesheet" href="../static-assets/github.css?v1">
   <link rel="stylesheet" href="../static-assets/styles.css?v1">
   <link rel="icon" href="../static-assets/favicon.png?v1">
-
   
 </head>
 
-
 <body data-base-href="../" data-using-base-href="false" class="light-theme">
-
 <div id="overlay-under-drawer"></div>
-
 <header id="title">
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">flutter_fx</a></li>
-    <li><a href="../flutter_fx/flutter_fx-library.html">flutter_fx.dart</a></li>
+    <li><a href="../flutter_fx">flutter_fx.dart</a></li>
     <li class="self-crumb">FxScreen class</li>
   </ol>
   <div class="self-name">FxScreen</div>
@@ -49,7 +45,6 @@
   </div>
 </header>
 <main>
-
 <div
     id="dartdoc-main-content"
     class="main-content"
@@ -82,12 +77,12 @@
         
 
 
-
+        
         
   <dt>Annotations</dt>
   <dd>
     <ul class="annotation-list clazz-relationships">
-        <li>@<a href="https://pub.dev/documentation/meta/1.12.0/meta/immutable-constant.html">immutable</a></li>
+        <li>@<a href="https://api.flutter.dev/flutter/widgets/immutable-constant.html">immutable</a></li>
     </ul>
   </dd>
 
@@ -98,10 +93,9 @@
     
   <section class="summary offset-anchor" id="constructors">
     <h2>Constructors</h2>
-
     <dl class="constructor-summary-list">
         <dt id="FxScreen" class="callable">
-          <span class="name"><a href="../flutter_fx/FxScreen/FxScreen.html">FxScreen</a></span><span class="signature">(<span class="parameter" id="-param-screenBuilder">{<span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">screenBuilder</span>(<span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span><span class="parameter" id="param-screenPadding"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/EdgeInsets-class.html">EdgeInsets</a></span> <span class="parameter-name">screenPadding</span></span>), </span><span class="parameter" id="-param-screenBackgroundBuilder"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">screenBackgroundBuilder</span>(<span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span><span class="parameter" id="param-screenPadding"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/EdgeInsets-class.html">EdgeInsets</a></span> <span class="parameter-name">screenPadding</span></span>)?, </span><span class="parameter" id="-param-screenOverlayBuilder"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">screenOverlayBuilder</span>(<span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span>)?, </span><span class="parameter" id="-param-appBar"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/PreferredSizeWidget-class.html">PreferredSizeWidget</a>?</span> <span class="parameter-name">appBar</span>, </span><span class="parameter" id="-param-drawer"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>?</span> <span class="parameter-name">drawer</span>, </span><span class="parameter" id="-param-bottomSheet"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>?</span> <span class="parameter-name">bottomSheet</span>, </span><span class="parameter" id="-param-endDrawer"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>?</span> <span class="parameter-name">endDrawer</span>, </span><span class="parameter" id="-param-onDrawerChanged"><span class="type-annotation">void</span> <span class="parameter-name">onDrawerChanged</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span></span>)?, </span><span class="parameter" id="-param-onEndDrawerChanged"><span class="type-annotation">void</span> <span class="parameter-name">onEndDrawerChanged</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span></span>)?, </span><span class="parameter" id="-param-bottomNavigationBar"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>?</span> <span class="parameter-name">bottomNavigationBar</span>, </span><span class="parameter" id="-param-floatingActionButton"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>?</span> <span class="parameter-name">floatingActionButton</span>, </span><span class="parameter" id="-param-floatingActionButtonLocation"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/material/FloatingActionButtonLocation-class.html">FloatingActionButtonLocation</a>?</span> <span class="parameter-name">floatingActionButtonLocation</span>, </span><span class="parameter" id="-param-floatingActionButtonAnimator"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/material/FloatingActionButtonAnimator-class.html">FloatingActionButtonAnimator</a>?</span> <span class="parameter-name">floatingActionButtonAnimator</span>, </span><span class="parameter" id="-param-uiOverlayStyle"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/SystemUiOverlayStyle-class.html">SystemUiOverlayStyle</a></span> <span class="parameter-name">uiOverlayStyle</span> = <span class="default-value">const SystemUiOverlayStyle(systemNavigationBarIconBrightness: Brightness.light, statusBarIconBrightness: Brightness.light, statusBarColor: Color(0x00000000), systemNavigationBarColor: Color(0x00000000))</span>, </span><span class="parameter" id="-param-scaffoldBackgroundColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span> <span class="parameter-name">scaffoldBackgroundColor</span>, </span><span class="parameter" id="-param-encapsulateScreen"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">encapsulateScreen</span> = <span class="default-value">true</span>, </span><span class="parameter" id="-param-encapsulateBackground"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">encapsulateBackground</span> = <span class="default-value">false</span>, </span><span class="parameter" id="-param-extendBodyBehindAppBar"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">extendBodyBehindAppBar</span> = <span class="default-value">false</span>, </span><span class="parameter" id="-param-extendBodyBehindNavBar"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">extendBodyBehindNavBar</span> = <span class="default-value">false</span>, </span><span class="parameter" id="-param-resizeToAvoidBottomInset"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">resizeToAvoidBottomInset</span> = <span class="default-value">false</span>, </span><span class="parameter" id="-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>}</span>)</span>
+          <span class="name"><a href="../flutter_fx/FxScreen/FxScreen.html">FxScreen</a></span><span class="signature">({<span class="parameter" id="-param-screenBuilder"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">screenBuilder</span>(<span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span><span class="parameter" id="param-screenPadding"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/EdgeInsets-class.html">EdgeInsets</a></span> <span class="parameter-name">screenPadding</span></span>), </span><span class="parameter" id="-param-screenBackgroundBuilder"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">screenBackgroundBuilder</span>(<span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span><span class="parameter" id="param-screenPadding"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/EdgeInsets-class.html">EdgeInsets</a></span> <span class="parameter-name">screenPadding</span></span>)?, </span><span class="parameter" id="-param-screenOverlayBuilder"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">screenOverlayBuilder</span>(<span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span>)?, </span><span class="parameter" id="-param-appBar"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/PreferredSizeWidget-class.html">PreferredSizeWidget</a>?</span> <span class="parameter-name">appBar</span>, </span><span class="parameter" id="-param-drawer"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>?</span> <span class="parameter-name">drawer</span>, </span><span class="parameter" id="-param-bottomSheet"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>?</span> <span class="parameter-name">bottomSheet</span>, </span><span class="parameter" id="-param-scaffoldKey"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/GlobalKey-class.html">GlobalKey</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/material/ScaffoldState-class.html">ScaffoldState</a></span>&gt;</span>?</span> <span class="parameter-name">scaffoldKey</span>, </span><span class="parameter" id="-param-endDrawer"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>?</span> <span class="parameter-name">endDrawer</span>, </span><span class="parameter" id="-param-onDrawerChanged"><span class="type-annotation">void</span> <span class="parameter-name">onDrawerChanged</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span></span>)?, </span><span class="parameter" id="-param-onEndDrawerChanged"><span class="type-annotation">void</span> <span class="parameter-name">onEndDrawerChanged</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span></span>)?, </span><span class="parameter" id="-param-bottomNavigationBar"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>?</span> <span class="parameter-name">bottomNavigationBar</span>, </span><span class="parameter" id="-param-floatingActionButton"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>?</span> <span class="parameter-name">floatingActionButton</span>, </span><span class="parameter" id="-param-floatingActionButtonLocation"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/material/FloatingActionButtonLocation-class.html">FloatingActionButtonLocation</a>?</span> <span class="parameter-name">floatingActionButtonLocation</span>, </span><span class="parameter" id="-param-floatingActionButtonAnimator"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/material/FloatingActionButtonAnimator-class.html">FloatingActionButtonAnimator</a>?</span> <span class="parameter-name">floatingActionButtonAnimator</span>, </span><span class="parameter" id="-param-uiOverlayStyle"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/SystemUiOverlayStyle-class.html">SystemUiOverlayStyle</a></span> <span class="parameter-name">uiOverlayStyle</span> = <span class="default-value">const SystemUiOverlayStyle(systemNavigationBarIconBrightness: Brightness.light, statusBarIconBrightness: Brightness.light, statusBarColor: Color(0x00000000), systemNavigationBarColor: Color(0x00000000))</span>, </span><span class="parameter" id="-param-scaffoldBackgroundColor"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/Color-class.html">Color</a>?</span> <span class="parameter-name">scaffoldBackgroundColor</span>, </span><span class="parameter" id="-param-encapsulateScreen"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">encapsulateScreen</span> = <span class="default-value">true</span>, </span><span class="parameter" id="-param-encapsulateBackground"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">encapsulateBackground</span> = <span class="default-value">false</span>, </span><span class="parameter" id="-param-extendBodyBehindAppBar"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">extendBodyBehindAppBar</span> = <span class="default-value">false</span>, </span><span class="parameter" id="-param-extendBodyBehindNavBar"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">extendBodyBehindNavBar</span> = <span class="default-value">false</span>, </span><span class="parameter" id="-param-resizeToAvoidBottomInset"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">resizeToAvoidBottomInset</span> = <span class="default-value">false</span>, </span><span class="parameter" id="-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span></span>})</span>
         </dt>
         <dd>
           
@@ -285,7 +279,7 @@
 
         <dt id="onDrawerChanged" class="property">
   <span class="name"><a href="../flutter_fx/FxScreen/onDrawerChanged.html">onDrawerChanged</a></span>
-  <span class="signature">&#8594; (void Function<span class="signature">(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span></span>)</span>?)</span>
+  <span class="signature">&#8594; void Function<span class="signature">(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span></span>)</span>?</span>
   
 
 </dt>
@@ -297,7 +291,7 @@
 
         <dt id="onEndDrawerChanged" class="property">
   <span class="name"><a href="../flutter_fx/FxScreen/onEndDrawerChanged.html">onEndDrawerChanged</a></span>
-  <span class="signature">&#8594; (void Function<span class="signature">(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span></span>)</span>?)</span>
+  <span class="signature">&#8594; void Function<span class="signature">(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span></span>)</span>?</span>
   
 
 </dt>
@@ -333,7 +327,19 @@
 
         <dt id="scaffoldBackgroundColor" class="property">
   <span class="name"><a href="../flutter_fx/FxScreen/scaffoldBackgroundColor.html">scaffoldBackgroundColor</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/painting/Color-class.html">Color</a>?</span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="scaffoldKey" class="property">
+  <span class="name"><a href="../flutter_fx/FxScreen/scaffoldKey.html">scaffoldKey</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/widgets/GlobalKey-class.html">GlobalKey</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/material/ScaffoldState-class.html">ScaffoldState</a></span>&gt;</span>?</span>
   
 
 </dt>
@@ -345,7 +351,7 @@
 
         <dt id="screenBackgroundBuilder" class="property">
   <span class="name"><a href="../flutter_fx/FxScreen/screenBackgroundBuilder.html">screenBackgroundBuilder</a></span>
-  <span class="signature">&#8594; (<a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a> Function<span class="signature">(<span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span><span class="parameter" id="param-screenPadding"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/EdgeInsets-class.html">EdgeInsets</a></span> <span class="parameter-name">screenPadding</span></span>)</span>?)</span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a> Function<span class="signature">(<span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span><span class="parameter" id="param-screenPadding"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/EdgeInsets-class.html">EdgeInsets</a></span> <span class="parameter-name">screenPadding</span></span>)</span>?</span>
   
 
 </dt>
@@ -369,7 +375,7 @@
 
         <dt id="screenOverlayBuilder" class="property">
   <span class="name"><a href="../flutter_fx/FxScreen/screenOverlayBuilder.html">screenOverlayBuilder</a></span>
-  <span class="signature">&#8594; (<a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a> Function<span class="signature">(<span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span>)</span>?)</span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a> Function<span class="signature">(<span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span>)</span>?</span>
   
 
 </dt>
@@ -393,6 +399,7 @@
 
     </dl>
   </section>
+
     
   <section
       class="summary offset-anchor"
@@ -433,7 +440,7 @@
 
 </dt>
 <dd class="inherited">
-  Returns a list of <code>DiagnosticsNode</code> objects describing this node's
+  Returns a list of <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html">DiagnosticsNode</a> objects describing this node's
 children.
   <div class="features"><span class="feature">inherited</span></div>
 
@@ -466,7 +473,7 @@ children.
 </dd>
 
         <dt id="toDiagnosticsNode" class="callable inherited">
-  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toDiagnosticsNode.html">toDiagnosticsNode</a></span><span class="signature">(<wbr><span class="parameter" id="toDiagnosticsNode-param-name">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">name</span>, </span><span class="parameter" id="toDiagnosticsNode-param-style"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticsTreeStyle.html">DiagnosticsTreeStyle</a>?</span> <span class="parameter-name">style</span>}</span>)
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toDiagnosticsNode.html">toDiagnosticsNode</a></span><span class="signature">(<wbr>{<span class="parameter" id="toDiagnosticsNode-param-name"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">name</span>, </span><span class="parameter" id="toDiagnosticsNode-param-style"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticsTreeStyle.html">DiagnosticsTreeStyle</a>?</span> <span class="parameter-name">style</span></span>})
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html">DiagnosticsNode</a></span>
   </span>
   
@@ -480,7 +487,7 @@ tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode
 </dd>
 
         <dt id="toString" class="callable inherited">
-  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html">toString</a></span><span class="signature">(<wbr><span class="parameter" id="toString-param-minLevel">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html">DiagnosticLevel</a></span> <span class="parameter-name">minLevel</span> = <span class="default-value">DiagnosticLevel.info</span>}</span>)
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html">toString</a></span><span class="signature">(<wbr>{<span class="parameter" id="toString-param-minLevel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html">DiagnosticLevel</a></span> <span class="parameter-name">minLevel</span> = <span class="default-value">DiagnosticLevel.info</span></span>})
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
   </span>
   
@@ -493,7 +500,7 @@ tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode
 </dd>
 
         <dt id="toStringDeep" class="callable inherited">
-  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringDeep.html">toStringDeep</a></span><span class="signature">(<wbr><span class="parameter" id="toStringDeep-param-prefixLineOne">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">prefixLineOne</span> = <span class="default-value">&#39;&#39;</span>, </span><span class="parameter" id="toStringDeep-param-prefixOtherLines"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">prefixOtherLines</span>, </span><span class="parameter" id="toStringDeep-param-minLevel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html">DiagnosticLevel</a></span> <span class="parameter-name">minLevel</span> = <span class="default-value">DiagnosticLevel.debug</span>}</span>)
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringDeep.html">toStringDeep</a></span><span class="signature">(<wbr>{<span class="parameter" id="toStringDeep-param-prefixLineOne"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">prefixLineOne</span> = <span class="default-value">&#39;&#39;</span>, </span><span class="parameter" id="toStringDeep-param-prefixOtherLines"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">prefixOtherLines</span>, </span><span class="parameter" id="toStringDeep-param-minLevel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html">DiagnosticLevel</a></span> <span class="parameter-name">minLevel</span> = <span class="default-value">DiagnosticLevel.debug</span>, </span><span class="parameter" id="toStringDeep-param-wrapWidth"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">wrapWidth</span> = <span class="default-value">65</span></span>})
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
   </span>
   
@@ -506,7 +513,7 @@ tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode
 </dd>
 
         <dt id="toStringShallow" class="callable inherited">
-  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringShallow.html">toStringShallow</a></span><span class="signature">(<wbr><span class="parameter" id="toStringShallow-param-joiner">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">joiner</span> = <span class="default-value">&#39;, &#39;</span>, </span><span class="parameter" id="toStringShallow-param-minLevel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html">DiagnosticLevel</a></span> <span class="parameter-name">minLevel</span> = <span class="default-value">DiagnosticLevel.debug</span>}</span>)
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringShallow.html">toStringShallow</a></span><span class="signature">(<wbr>{<span class="parameter" id="toStringShallow-param-joiner"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">joiner</span> = <span class="default-value">&#39;, &#39;</span>, </span><span class="parameter" id="toStringShallow-param-minLevel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html">DiagnosticLevel</a></span> <span class="parameter-name">minLevel</span> = <span class="default-value">DiagnosticLevel.debug</span></span>})
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
   </span>
   
@@ -558,9 +565,7 @@ tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode
     
     
 
-
   </div> <!-- /.main-content -->
-
   <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
     <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
 <header id="header-search-sidebar" class="hidden-l">
@@ -568,40 +573,30 @@ tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
 </header>
-
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../index.html">flutter_fx</a></li>
-    <li><a href="../flutter_fx/flutter_fx-library.html">flutter_fx</a></li>
+    <li><a href="../flutter_fx">flutter_fx</a></li>
     <li class="self-crumb">FxScreen class</li>
 </ol>
-
 
     <h5>flutter_fx library</h5>
     <div id="dartdoc-sidebar-left-content"></div>
   </div>
-
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
   </div><!--/.sidebar-offcanvas-->
-
 </main>
-
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.4
+      0.1.5
   </span>
-
   
 </footer>
-
 
 
 <script src="../static-assets/highlight.pack.js?v1"></script>
 <script src="../static-assets/docs.dart.js"></script>
 
-
-
 </body>
-
 </html>
 

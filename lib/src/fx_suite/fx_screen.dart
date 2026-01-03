@@ -26,6 +26,7 @@ final class FxScreen extends StatelessWidget {
   final bool encapsulateScreen;
   final bool encapsulateBackground;
   final bool resizeToAvoidBottomInset;
+  final GlobalKey<ScaffoldState>? scaffoldKey;
 
   const FxScreen(
       {required this.screenBuilder,
@@ -34,6 +35,7 @@ final class FxScreen extends StatelessWidget {
       this.appBar,
       this.drawer,
       this.bottomSheet,
+      this.scaffoldKey,
       this.endDrawer,
       this.onDrawerChanged,
       this.onEndDrawerChanged,
@@ -91,6 +93,7 @@ final class FxScreen extends StatelessWidget {
       value: uiOverlayStyle,
       child: Scaffold(
         drawer: drawer,
+        key: scaffoldKey,
         endDrawer: endDrawer,
         bottomSheet: bottomSheet,
         onDrawerChanged: onDrawerChanged,
@@ -100,12 +103,14 @@ final class FxScreen extends StatelessWidget {
         backgroundColor: scaffoldBackgroundColor,
         floatingActionButtonAnimator: floatingActionButtonAnimator,
         floatingActionButtonLocation: floatingActionButtonLocation,
-        body: Stack(
-          children: [
-            if (encapsulatedBackground != null) encapsulatedBackground,
-            encapsulatedScreen,
-            if (screenOverlayBuilder != null) screenOverlayBuilder!(context),
-          ],
+        body: SafeArea(
+          child: Stack(
+            children: [
+              if (encapsulatedBackground != null) encapsulatedBackground,
+              encapsulatedScreen,
+              if (screenOverlayBuilder != null) screenOverlayBuilder!(context),
+            ],
+          ),
         ),
         appBar: appBar,
         extendBody: extendBodyBehindNavBar,

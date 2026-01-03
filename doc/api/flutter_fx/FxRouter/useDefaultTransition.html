@@ -16,20 +16,16 @@
   <link rel="stylesheet" href="../../static-assets/github.css?v1">
   <link rel="stylesheet" href="../../static-assets/styles.css?v1">
   <link rel="icon" href="../../static-assets/favicon.png?v1">
-
   
 </head>
 
-
 <body data-base-href="../../" data-using-base-href="false" class="light-theme">
-
 <div id="overlay-under-drawer"></div>
-
 <header id="title">
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">flutter_fx</a></li>
-    <li><a href="../../flutter_fx/flutter_fx-library.html">flutter_fx.dart</a></li>
+    <li><a href="../../flutter_fx">flutter_fx.dart</a></li>
     <li><a href="../../flutter_fx/FxRouter-class.html">FxRouter</a></li>
     <li class="self-crumb">useDefaultTransition static method</li>
   </ol>
@@ -50,7 +46,6 @@
   </div>
 </header>
 <main>
-
 <div
     id="dartdoc-main-content"
     class="main-content"
@@ -62,9 +57,8 @@
 
     <section class="multi-line-signature">
       
-
 <span class="returntype">dynamic</span>
-<span class="name ">useDefaultTransition</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="useDefaultTransition-param-value"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">value</span></span></li>
+<span class="name ">useDefaultTransition</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="useDefaultTransition-param-value"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">value</span></span></li>
 </ol>)
 
       
@@ -77,7 +71,7 @@ route.</p>
 <p>If <code>value</code> is true, the default transition will be used.</p>
 <p>If <code>value</code> is false, the transition for the new route will be determined by
 the <a href="../../flutter_fx/NavigationArguments-class.html">NavigationArguments</a> passed.</p>
-<p>The default transition is a <a href="../../flutter_fx/RouteTransition.html">RouteTransition.animated</a> transition.</p>
+<p>The default transition is a <a href="../../src_fx_navigation_models_enums/RouteTransition.html">RouteTransition.animated</a> transition.</p>
 <p>The default value is true.</p>
 </section>
 
@@ -85,13 +79,11 @@ the <a href="../../flutter_fx/NavigationArguments-class.html">NavigationArgument
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static useDefaultTransition(bool value) =&gt;
-    FxRouterInternal.useDefaultTransition = value;</code></pre>
+  <pre class="language-dart"><code class="language-dart">static useDefaultTransition(bool value) =&gt; _internal.useDefaultTransition = value;</code></pre>
 </section>
 
 
   </div> <!-- /.main-content -->
-
   <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
     <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
 <header id="header-search-sidebar" class="hidden-l">
@@ -99,41 +91,31 @@ the <a href="../../flutter_fx/NavigationArguments-class.html">NavigationArgument
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
 </header>
-
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">flutter_fx</a></li>
-    <li><a href="../../flutter_fx/flutter_fx-library.html">flutter_fx</a></li>
+    <li><a href="../../flutter_fx">flutter_fx</a></li>
     <li><a href="../../flutter_fx/FxRouter-class.html">FxRouter</a></li>
     <li class="self-crumb">useDefaultTransition static method</li>
 </ol>
 
-
     <h5>FxRouter class</h5>
     <div id="dartdoc-sidebar-left-content"></div>
   </div><!--/.sidebar-offcanvas-->
-
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
 </div><!--/.sidebar-offcanvas-->
-
 </main>
-
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.4
+      0.1.5
   </span>
-
   
 </footer>
-
 
 
 <script src="../../static-assets/highlight.pack.js?v1"></script>
 <script src="../../static-assets/docs.dart.js"></script>
 
-
-
 </body>
-
 </html>
 

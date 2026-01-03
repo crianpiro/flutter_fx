@@ -41,7 +41,7 @@ typedef FxMap<T, M> = Fx<Map<T, M>>;
 
 /// Extension to convert a value to a [Fx] instance.
 extension FxValue<T> on T {
-  /// Returns a [Fx] instance with [this] `T` as initial value.
+  /// Returns a [Fx] instance with `T` as initial value.
   Fx<T> get toFx => Fx<T>(this);
 }
 

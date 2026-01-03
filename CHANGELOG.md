@@ -1,3 +1,9 @@
+## 0.1.5
+### Enhancements
+* Added support for scaffoldKey in `FxScreen`.
+* Added `SafeArea` in `FxScreen`.
+* Flutter version updated.
+
 ## 0.1.4
 ### Enhancements
 * scaleSize extension improved to guarantee a proper scaling according the device.

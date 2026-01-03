@@ -16,20 +16,16 @@
   <link rel="stylesheet" href="../../static-assets/github.css?v1">
   <link rel="stylesheet" href="../../static-assets/styles.css?v1">
   <link rel="icon" href="../../static-assets/favicon.png?v1">
-
   
 </head>
 
-
 <body data-base-href="../../" data-using-base-href="false" class="light-theme">
-
 <div id="overlay-under-drawer"></div>
-
 <header id="title">
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">flutter_fx</a></li>
-    <li><a href="../../flutter_fx/flutter_fx-library.html">flutter_fx.dart</a></li>
+    <li><a href="../../flutter_fx">flutter_fx.dart</a></li>
     <li><a href="../../flutter_fx/FxRouter-class.html">FxRouter</a></li>
     <li class="self-crumb">goToAndReplace&lt;<wbr><span class="type-parameter">T extends Object?</span>&gt; static method</li>
   </ol>
@@ -50,7 +46,6 @@
   </div>
 </header>
 <main>
-
 <div
     id="dartdoc-main-content"
     class="main-content"
@@ -62,11 +57,11 @@
 
     <section class="multi-line-signature">
       
-
-<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span>
-<span class="name ">goToAndReplace</span>&lt;<wbr><span class="type-parameter">T extends Object?</span>&gt;(<wbr><ol class="parameter-list"><li><span class="parameter" id="goToAndReplace-param-path"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">path</span>, </span></li>
-<li><span class="parameter" id="goToAndReplace-param-arguments">{<span class="type-annotation"><a href="../../flutter_fx/NavigationArguments-class.html">NavigationArguments</a>?</span> <span class="parameter-name">arguments</span>}</span></li>
-</ol>)
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span>
+<span class="name ">goToAndReplace</span>&lt;<wbr><span class="type-parameter">T extends Object?</span>&gt;(<wbr><ol class="parameter-list"> <li><span class="parameter" id="goToAndReplace-param-path"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">path</span>, {</span></li>
+<li><span class="parameter" id="goToAndReplace-param-arguments"><span class="type-annotation"><a href="../../flutter_fx/NavigationArguments-class.html">NavigationArguments</a>?</span> <span class="parameter-name">arguments</span>, </span></li>
+<li><span class="parameter" id="goToAndReplace-param-whenInRoute"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">whenInRoute</span>, </span></li>
+</ol>})
 
       
 
@@ -77,7 +72,9 @@
 <p>The <code>arguments</code> are used to generate the <a href="https://api.flutter.dev/flutter/widgets/PageRouteBuilder-class.html">PageRouteBuilder</a> for the new
 route.</p>
 <p>If <a href="../../flutter_fx/FxRouter/saveHistory.html">saveHistory</a> is true, the new route is saved to the history.</p>
-<p>Returns a <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a> which resolves to the result of the route when it is
+<p>If <code>whenInRoute</code> is not null, the new route is pushed only if the current
+route is <code>whenInRoute</code>.</p>
+<p>Returns a <a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a> which resolves to the result of the route when it is
 popped from the navigator.</p>
 </section>
 
@@ -85,14 +82,12 @@ popped from the navigator.</p>
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static Future&lt;T?&gt; goToAndReplace&lt;T extends Object?&gt;(String path,
-        {NavigationArguments? arguments}) =&gt;
-    FxRouterInternal.goToAndReplace(path, arguments: arguments);</code></pre>
+  <pre class="language-dart"><code class="language-dart">static Future&lt;T?&gt; goToAndReplace&lt;T extends Object?&gt;(String path, {NavigationArguments? arguments, String? whenInRoute}) =&gt;
+    _internal.goToAndReplace(path, arguments: arguments, whenInRoute: whenInRoute);</code></pre>
 </section>
 
 
   </div> <!-- /.main-content -->
-
   <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
     <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
 <header id="header-search-sidebar" class="hidden-l">
@@ -100,41 +95,31 @@ popped from the navigator.</p>
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
 </header>
-
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">flutter_fx</a></li>
-    <li><a href="../../flutter_fx/flutter_fx-library.html">flutter_fx</a></li>
+    <li><a href="../../flutter_fx">flutter_fx</a></li>
     <li><a href="../../flutter_fx/FxRouter-class.html">FxRouter</a></li>
     <li class="self-crumb">goToAndReplace&lt;<wbr><span class="type-parameter">T extends Object?</span>&gt; static method</li>
 </ol>
 
-
     <h5>FxRouter class</h5>
     <div id="dartdoc-sidebar-left-content"></div>
   </div><!--/.sidebar-offcanvas-->
-
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
 </div><!--/.sidebar-offcanvas-->
-
 </main>
-
 <footer>
   <span class="no-break">
     flutter_fx
-      0.1.4
+      0.1.5
   </span>
-
   
 </footer>
-
 
 
 <script src="../../static-assets/highlight.pack.js?v1"></script>
 <script src="../../static-assets/docs.dart.js"></script>
 
-
-
 </body>
-
 </html>
 
